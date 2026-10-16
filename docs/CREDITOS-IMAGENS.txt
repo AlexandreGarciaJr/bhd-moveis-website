@@ -1,0 +1,37 @@
+Imagens ilustrativas (licença Unsplash), usadas até a chegada das fotos reais da BHD.
+O ID de cada foto no Unsplash está após "photo-".
+
+produtos/sofa-lina-3-lugares-com-chaise/01.jpg  https://images.unsplash.com/photo-1716078410207-20e223587181
+produtos/sofa-aurora-3-lugares/01.jpg  https://images.unsplash.com/photo-1750639258774-9a714379a093
+produtos/sofa-dante-retratil-e-reclinavel/01.jpg  https://images.unsplash.com/photo-1759722668385-90006d9c7aa7
+produtos/sofa-dante-retratil-e-reclinavel/02.jpg  https://images.unsplash.com/photo-1759722668253-1767030ad9b2
+produtos/sofa-de-canto-milao-5-lugares/01.jpg  https://images.unsplash.com/photo-1565330502541-4937be8552e3
+produtos/sofa-de-canto-milao-5-lugares/02.jpg  https://images.unsplash.com/photo-1759722668224-43e1dae9049e
+produtos/sofa-sena-2-lugares/01.jpg  https://images.unsplash.com/photo-1759722665629-29df6ee4f9a5
+produtos/sofa-toscana-3-lugares/01.jpg  https://images.unsplash.com/photo-1588706235076-627d896e9f67
+produtos/sofa-toscana-3-lugares/02.jpg  https://images.unsplash.com/photo-1603483906763-06126bc42f8c
+produtos/sofa-iris-3-lugares-veludo/01.jpg  https://images.unsplash.com/photo-1734455945410-d5c232138dba
+produtos/conjunto-de-jantar-oslo-6-lugares/01.jpg  https://images.unsplash.com/photo-1567156444932-b578b7a1afe4
+produtos/mesa-de-jantar-verona-6-lugares/01.jpg  https://images.unsplash.com/photo-1657524398377-567034729507
+produtos/conjunto-de-jantar-lisboa-4-lugares/01.jpg  https://images.unsplash.com/photo-1758977404683-d04c315a005b
+produtos/mesa-redonda-bia-4-lugares/01.jpg  https://images.unsplash.com/photo-1615920606214-6428b3324c74
+produtos/mesa-de-centro-duo/01.jpg  https://images.unsplash.com/photo-1581428982868-e410dd047a90
+produtos/mesa-lateral-gota/01.jpg  https://images.unsplash.com/photo-1759262151001-3f8841d02ce1
+produtos/cadeira-vera-estofada/01.jpg  https://images.unsplash.com/photo-1598300042247-d088f8ab3a91
+produtos/cadeira-nordica-freijo/01.jpg  https://images.unsplash.com/photo-1699588772787-1eed3b726e0a
+produtos/cadeira-eva-branca/01.jpg  https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1
+produtos/cadeira-leme-preta/01.jpg  https://images.unsplash.com/photo-1592078615290-033ee584e267
+produtos/poltrona-aurora-capitone/01.jpg  https://images.unsplash.com/photo-1567538096630-e0c55bd6374c
+produtos/poltrona-caramelo/01.jpg  https://images.unsplash.com/photo-1506332088442-9e0024864f5d
+produtos/poltrona-bergere-mostarda/01.jpg  https://images.unsplash.com/photo-1631700679578-621a258507bb
+produtos/buffet-ravena/01.jpg  https://images.unsplash.com/photo-1721385675060-9982ec72385e
+produtos/buffet-ravena/02.jpg  https://images.unsplash.com/photo-1718524767499-7fe3a6ab4f8c
+produtos/buffet-lumi-4-portas/01.jpg  https://images.unsplash.com/photo-1601929600847-b1b4572b7ae7
+produtos/rack-nero/01.jpg  https://images.unsplash.com/photo-1657524520861-0b2690efc2b2
+produtos/comoda-sol-5-gavetas/01.jpg  https://images.unsplash.com/photo-1786953835509-950e265ed7c8
+produtos/criado-mudo-mar/01.jpg  https://images.unsplash.com/photo-1593194632872-3d19dab6e278
+produtos/aparador-iris/01.jpg  https://images.unsplash.com/photo-1609879938030-31acdeded104
+ambientes/hero.jpg  https://images.unsplash.com/photo-1716078410207-20e223587181
+ambientes/showroom-1.jpg  https://images.unsplash.com/photo-1687180498602-5a1046defaa4
+ambientes/showroom-2.jpg  https://images.unsplash.com/photo-1687180497278-ca4d736ecc99
+ambientes/showroom-3.jpg  https://images.unsplash.com/photo-1789457720491-582d46974677

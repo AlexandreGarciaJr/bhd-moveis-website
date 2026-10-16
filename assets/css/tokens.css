@@ -1,0 +1,62 @@
+/* ==========================================================================
+   BHD Móveis — tokens de design
+   Mude aqui cores, fontes, espaçamentos e raios: o site inteiro acompanha.
+   ========================================================================== */
+
+:root {
+  /* Cores */
+  --bordo: #6D012B;          /* cor do logo oficial */
+  --bordo-escuro: #4E0120;
+  --bordo-claro: #F6ECEF;
+  --papel: #FBFAF8;          /* fundo principal */
+  --linho: #EFE9E2;          /* superfícies e fundos de foto */
+  --linho-escuro: #E6DED4;
+  --grafite: #262226;        /* texto principal */
+  --texto-2: #4A4549;        /* texto de apoio */
+  --pedra: #6F6A66;          /* legendas (contraste 5,3:1 sobre o papel) */
+  --linha: #E3DDD6;          /* bordas e divisórias */
+  --branco: #FFFFFF;
+  --verde: #2F7D4F;          /* indicador de pronta-entrega */
+
+  /* Tipografia */
+  --f-titulo: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --f-texto: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --t-hero: clamp(46px, 6.6vw, 108px);
+  --t-h1: clamp(36px, 4.6vw, 64px);
+  --t-h2: clamp(30px, 3.4vw, 46px);
+  --t-h3: 20px;
+  --t-corpo: 16px;
+  --t-pequeno: 14px;
+  --t-mini: 13px;
+
+  /* Espaços */
+  --gutter: clamp(16px, 4vw, 56px);
+  --secao: clamp(72px, 9vw, 136px);
+  --largura-max: 1440px;
+  --texto-max: 64ch;
+
+  /* Raios */
+  --r-g: 28px;
+  --r-m: 18px;
+  --r-p: 10px;
+  --r-pilula: 999px;
+
+  /* Alturas fixas */
+  --beneficios-h: 38px;
+  --topo-h: 80px;
+
+  /* Sombras e movimento */
+  --sombra-etiqueta: 0 14px 28px rgba(38, 34, 38, .16);
+  --sombra-flutuante: 0 18px 40px rgba(38, 34, 38, .18);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --rapido: .18s;
+  --medio: .32s;
+}
+
+@media (max-width: 759px) {
+  :root {
+    --topo-h: 64px;
+    --beneficios-h: 34px;
+    --r-g: 22px;
+  }
+}

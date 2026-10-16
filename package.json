@@ -1,0 +1,15 @@
+{
+  "name": "bhd-moveis-site",
+  "private": true,
+  "description": "Site vitrine da BHD Móveis. Ferramentas de apoio: otimização de imagens e checagens. O site é gerado pelo build.php.",
+  "type": "module",
+  "scripts": {
+    "imagens": "node tools/otimizar-imagens.mjs",
+    "build": "php build.php",
+    "dev": "php build.php && php -S localhost:8080 -t dist",
+    "preview": "php -S localhost:8080 -t dist"
+  },
+  "devDependencies": {
+    "sharp": "0.33.5"
+  }
+}

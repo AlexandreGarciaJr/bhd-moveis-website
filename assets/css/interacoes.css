@@ -1,0 +1,264 @@
+/* ==========================================================================
+   Interações: hovers, cursor contextual, cards e faixa de texto
+   Os hovers são CSS puro. Os efeitos com JavaScript ficam em assets/js/motion.js.
+   ========================================================================== */
+
+:root {
+  --ease-expo: cubic-bezier(.19, 1, .22, 1);
+  --ease-suave: cubic-bezier(.65, 0, .35, 1);
+}
+
+/* ---------- Texto que rola (rolar() no PHP) ---------- */
+.rolar {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: 1.25;
+  /* a cópia que entra por baixo é um text-shadow */
+}
+.rolar > span {
+  display: inline-block;
+  text-shadow: 0 1.25em currentColor;
+  transition: transform .6s var(--ease-expo);
+}
+@media (hover: hover) {
+  a:hover .rolar > span,
+  button:hover .rolar > span,
+  .card-link:hover .rolar > span { transform: translateY(-1.25em); }
+}
+
+/* ---------- Sublinhado que sai pela direita e volta pela esquerda ---------- */
+.link-sublinhado,
+.rodape-col a,
+.rodape-lojas a,
+.migalhas a,
+.canais-lista a .rolar,
+.card-nome span,
+.produto-lojas a,
+.aviso-avaliacao-acoes a {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat;
+  padding-bottom: 3px;
+}
+.rodape-col a, .migalhas a, .card-nome span { background-size: 0 1.5px; }
+@media (hover: hover) {
+  .link-sublinhado:hover,
+  .rodape-lojas a:hover,
+  .canais-lista a:hover .rolar,
+  .produto-lojas a:hover,
+  .aviso-avaliacao-acoes a:hover { animation: sublinhado .8s var(--ease-expo); }
+  .rodape-col a:hover, .migalhas a:hover, .card-link:hover .card-nome span {
+    background-size: 100% 1.5px;
+    transition: background-size .6s var(--ease-expo);
+  }
+  .rodape-col a, .migalhas a, .card-nome span {
+    background-position: 100% 100%;
+    transition: background-size .5s var(--ease-expo);
+  }
+  .rodape-col a:hover, .migalhas a:hover, .card-link:hover .card-nome span { background-position: 0 100%; }
+}
+@keyframes sublinhado {
+  0% { background-size: 100% 1.5px; background-position: 100% 100%; }
+  45% { background-size: 0 1.5px; background-position: 100% 100%; }
+  46% { background-size: 0 1.5px; background-position: 0 100%; }
+  100% { background-size: 100% 1.5px; background-position: 0 100%; }
+}
+
+/* ---------- Menu principal ---------- */
+.topo-nav a::after { display: none; }
+.topo-nav a {
+  padding: 10px 2px;
+  background: linear-gradient(currentColor, currentColor) 100% calc(100% - 4px) / 0 1.5px no-repeat;
+  transition: background-size .55s var(--ease-expo);
+}
+.topo-nav a:hover,
+.topo-nav a[aria-current="page"] { background-size: 100% 1.5px; background-position: 0 calc(100% - 4px); }
+.menu-movel nav a .i { transition: transform .5s var(--ease-expo); }
+.menu-movel nav a:hover .i { transform: translateX(6px); color: var(--bordo); }
+
+/* ---------- Botões: preenchimento que sobe ---------- */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color .45s var(--ease-expo), border-color .45s var(--ease-expo), transform .3s var(--ease-expo);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 45% 45% 0 0 / 70% 70% 0 0;
+  background: var(--grafite);
+  transform: translateY(102%);
+  transition: transform .6s var(--ease-expo), border-radius .6s var(--ease-expo);
+}
+.btn-primario:hover { background: var(--bordo); }
+.btn-contorno:hover { background: transparent; }
+@media (hover: hover) {
+  .btn:hover::before { transform: translateY(0); border-radius: 0; }
+  .btn-contorno:hover, .btn-primario:hover { color: var(--branco); border-color: var(--grafite); }
+  .topo-whats:hover { border-color: var(--bordo); }
+  .topo-whats::before { background: var(--bordo); }
+  .avalie-acoes .btn:hover { background: var(--papel); }
+  .consentimento .btn-contorno::before { background: var(--branco); }
+  .consentimento .btn-contorno:hover { color: var(--grafite); border-color: var(--branco); }
+}
+.btn .i { position: relative; transition: transform .5s var(--ease-expo); }
+.btn:hover > .i:last-child:not(:first-child) { transform: translate(3px, -3px); }
+
+.btn-icone { transition: border-color .4s var(--ease-expo), background-color .4s var(--ease-expo), color .4s var(--ease-expo); }
+@media (hover: hover) {
+  .btn-icone:not(:disabled):not(.btn-icone-claro):hover { background: var(--grafite); border-color: var(--grafite); color: var(--branco); }
+  .btn-icone-claro:hover { background: var(--branco); color: var(--grafite); }
+}
+
+/* WhatsApp flutuante: o texto rola e o ícone gira levemente */
+.whats-flutuante { overflow: hidden; isolation: isolate; }
+.whats-flutuante::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--grafite);
+  transform: scale(0);
+  transition: transform .6s var(--ease-expo);
+}
+.whats-flutuante:hover { background: var(--bordo); transform: none; }
+.whats-flutuante:hover::before { transform: scale(1.05); }
+.whats-flutuante .i { transition: transform .6s var(--ease-expo); }
+.whats-flutuante:hover .i { transform: rotate(-14deg) scale(1.08); }
+
+/* ---------- Cards de produto ---------- */
+.card-foto {
+  clip-path: inset(0 round var(--r-m));
+  transition: clip-path .8s var(--ease-expo);
+  border-radius: 0;
+}
+.card-foto img { transition: transform 1.2s var(--ease-expo), opacity .7s var(--ease-expo), filter .7s var(--ease-expo); }
+.card-foto-2 {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.08);
+}
+.card-foto .selo { transition: transform .6s var(--ease-expo), opacity .4s; }
+.card-nome span { padding-bottom: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .card-link:hover .card-foto { clip-path: inset(8px round calc(var(--r-m) - 4px)); }
+  .card-link:hover .card-foto-1 { transform: scale(1.07); }
+  .card-link:hover .card-foto-2 { opacity: 1; transform: scale(1); }
+  .card-link:hover .card-foto-1:not(:only-of-type) { opacity: 0; }
+  .card-link:hover .selo-desconto { transform: translate(6px, 6px); }
+  .card-link:hover .selo-pronta { transform: translate(-6px, 6px); }
+  .card-link:hover .card-nome { text-decoration: none; }
+  .card-link:hover .card-foto img.card-foto-1:only-of-type { transform: scale(1.07); }
+}
+
+/* ---------- Categorias da home ---------- */
+.categoria::after { transition: opacity .7s var(--ease-expo); }
+.categoria img { transition: transform 1.2s var(--ease-expo); }
+.categoria-texto strong .rolar { line-height: 1.1; }
+.categoria-texto strong .rolar > span { text-shadow: 0 1.1em currentColor; }
+.categoria-seta {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: grid !important;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .5);
+  transition: background-color .5s var(--ease-expo), border-color .5s var(--ease-expo), transform .6s var(--ease-expo);
+}
+.categoria-seta .i { width: 18px; height: 18px; transform: rotate(-45deg); transition: transform .6s var(--ease-expo) !important; }
+@media (hover: hover) {
+  .categoria:hover img { transform: scale(1.08); }
+  .categoria:hover .rolar > span { transform: translateY(-1.1em); }
+  .categoria:hover .categoria-seta { background: var(--branco); border-color: var(--branco); color: var(--bordo); }
+  .categoria:hover .categoria-seta .i { transform: rotate(0); }
+}
+
+/* ---------- Cursor contextual (desktop) ---------- */
+.cursor {
+  position: fixed;
+  left: 0; top: 0;
+  z-index: 90;
+  width: 96px; height: 96px;
+  margin: -48px 0 0 -48px;
+  border-radius: 50%;
+  background: var(--bordo);
+  color: var(--branco);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font: 600 13px/1.15 var(--f-texto);
+  pointer-events: none;
+  transform: scale(0);
+  will-change: transform;
+}
+.cursor span { max-width: 70px; }
+.cursor.cursor-claro { background: var(--papel); color: var(--grafite); }
+
+/* ---------- Faixa de texto que anda com o scroll ---------- */
+.faixa {
+  margin-top: var(--secao);
+  overflow: hidden;
+  padding: 8px 0;
+  user-select: none;
+}
+.faixa-linha {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+  width: max-content;
+  font: 600 clamp(56px, 10vw, 168px)/1 var(--f-titulo);
+  letter-spacing: -.035em;
+  color: var(--grafite);
+  white-space: nowrap;
+  will-change: transform;
+}
+.faixa-linha-contorno {
+  color: var(--bordo);
+  margin-top: -.06em;
+  transform: translateX(-30%);
+}
+.faixa-etiqueta {
+  position: relative;
+  flex: none;
+  width: .42em; height: .24em;
+  background: var(--bordo);
+  clip-path: polygon(22% 0, 100% 0, 100% 100%, 22% 100%, 0 50%);
+  transform: rotate(-12deg);
+}
+.faixa-linha-contorno .faixa-etiqueta { background: var(--grafite); }
+.faixa-etiqueta::after {
+  content: "";
+  position: absolute;
+  left: 30%; top: 50%;
+  width: .05em; height: .05em;
+  margin-top: -.025em;
+  border-radius: 50%;
+  background: var(--papel);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 899px) {
+  .hero-indicadores { left: 14px; bottom: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rolar > span { transition: none; }
+  .faixa-linha, .faixa-linha-contorno { transform: none !important; }
+}
+
+/* ---------- Letras do título do hero (divididas pelo motion.js) ---------- */
+.hero-titulo .palavra { display: inline-block; white-space: nowrap; }
+.hero-titulo .letra { display: inline-block; will-change: transform; }
+
+/* ---------- Ofertas presas à rolagem (desktop, ver motion.js) ---------- */
+.ofertas { overflow-x: clip; }
+.trilho.trilho-fixo {
+  overflow: visible;
+  scroll-snap-type: none;
+  cursor: default;
+  will-change: transform;
+}

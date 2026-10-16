@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "sofas",
+    "nome": "Sofás",
+    "titulo": "Sofás com preço de outlet",
+    "descricao": "Sofás retráteis, de canto, de 2 e 3 lugares. Pronta-entrega nas lojas de São Paulo e Cotia.",
+    "capa": "sofa-aurora-3-lugares/01",
+    "icone": "sofa",
+    "ordem": 1,
+    "ativo": true
+  },
+  {
+    "slug": "mesas",
+    "nome": "Mesas",
+    "titulo": "Mesas de jantar, de centro e laterais",
+    "descricao": "Conjuntos de jantar, mesas redondas, de centro e laterais com preço de outlet.",
+    "capa": "conjunto-de-jantar-oslo-6-lugares/01",
+    "icone": "mesa",
+    "ordem": 2,
+    "ativo": true
+  },
+  {
+    "slug": "cadeiras",
+    "nome": "Cadeiras",
+    "titulo": "Cadeiras e poltronas",
+    "descricao": "Cadeiras de jantar, estofadas e poltronas para sala e quarto.",
+    "capa": "cadeira-vera-estofada/01",
+    "icone": "cadeira",
+    "ordem": 3,
+    "ativo": true
+  },
+  {
+    "slug": "diversos",
+    "nome": "Diversos",
+    "titulo": "Buffets, racks, cômodas e mais",
+    "descricao": "Buffets, racks, cômodas, criados-mudos e aparadores.",
+    "capa": "buffet-ravena/01",
+    "icone": "diversos",
+    "ordem": 4,
+    "ativo": true
+  }
+]

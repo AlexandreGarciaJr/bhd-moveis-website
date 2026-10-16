@@ -1,0 +1,77 @@
+{
+  "nome": "BHD Móveis",
+  "nome_completo": "BHD Móveis & Planejados",
+  "url": "https://bhdmoveis.com.br",
+  "caminho_base": "/",
+  "ambiente": "preview",
+  "demo": true,
+  "idioma": "pt-BR",
+  "descricao": "Sofás, mesas, cadeiras e móveis com preço de outlet e pronta-entrega em São Paulo e Cotia. Compre na loja, pelo WhatsApp, no Mercado Livre ou na Amazon.",
+
+  "contato": {
+    "whatsapp": "5511937325839",
+    "whatsapp_exibicao": "(11) 93732-5839",
+    "mensagem_padrao": "Olá! Vim pelo site da BHD Móveis e gostaria de atendimento.",
+    "instagram": "https://www.instagram.com/bhd.moveis/",
+    "email": "contato@bhdmoveis.com.br"
+  },
+
+  "beneficios": [
+    { "icone": "caixa", "destaque": "Pronta-entrega", "texto": "nas duas lojas" },
+    { "icone": "caminhao", "destaque": "Entrega em até 24h", "texto": "em São Paulo" },
+    { "icone": "cartao", "destaque": "Até 18x", "texto": "no cartão" }
+  ],
+  "parcelas_max": 18,
+
+  "hero": {
+    "titulo": ["Móveis de", "showroom,", "preço de", "outlet."],
+    "texto": "Sofás, mesas e cadeiras prontos para levar. Veja na loja, chame no WhatsApp ou compre pelo Mercado Livre.",
+    "segundos_por_cena": 3,
+    "cenas": [
+      { "produto": "sofa-lina-3-lugares-com-chaise", "imagem": "ambientes/hero", "foco": "40% 62%", "ancora": [33, 70], "etiqueta": [50, 41] },
+      { "produto": "sofa-aurora-3-lugares", "imagem": "produtos/sofa-aurora-3-lugares/01", "foco": "50% 70%", "ancora": [38, 64], "etiqueta": [52, 30] },
+      { "produto": "conjunto-de-jantar-oslo-6-lugares", "imagem": "produtos/conjunto-de-jantar-oslo-6-lugares/01", "foco": "50% 70%", "ancora": [46, 66], "etiqueta": [58, 34] },
+      { "produto": "poltrona-caramelo", "imagem": "produtos/poltrona-caramelo/01", "foco": "50% 60%", "ancora": [44, 56], "etiqueta": [58, 26] }
+    ]
+  },
+
+  "avaliacoes": {
+    "exibir_nota": false,
+    "nota": null,
+    "total": null,
+    "popup": { "ativo": true, "atraso_segundos": 30, "dias_para_reaparecer": 30 }
+  },
+
+  "analytics": {
+    "ga4": { "ativo": false, "id": "" },
+    "meta_pixel": { "ativo": false, "id": "" },
+    "clarity": { "ativo": false, "id": "" }
+  },
+
+  "faq": [
+    {
+      "pergunta": "Onde eu compro os móveis que vejo no site?",
+      "resposta": "Você escolhe: nas nossas lojas em São Paulo e Cotia, pelo WhatsApp ou pelo Mercado Livre e Amazon, quando o produto estiver disponível lá. Cada produto mostra os canais em que pode ser comprado."
+    },
+    {
+      "pergunta": "Os preços do site são os mesmos da loja e do marketplace?",
+      "resposta": "Os preços são atualizados com frequência, mas podem variar entre a loja, o WhatsApp e os marketplaces. Antes de fechar, confirme o valor com a gente pelo WhatsApp."
+    },
+    {
+      "pergunta": "Em quanto tempo o móvel chega?",
+      "resposta": "Produtos com o selo de pronta-entrega saem do nosso estoque. Em São Paulo a entrega pode ser feita em até 24 horas. Para outras regiões, consulte o prazo pelo WhatsApp."
+    },
+    {
+      "pergunta": "Vocês montam o móvel?",
+      "resposta": "Informação a confirmar com a BHD."
+    },
+    {
+      "pergunta": "Em quantas vezes posso parcelar?",
+      "resposta": "Em até 18 vezes no cartão. Condições de juros a confirmar com a BHD."
+    },
+    {
+      "pergunta": "Como funcionam a garantia e as trocas?",
+      "resposta": "Informação a confirmar com a BHD."
+    }
+  ]
+}

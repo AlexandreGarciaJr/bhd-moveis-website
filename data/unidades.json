@@ -1,0 +1,36 @@
+[
+  {
+    "slug": "jardim-lucia",
+    "nome": "BHD Jardim Lúcia",
+    "cidade": "São Paulo",
+    "endereco": "R. José Silvano Filho, 187",
+    "bairro": "Jardim Lúcia",
+    "uf": "SP",
+    "cep": "05545-160",
+    "telefone": "(11) 93732-5839",
+    "whatsapp": "5511937325839",
+    "horarios": [],
+    "rota": "https://www.google.com/maps/dir/?api=1&destination=R.+Jos%C3%A9+Silvano+Filho%2C+187+-+Jardim+L%C3%BAcia%2C+S%C3%A3o+Paulo+-+SP%2C+05545-160",
+    "avaliar": "https://share.google/w2rTT5MEx5JvOphht",
+    "foto": "showroom-1",
+    "geo": { "lat": null, "lng": null },
+    "confirmado": false
+  },
+  {
+    "slug": "cotia",
+    "nome": "BHD Prime Cotia",
+    "cidade": "Cotia",
+    "endereco": "R. Copersúcar, 81",
+    "bairro": "Jardim do Rio",
+    "uf": "SP",
+    "cep": "06715-840",
+    "telefone": "(11) 93732-5839",
+    "whatsapp": "5511937325839",
+    "horarios": [],
+    "rota": "https://www.google.com/maps/dir/?api=1&destination=R.+Copers%C3%BAcar%2C+81+-+Jardim+do+Rio%2C+Cotia+-+SP%2C+06715-840",
+    "avaliar": "https://share.google/oEJDt6KzgMu6hEf7g",
+    "foto": "showroom-2",
+    "geo": { "lat": null, "lng": null },
+    "confirmado": false
+  }
+]
