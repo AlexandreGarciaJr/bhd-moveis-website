@@ -48,5 +48,6 @@
     <?php if ($site['demo']): ?>
     <p class="rodape-demo">Versão de demonstração: produtos, preços e fotos são ilustrativos.</p>
     <?php endif; ?>
+    <p class="rodape-credito">Desenvolvido por <a href="https://www.instagram.com/newarrays/" target="_blank" rel="noopener">New Arrays</a></p>
   </div>
 </footer>

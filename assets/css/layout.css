@@ -167,3 +167,14 @@
   .rodape { padding-top: 56px; }
   .rodape-grade { grid-template-columns: 1fr; gap: 36px; }
 }
+
+/* Crédito de desenvolvimento no rodapé */
+.rodape-credito a {
+  color: var(--branco);
+  font-weight: 500;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  padding-bottom: 2px;
+}
+.rodape-credito a:hover { animation: sublinhado .8s var(--ease-expo, ease); }
+/* espaço no fim da página para o botão flutuante do WhatsApp não cobrir o rodapé */
+.rodape { padding-bottom: calc(100px + env(safe-area-inset-bottom)); }

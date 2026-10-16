@@ -30,8 +30,8 @@ $links[] = ['Lojas', '/unidades/'];
 
   <div class="topo-acoes">
     <button class="btn-icone" type="button" data-abrir="busca" aria-label="Buscar produtos"><?= icone('busca') ?></button>
-    <a class="btn btn-contorno btn-pequeno topo-whats" href="<?= e(whatsapp()) ?>" target="_blank" rel="noopener" data-track="click_whatsapp" data-local="header">
-      <?= icone('whatsapp') ?><span class="topo-whats-texto"><?= rolar('WhatsApp') ?></span>
+    <a class="btn btn-contorno btn-pequeno topo-whats" href="<?= e($site['contato']['instagram']) ?>" target="_blank" rel="noopener" data-track="click_instagram" data-local="header" aria-label="Instagram da BHD Móveis">
+      <?= icone('instagram') ?><span class="topo-whats-texto"><?= rolar('Instagram') ?></span>
     </a>
     <button class="btn-icone topo-menu" type="button" data-abrir="menu" aria-label="Abrir menu" aria-haspopup="dialog"><?= icone('menu') ?></button>
   </div>

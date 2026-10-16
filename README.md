@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <a href="https://alexandregarciajr.github.io/bhd-moveis-site/"><strong>Ver o preview →</strong></a>
+  <a href="https://alexandregarciajr.github.io/bhd-moveis-website/"><strong>Ver o preview →</strong></a>
 </p>
 
 <p align="center">
