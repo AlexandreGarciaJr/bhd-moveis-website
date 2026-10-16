@@ -39,7 +39,7 @@
     "exibir_nota": false,
     "nota": null,
     "total": null,
-    "popup": { "ativo": true, "atraso_segundos": 30, "dias_para_reaparecer": 30 }
+    "popup": { "ativo": true, "atraso_segundos": 12, "dias_para_reaparecer": 30 }
   },
 
   "analytics": {
