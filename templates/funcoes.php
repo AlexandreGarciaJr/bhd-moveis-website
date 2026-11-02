@@ -163,43 +163,45 @@ function imagem_produto(array $p, int $indice = 0, array $opc = []): string
 
 /* ---------- Produtos ---------- */
 
-const CANAIS = [
-    'mercadolivre' => ['rotulo' => 'Mercado Livre', 'acao' => 'Comprar no Mercado Livre', 'evento' => 'click_mercadolivre'],
-    'amazon' => ['rotulo' => 'Amazon', 'acao' => 'Comprar na Amazon', 'evento' => 'click_amazon'],
-    'whatsapp' => ['rotulo' => 'WhatsApp', 'acao' => 'Comprar pelo WhatsApp', 'evento' => 'click_whatsapp'],
-];
-
-/** Canais de compra do produto, com o principal primeiro. WhatsApp está sempre disponível. */
-function canais(array $p): array
+/** Texto do pedido que já abre pronto na conversa do WhatsApp. */
+function mensagem_pedido(array $p, ?string $variacao = null): string
 {
-    $lista = [];
-    foreach (['mercadolivre', 'amazon'] as $c) {
-        if (!empty($p['links'][$c])) {
-            $lista[$c] = CANAIS[$c] + ['tipo' => $c, 'url' => $p['links'][$c]];
-        }
+    $n = (int) bhd('site')['parcelas_max'];
+    $linhas = ['Olá! Quero fazer um pedido pelo site da BHD Móveis:', '', '*' . $p['nome'] . '*'];
+    if ($variacao) {
+        $linhas[] = 'Opção: ' . $variacao;
     }
-    $msg = 'Olá! Tenho interesse no produto "' . $p['nome'] . '" (R$ ' . preco((float) $p['preco']) . '). ' . url_abs($p['url']);
-    $lista['whatsapp'] = CANAIS['whatsapp'] + ['tipo' => 'whatsapp', 'url' => whatsapp($msg)];
-
-    $principal = $p['canal_principal'] ?? 'mercadolivre';
-    if (isset($lista[$principal])) {
-        $lista = [$principal => $lista[$principal]] + $lista;
-    }
-    return array_values($lista);
+    $linhas[] = 'Valor: R$ ' . preco((float) $p['preco']) . ' (ou ' . $n . 'x de R$ ' . parcela((float) $p['preco']) . ')';
+    $linhas[] = 'Link: ' . url_abs($p['url']);
+    $linhas[] = '';
+    $linhas[] = 'Pode confirmar o pedido e a entrega?';
+    return implode("\n", $linhas);
 }
 
-/** Texto curto "Mercado Livre ou WhatsApp" para os cards. */
-function canais_resumo(array $p): string
+/** Link do botão "Pedir pelo WhatsApp". */
+function pedido_whatsapp(array $p, ?string $variacao = null): string
 {
-    $nomes = array_map(fn($c) => $c['rotulo'], canais($p));
-    if (count($nomes) === 1) {
-        return 'Só pelo WhatsApp';
+    return whatsapp(mensagem_pedido($p, $variacao));
+}
+
+/** Subcategoria pelo slug, dentro de uma categoria. */
+function subcategoria(array $categoria, string $slug): ?array
+{
+    foreach ($categoria['subcategorias'] ?? [] as $sub) {
+        if ($sub['slug'] === $slug) {
+            return $sub;
+        }
     }
-    // nos cards, o WhatsApp só aparece quando há apenas um marketplace
-    if (count($nomes) > 2) {
-        $nomes = array_values(array_filter($nomes, fn($n) => $n !== 'WhatsApp'));
-    }
-    return implode(' ou ', $nomes);
+    return null;
+}
+
+/** Subcategorias que têm pelo menos um produto ativo. */
+function subcategorias_ativas(array $categoria): array
+{
+    return array_values(array_filter($categoria['subcategorias'] ?? [], fn($sub) => count(array_filter(
+        bhd('produtos'),
+        fn($p) => $p['categoria'] === $categoria['slug'] && ($p['subcategoria'] ?? '') === $sub['slug']
+    )) > 0));
 }
 
 function produtos_da_categoria(string $slug): array

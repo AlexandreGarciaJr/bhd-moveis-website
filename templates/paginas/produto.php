@@ -1,15 +1,21 @@
 <?php
-/** @var array $p @var array $cat @var array $relacionados */
+/** @var array $p @var array $cat @var array $sub @var array $relacionados */
 $site = bhd('site');
-$canais = canais($p);
-$principal = $canais[0];
-$secundarios = array_slice($canais, 1);
 $rotulosMedida = ['largura' => 'Largura', 'profundidade' => 'Profundidade', 'altura' => 'Altura', 'diametro' => 'Diâmetro', 'peso' => 'Peso'];
+$variacoes = $p['variacoes'] ?? [];
+$primeira = $variacoes[0] ?? null;
+$numero = preg_replace('/\D/', '', $site['contato']['whatsapp']);
+// o JavaScript troca {{opcao}} pela opção escolhida e atualiza o link do pedido
+$atributosPedido = 'href="' . e(pedido_whatsapp($p, $primeira)) . '" target="_blank" rel="noopener" data-track="click_pedido_whatsapp" data-item="' . e($p['id']) . '"';
+if ($variacoes) {
+    $atributosPedido .= ' data-pedido data-numero="' . e($numero) . '" data-modelo="' . e(mensagem_pedido($p, '{{opcao}}')) . '"';
+}
 ?>
 <nav class="migalhas" aria-label="Você está em">
   <ol>
     <li><a href="<?= e(url('/')) ?>">Início</a></li>
     <li><a href="<?= e(url('/' . $cat['slug'] . '/')) ?>"><?= e($cat['nome']) ?></a></li>
+    <li><a href="<?= e(url('/' . $cat['slug'] . '/' . $sub['slug'] . '/')) ?>"><?= e($sub['nome']) ?></a></li>
     <li aria-current="page"><?= e($p['nome']) ?></li>
   </ol>
 </nav>
@@ -36,38 +42,29 @@ $rotulosMedida = ['largura' => 'Largura', 'profundidade' => 'Profundidade', 'alt
   </div>
 
   <div class="produto-info">
-    <a class="produto-categoria" href="<?= e(url('/' . $cat['slug'] . '/')) ?>"><?= e($cat['nome']) ?></a>
+    <a class="produto-categoria" href="<?= e(url('/' . $cat['slug'] . '/' . $sub['slug'] . '/')) ?>"><?= e($sub['nome']) ?></a>
     <h1 class="produto-nome"><?= e($p['nome']) ?></h1>
     <?php if (!empty($p['resumo'])): ?><p class="produto-resumo"><?= e($p['resumo']) ?></p><?php endif; ?>
 
     <div class="produto-preco">
       <?php partial('etiqueta', ['p' => $p, 'tamanho' => 'g']); ?>
-      <?php if (!empty($p['pronta_entrega'])): ?>
-      <p class="produto-status"><?= icone('check') ?>Pronta-entrega nas lojas</p>
-      <?php else: ?>
-      <p class="produto-status produto-status-consulta"><?= icone('relogio') ?>Consulte o prazo de entrega</p>
-      <?php endif; ?>
+      <p class="produto-status"><?= icone('check') ?>Pronta-entrega em até 48h na Grande São Paulo</p>
     </div>
 
-    <?php if (!empty($p['variacoes'])): ?>
-    <div class="produto-variacoes">
-      <p>Também disponível em:</p>
-      <ul><?php foreach ($p['variacoes'] as $v): ?><li><?= e($v) ?></li><?php endforeach; ?></ul>
-    </div>
+    <?php if ($variacoes): ?>
+    <fieldset class="produto-variacoes">
+      <legend>Escolha a opção:</legend>
+      <div class="variacoes-lista">
+        <?php foreach ($variacoes as $i => $v): ?>
+        <label class="variacao"><input type="radio" name="variacao" value="<?= e($v) ?>" data-variacao<?= $i === 0 ? ' checked' : '' ?>><span><?= e($v) ?></span></label>
+        <?php endforeach; ?>
+      </div>
+    </fieldset>
     <?php endif; ?>
 
     <div class="produto-compra">
-      <a class="btn btn-primario btn-grande btn-largo" href="<?= e($principal['url']) ?>" target="_blank" rel="noopener"
-         data-track="<?= e($principal['evento']) ?>" data-local="produto-principal" data-item="<?= e($p['id']) ?>">
-        <?= $principal['tipo'] === 'whatsapp' ? icone('whatsapp') : '' ?><?= e($principal['acao']) ?><?= $principal['tipo'] !== 'whatsapp' ? icone('externo') : '' ?>
-      </a>
-      <?php foreach ($secundarios as $c): ?>
-      <a class="btn btn-contorno btn-grande btn-largo" href="<?= e($c['url']) ?>" target="_blank" rel="noopener"
-         data-track="<?= e($c['evento']) ?>" data-local="produto-secundario" data-item="<?= e($p['id']) ?>">
-        <?= $c['tipo'] === 'whatsapp' ? icone('whatsapp') . 'Tirar dúvidas no WhatsApp' : e($c['acao']) . icone('externo') ?>
-      </a>
-      <?php endforeach; ?>
-      <p class="produto-aviso">O preço pode variar entre a loja e os marketplaces. Atualizado em <?= e(data_br($p['atualizado_em'] ?? date('Y-m-d'))) ?>.</p>
+      <a class="btn btn-primario btn-grande btn-largo" <?= $atributosPedido ?> data-local="produto"><?= icone('whatsapp') ?>Pedir pelo WhatsApp</a>
+      <p class="produto-aviso">A mensagem do pedido já abre pronta na conversa, é só enviar. Preço atualizado em <?= e(data_br($p['atualizado_em'] ?? date('Y-m-d'))) ?>.</p>
     </div>
 
     <div class="produto-lojas">
@@ -75,7 +72,7 @@ $rotulosMedida = ['largura' => 'Largura', 'profundidade' => 'Profundidade', 'alt
       <ul>
         <?php foreach (bhd('unidades') as $u): ?>
         <li>
-          <span><strong><?= e($u['nome']) ?></strong><?= e($u['bairro']) ?>, <?= e($u['cidade']) ?></span>
+          <span><strong><?= e($u['nome']) ?></strong><?= e($u['referencia']) ?></span>
           <a class="link-sublinhado" href="<?= e($u['rota']) ?>" target="_blank" rel="noopener" data-track="click_rota" data-local="<?= e($u['slug']) ?>">Como chegar</a>
         </li>
         <?php endforeach; ?>
@@ -112,7 +109,7 @@ $rotulosMedida = ['largura' => 'Largura', 'profundidade' => 'Profundidade', 'alt
 <?php if ($relacionados): ?>
 <section class="secao relacionados" aria-labelledby="rel-titulo">
   <div class="secao-cabeca">
-    <h2 class="titulo-secao" id="rel-titulo">Mais em <?= e(mb_strtolower($cat['nome'])) ?></h2>
+    <h2 class="titulo-secao" id="rel-titulo">Mais para a <?= e(mb_strtolower($cat['nome'])) ?></h2>
     <a class="link-sublinhado" href="<?= e(url('/' . $cat['slug'] . '/')) ?>">Ver todos</a>
   </div>
   <div class="grade-produtos">
@@ -126,6 +123,5 @@ $rotulosMedida = ['largura' => 'Largura', 'profundidade' => 'Profundidade', 'alt
     <strong>R$ <?= preco((float) $p['preco']) ?></strong>
     <span><?= (int) $site['parcelas_max'] ?>x de R$ <?= parcela((float) $p['preco']) ?></span>
   </div>
-  <a class="btn btn-icone-texto btn-contorno" href="<?= e(end($canais)['url']) ?>" target="_blank" rel="noopener" data-track="click_whatsapp" data-local="barra" aria-label="Falar no WhatsApp"><?= icone('whatsapp') ?></a>
-  <a class="btn btn-primario" href="<?= e($principal['url']) ?>" target="_blank" rel="noopener" data-track="<?= e($principal['evento']) ?>" data-local="barra" data-item="<?= e($p['id']) ?>" aria-label="<?= e($principal['acao']) ?>">Comprar<?= $principal['tipo'] !== 'whatsapp' ? '<span class="barra-canal">' . e($principal['rotulo']) . '</span>' : '' ?></a>
+  <a class="btn btn-primario" <?= $atributosPedido ?> data-local="barra"><?= icone('whatsapp') ?>Pedir pelo WhatsApp</a>
 </div>

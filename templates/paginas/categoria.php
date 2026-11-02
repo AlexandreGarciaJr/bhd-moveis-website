@@ -1,25 +1,37 @@
 <?php
-/** @var array $categoria @var array $lista */
-$temPronta = count(array_filter($lista, fn($p) => !empty($p['pronta_entrega']))) > 0;
+/** @var array $categoria @var array $lista @var array|null $sub */
+$subs = subcategorias_ativas($categoria);
+$baseCat = '/' . $categoria['slug'] . '/';
 ?>
 <nav class="migalhas" aria-label="Você está em">
   <ol>
     <li><a href="<?= e(url('/')) ?>">Início</a></li>
+    <?php if ($sub): ?>
+    <li><a href="<?= e(url($baseCat)) ?>"><?= e($categoria['nome']) ?></a></li>
+    <li aria-current="page"><?= e($sub['nome']) ?></li>
+    <?php else: ?>
     <li aria-current="page"><?= e($categoria['nome']) ?></li>
+    <?php endif; ?>
   </ol>
 </nav>
 
 <header class="lista-cabeca">
-  <h1 class="titulo-pagina"><?= e($categoria['nome']) ?></h1>
+  <h1 class="titulo-pagina"><?= e($sub ? $sub['nome'] : $categoria['nome']) ?></h1>
   <p class="lista-descricao"><?= e($categoria['descricao']) ?></p>
 </header>
+
+<?php if (count($subs) > 1): ?>
+<nav class="subnav" aria-label="Tipos de móvel em <?= e($categoria['nome']) ?>">
+  <a href="<?= e(url($baseCat)) ?>"<?= $sub ? '' : ' aria-current="page"' ?>>Todos</a>
+  <?php foreach ($subs as $s): ?>
+  <a href="<?= e(url($baseCat . $s['slug'] . '/')) ?>"<?= ($sub && $sub['slug'] === $s['slug']) ? ' aria-current="page"' : '' ?>><?= e($s['nome']) ?></a>
+  <?php endforeach; ?>
+</nav>
+<?php endif; ?>
 
 <div class="lista-ferramentas" data-lista-ferramentas>
   <p class="lista-total" role="status"><span data-lista-total><?= count($lista) ?></span> <?= count($lista) === 1 ? 'produto' : 'produtos' ?></p>
   <div class="lista-controles">
-    <?php if ($temPronta): ?>
-    <label class="chip-filtro"><input type="checkbox" data-filtro-pronta> Só pronta-entrega</label>
-    <?php endif; ?>
     <label class="ordenar">
       <span>Ordenar por</span>
       <select data-ordenar>
@@ -35,7 +47,6 @@ $temPronta = count(array_filter($lista, fn($p) => !empty($p['pronta_entrega'])))
 <div class="grade-produtos grade-lista" data-lista>
   <?php foreach ($lista as $p) partial('card', ['p' => $p]); ?>
 </div>
-<p class="lista-vazia" data-lista-vazia hidden>Nenhum produto com pronta-entrega nesta categoria agora. <button type="button" class="link-sublinhado" data-limpar-filtro>Ver todos</button></p>
 
 <section class="outras-categorias" aria-labelledby="outras-titulo">
   <h2 id="outras-titulo">Veja também</h2>

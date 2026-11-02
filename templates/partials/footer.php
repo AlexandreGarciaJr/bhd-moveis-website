@@ -3,7 +3,7 @@
   <div class="rodape-grade">
     <div class="rodape-marca">
       <img src="<?= e(url('assets/img/marca/logo-bhd-branco.svg')) ?>" alt="BHD Móveis &amp; Planejados" width="200" height="84" loading="lazy">
-      <p>Móveis com preço de outlet e pronta-entrega em São Paulo e Cotia.</p>
+      <p>Móveis com preço de outlet e pronta-entrega na Grande São Paulo.</p>
       <div class="rodape-redes">
         <a class="btn-icone btn-icone-claro" href="<?= e($site['contato']['instagram']) ?>" target="_blank" rel="noopener" aria-label="Instagram da BHD Móveis"><?= icone('instagram') ?></a>
         <a class="btn-icone btn-icone-claro" href="<?= e(whatsapp()) ?>" target="_blank" rel="noopener" aria-label="WhatsApp da BHD Móveis" data-track="click_whatsapp" data-local="rodape"><?= icone('whatsapp') ?></a>
@@ -15,6 +15,9 @@
       <ul>
         <?php foreach (bhd('categorias') as $c): ?>
         <li><a href="<?= e(url('/' . $c['slug'] . '/')) ?>"><?= e($c['nome']) ?></a></li>
+        <?php foreach (subcategorias_ativas($c) as $s): ?>
+        <li class="rodape-sub"><a href="<?= e(url('/' . $c['slug'] . '/' . $s['slug'] . '/')) ?>"><?= e($s['nome']) ?></a></li>
+        <?php endforeach; ?>
         <?php endforeach; ?>
         <li><a href="<?= e(url('/ofertas/')) ?>">Ofertas da semana</a></li>
       </ul>
@@ -35,7 +38,7 @@
         <?php foreach (bhd('unidades') as $u): ?>
         <li>
           <strong><?= e($u['nome']) ?></strong>
-          <span><?= e($u['endereco']) ?>, <?= e($u['bairro']) ?><br><?= e($u['cidade']) ?> - <?= e($u['uf']) ?></span>
+          <span><?= e($u['referencia']) ?><br><?= e($u['endereco']) ?>, <?= e($u['bairro']) ?><br><?= e($u['cidade']) ?> - <?= e($u['uf']) ?></span>
           <a href="<?= e($u['rota']) ?>" target="_blank" rel="noopener" data-track="click_rota" data-local="<?= e($u['slug']) ?>">Como chegar</a>
         </li>
         <?php endforeach; ?>
@@ -45,9 +48,6 @@
 
   <div class="rodape-base">
     <p>© <?= date('Y') ?> <?= e($site['nome_completo']) ?>. Preços e condições sujeitos a alteração.</p>
-    <?php if ($site['demo']): ?>
-    <p class="rodape-demo">Versão de demonstração: produtos, preços e fotos são ilustrativos.</p>
-    <?php endif; ?>
     <p class="rodape-credito">Desenvolvido por <a href="https://www.instagram.com/newarrays/" target="_blank" rel="noopener">New Arrays</a></p>
   </div>
 </footer>

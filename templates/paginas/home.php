@@ -18,11 +18,11 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
         <p class="hero-lead" data-hero-anim><?= e($hero['texto']) ?></p>
         <div class="hero-ctas" data-hero-anim>
           <a class="btn btn-primario btn-grande" href="<?= e(url('/ofertas/')) ?>" data-magnetico><?= rolar('Ver ofertas da semana') ?></a>
-          <a class="btn btn-contorno btn-grande" href="<?= e(url('/sofas/')) ?>" data-magnetico><?= rolar('Explorar sofás') ?></a>
+          <a class="btn btn-contorno btn-grande" href="<?= e(url('/sala-de-estar/sofas/')) ?>" data-magnetico><?= rolar('Explorar sofás') ?></a>
         </div>
         <ul class="hero-lojas" data-hero-anim aria-label="Nossas lojas">
           <?php foreach (bhd('unidades') as $u): ?>
-          <li><a href="<?= e(url('/unidades/')) ?>"><?= icone('pin') ?><?= rolar($u['bairro'] === 'Jardim Lúcia' ? 'Jardim Lúcia, SP' : $u['cidade']) ?></a></li>
+          <li><a href="<?= e(url('/unidades/')) ?>"><?= icone('pin') ?><?= rolar(str_replace('Rod. Raposo Tavares, ', 'Raposo Tavares, ', $u['referencia'])) ?></a></li>
           <?php endforeach; ?>
         </ul>
       </div>
@@ -69,9 +69,14 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
       <?php foreach (bhd('categorias') as $c): ?>
       <li>
         <a class="categoria" href="<?= e(url('/' . $c['slug'] . '/')) ?>">
-          <?= imagem('produtos/' . $c['capa'], '', ['sizes' => '(max-width: 760px) 50vw, 25vw']) ?>
+          <?= imagem('produtos/' . $c['capa'], '', ['sizes' => '(max-width: 760px) 100vw, 50vw']) ?>
           <span class="categoria-texto"><strong><?= rolar($c['nome']) ?></strong><span class="categoria-seta"><?= icone('seta') ?></span></span>
         </a>
+        <div class="categoria-subs">
+          <?php foreach (subcategorias_ativas($c) as $s): ?>
+          <a href="<?= e(url('/' . $c['slug'] . '/' . $s['slug'] . '/')) ?>"><?= e($s['nome']) ?></a>
+          <?php endforeach; ?>
+        </div>
       </li>
       <?php endforeach; ?>
     </ul>
@@ -104,29 +109,29 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
     <li>
       <?= icone('loja') ?>
       <h3>Na loja</h3>
-      <p>Veja, sente e leve. São duas lojas, no Jardim Lúcia e em Cotia.</p>
+      <p>Veja, sente e leve. São duas lojas na Rod. Raposo Tavares: KM 16 e KM 29.</p>
       <a href="<?= e(url('/unidades/')) ?>"><?= rolar('Ver endereços') ?><?= icone('seta') ?></a>
     </li>
     <li>
       <?= icone('whatsapp') ?>
-      <h3>Pelo WhatsApp</h3>
-      <p>Tire dúvidas, peça fotos e feche a compra sem sair de casa.</p>
+      <h3>Tire suas dúvidas</h3>
+      <p>Peça fotos, confirme medidas e fale com a gente antes de decidir.</p>
       <a href="<?= e(whatsapp()) ?>" target="_blank" rel="noopener" data-track="click_whatsapp" data-local="canais"><?= rolar('Chamar agora') ?><?= icone('seta') ?></a>
     </li>
     <li>
       <?= icone('sacola') ?>
-      <h3>No Mercado Livre ou na Amazon</h3>
-      <p>Muitos produtos também estão nos marketplaces. O link aparece na página de cada um.</p>
+      <h3>Vendas no WhatsApp</h3>
+      <p>Escolheu o móvel? Clique em "Pedir pelo WhatsApp" e a mensagem do pedido já abre pronta. É só enviar.</p>
       <a href="<?= e(url('/ofertas/')) ?>"><?= rolar('Ver produtos') ?><?= icone('seta') ?></a>
     </li>
   </ul>
 </section>
 
-<?php $palavras = ['Sofás', 'Poltronas', 'Mesas', 'Cadeiras', 'Buffets', 'Racks', 'Cômodas', 'Aparadores']; ?>
+<?php $palavras = ['Sofás', 'Painéis', 'Racks', 'Mesas', 'Cadeiras', 'Planejados']; ?>
 <div class="faixa" aria-hidden="true">
   <?php foreach (['faixa-linha', 'faixa-linha faixa-linha-contorno'] as $k => $classe): ?>
   <div class="<?= $classe ?>" data-faixa="<?= $k ? -1 : 1 ?>">
-    <?php for ($r = 0; $r < 2; $r++): foreach ($k ? array_reverse($palavras) : $palavras as $w): ?>
+    <?php for ($r = 0; $r < 3; $r++): foreach ($k ? array_reverse($palavras) : $palavras as $w): ?>
     <span><?= e($w) ?></span><i class="faixa-etiqueta"></i>
     <?php endforeach; endfor; ?>
   </div>
@@ -170,6 +175,20 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
 </section>
 
 <?php partial('faq'); ?>
+
+<?php if (!empty($site['planejados']['ativo'])): $pl = $site['planejados']; ?>
+<section class="planejados" id="planejados" aria-labelledby="planejados-titulo">
+  <div class="planejados-foto">
+    <?= imagem('ambientes/' . $pl['imagem'], 'Cozinha planejada (imagem ilustrativa)', ['sizes' => '(max-width: 900px) 100vw, 60vw']) ?>
+    <?php if ($site['demo']): ?><span class="nota-ilustrativa">Imagem ilustrativa</span><?php endif; ?>
+  </div>
+  <div class="planejados-texto">
+    <h2 class="titulo-secao" id="planejados-titulo"><?= e($pl['titulo']) ?></h2>
+    <p><?= e($pl['texto']) ?></p>
+    <a class="btn btn-primario btn-grande" href="<?= e(whatsapp($pl['mensagem'])) ?>" target="_blank" rel="noopener" data-track="click_whatsapp" data-local="planejados"><?= icone('whatsapp') ?><?= e($pl['botao']) ?></a>
+  </div>
+</section>
+<?php endif; ?>
 
 <?= json_ld([
     '@context' => 'https://schema.org',

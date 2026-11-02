@@ -6,7 +6,7 @@
 
 <p align="center">
   Vitrine de móveis com preço de outlet e acabamento de alto nível.<br>
-  Sem carrinho: a compra acontece na loja, pelo WhatsApp, no Mercado Livre ou na Amazon.
+  Sem carrinho: o cliente escolhe o móvel e clica em "Pedir pelo WhatsApp". A mensagem do pedido já abre pronta na conversa.
 </p>
 
 <p align="center">
@@ -34,7 +34,7 @@
 
 ## Sobre o projeto
 
-A BHD Móveis é uma loja de móveis com posicionamento outlet, com unidades no Jardim Lúcia (São Paulo) e em Cotia. O site foi pensado para o público de massa: preço sempre visível, caminhos de compra claros e carregamento rápido, com a qualidade aparecendo na tipografia, na fotografia e nos detalhes de interação.
+A BHD Móveis é uma loja de móveis com posicionamento outlet, com duas lojas na Rod. Raposo Tavares (KM 16 e KM 29) e entrega em até 48h para toda a Grande São Paulo. O site foi pensado para o público de massa: preço sempre visível, caminhos de compra claros e carregamento rápido, com a qualidade aparecendo na tipografia, na fotografia e nos detalhes de interação.
 
 **Direção visual**
 - Bordô da marca (`#6D012B`, medido no logo oficial) sobre base clara, com linho e grafite.
@@ -49,8 +49,8 @@ A BHD Móveis é uma loja de móveis com posicionamento outlet, com unidades no 
 - Tudo funciona sem animação para quem ativa "reduzir movimento" ou navega sem JavaScript.
 
 **Comercial e técnico**
-- Cada produto define o canal de compra principal (Mercado Livre, Amazon ou WhatsApp).
-- Busca instantânea, ordenação e filtro de pronta-entrega nas categorias.
+- Vendas pelo WhatsApp: o botão "Pedir pelo WhatsApp" gera a mensagem com produto, opção escolhida, valor e link.
+- Catálogo por ambiente (Sala de Estar e Sala de Jantar) e por tipo de móvel, com busca instantânea e ordenação.
 - Páginas de lojas com rota, WhatsApp e link para avaliar no Google.
 - SEO técnico: títulos e descrições únicos, sitemap, dados estruturados das lojas e do FAQ.
 - Medição preparada (Google Analytics, Meta Pixel, Microsoft Clarity), carregada só após consentimento de cookies (LGPD).
@@ -109,20 +109,20 @@ imagens-originais/  fotos em alta (fora do git)
 **Adicionar um produto**
 1. Crie a pasta `imagens-originais/produtos/<slug-do-produto>/` com as fotos `01.jpg`, `02.jpg`...
 2. Rode `npm run imagens`.
-3. Copie um produto em `data/produtos.json` e troque `id`, `slug`, `nome`, `categoria`, `preco` e os links.
+3. Copie um produto em `data/produtos.json` e troque `id`, `slug`, `nome`, `categoria`, `subcategoria` e `preco`. Se houver `variacoes`, o cliente escolhe a opção e ela entra na mensagem do pedido.
 4. Rode `php build.php` e confira.
 
-**Mudar preço ou link:** edite o produto em `data/produtos.json` e atualize `atualizado_em`.
+**Mudar preço:** edite o produto em `data/produtos.json` e atualize `atualizado_em`. A mensagem do WhatsApp acompanha automaticamente.
 
 **Tirar um produto do ar:** `"ativo": false`. O produto some do site, da busca e do sitemap.
 
 **Destaque e ofertas:** `"destaque": true` coloca o produto em "Mais procurados". Se ele tiver `preco_anterior` maior que `preco`, entra automaticamente em Ofertas.
 
-**Nova categoria:** adicione em `data/categorias.json`, com `capa` apontando para a foto de um produto. Menu, rodapé e páginas são gerados sozinhos.
+**Categorias:** ficam em `data/categorias.json`, cada uma com suas `subcategorias` (ex.: Sala de Estar → Sofás, Painéis, Racks) e uma `capa` apontando para a foto de um produto. Menu, rodapé e páginas são gerados sozinhos; subcategoria sem produto ativo não aparece.
 
 **Cenas do topo da home:** em `data/site.json` → `hero.cenas`. Cada cena tem o `produto` (slug), a `imagem`, o `foco` da foto, a posição da `ancora` (o ponto branco, em % da foto) e da `etiqueta`. O tempo de cada cena é `segundos_por_cena`.
 
-**Lojas, WhatsApp e benefícios:** `data/unidades.json` e `data/site.json`.
+**Lojas, WhatsApp, benefícios e seção de Planejados:** `data/unidades.json` e `data/site.json`.
 
 **Ligar Analytics, Pixel e Clarity:** em `data/site.json` → `analytics`, preencha o `id` e mude `ativo` para `true`. O aviso de cookies aparece automaticamente.
 

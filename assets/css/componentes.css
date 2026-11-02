@@ -150,12 +150,6 @@
 .card-preco { display: none; margin-top: 4px; font: 600 20px/1.1 var(--f-titulo); color: var(--bordo); letter-spacing: -.01em; }
 .card-preco s { font: 400 12px var(--f-texto); color: var(--pedra); margin-left: 4px; }
 .card-preco span { display: block; font: 400 12px/1.4 var(--f-texto); color: var(--grafite); margin-top: 2px; }
-.card-canais { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: var(--t-mini); color: var(--pedra); }
-.canal { width: 18px; height: 18px; border-radius: 50%; flex: none; background: var(--linho-escuro) center/11px no-repeat; }
-.canal-mercadolivre { background-color: #FFE600; }
-.canal-amazon { background-color: #232F3E; }
-.canal-whatsapp { background-color: #25D366; }
-.canal + .canal { margin-left: -9px; box-shadow: 0 0 0 2px var(--papel); }
 
 @media (hover: hover) and (pointer: fine) {
   .card-link:hover .card-foto img { transform: scale(1.035); }
@@ -204,22 +198,6 @@
   transform: scaleX(.25);
 }
 
-/* ---------- Filtros e ordenação ---------- */
-.chip-filtro {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 42px;
-  padding: 0 16px;
-  border: 1px solid var(--linha);
-  border-radius: var(--r-pilula);
-  font-size: var(--t-pequeno);
-  font-weight: 500;
-  cursor: pointer;
-  background: var(--branco);
-}
-.chip-filtro input { accent-color: var(--bordo); width: 16px; height: 16px; margin: 0; }
-.chip-filtro:has(input:checked) { border-color: var(--bordo); color: var(--bordo); background: var(--bordo-claro); }
 .ordenar { display: inline-flex; align-items: center; gap: 10px; font-size: var(--t-pequeno); color: var(--pedra); }
 .ordenar select {
   height: 42px;

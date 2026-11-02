@@ -8,6 +8,7 @@
  *   php build.php              → preview (noindex, conforme data/site.json)
  *   php build.php --producao   → produção (indexável, sitemap liberado)
  *   php build.php --base=/bhd/ → publica em subpasta
+ *   php build.php --url=https://exemplo.com → domínio dos links absolutos (mensagem do pedido, Open Graph)
  */
 
 declare(strict_types=1);
@@ -18,7 +19,7 @@ const DIST = RAIZ . '/dist';
 require RAIZ . '/templates/funcoes.php';
 
 $inicio = microtime(true);
-$opcoes = getopt('', ['producao', 'base:']);
+$opcoes = getopt('', ['producao', 'base:', 'url:']);
 
 /* ---------- 1. Dados ---------- */
 
@@ -41,9 +42,13 @@ if (isset($opcoes['base'])) {
     $site['caminho_base'] = '/' . trim($opcoes['base'], '/') . '/';
 }
 
+if (isset($opcoes['url'])) {
+    $site['url'] = rtrim($opcoes['url'], '/');
+}
+
 $categorias = array_values(array_filter(ler_json('categorias.json'), fn($c) => $c['ativo'] ?? true));
 usort($categorias, fn($a, $b) => ($a['ordem'] ?? 99) <=> ($b['ordem'] ?? 99));
-$slugsCategorias = array_column($categorias, 'slug');
+$categoriasPorSlug = array_column($categorias, null, 'slug');
 
 $produtos = [];
 $avisos = [];
@@ -57,11 +62,16 @@ foreach (ler_json('produtos.json') as $p) {
             exit(1);
         }
     }
-    if (!in_array($p['categoria'], $slugsCategorias, true)) {
+    $catDoProduto = $categoriasPorSlug[$p['categoria']] ?? null;
+    if (!$catDoProduto) {
         $avisos[] = "Produto {$p['slug']}: categoria \"{$p['categoria']}\" não existe ou está inativa. Produto ignorado.";
         continue;
     }
-    $p['url'] = '/' . $p['categoria'] . '/' . $p['slug'] . '/';
+    if (!in_array($p['subcategoria'] ?? '', array_column($catDoProduto['subcategorias'] ?? [], 'slug'), true)) {
+        $avisos[] = "Produto {$p['slug']}: subcategoria \"" . ($p['subcategoria'] ?? '') . "\" não existe em {$p['categoria']}. Produto ignorado.";
+        continue;
+    }
+    $p['url'] = '/' . $p['categoria'] . '/' . $p['subcategoria'] . '/' . $p['slug'] . '/';
     $p['imagens'] = $p['imagens'] ?? ['01.jpg'];
     foreach ($p['imagens'] as $img) {
         $nome = pathinfo($img, PATHINFO_FILENAME);
@@ -169,7 +179,7 @@ $registrar = function (string $caminho, string $html, float $prioridade = 0.6) u
 
 // Home
 $registrar('/', pagina('home', [
-    'titulo' => 'BHD Móveis | Sofás, mesas e cadeiras com preço de outlet',
+    'titulo' => 'BHD Móveis | Móveis com preço de outlet na Grande São Paulo',
     'descricao' => $site['descricao'],
     'caminho' => '/',
     'scripts' => ['gsap', 'ScrollTrigger'],
@@ -187,13 +197,28 @@ foreach ($categorias as $cat) {
         'scripts' => ['gsap'],
         'classe' => 'pg-categoria',
         'ld' => [ld_breadcrumb([['Início', '/'], [$cat['nome'], "/{$cat['slug']}/"]])],
-    ], ['categoria' => $cat, 'lista' => $lista]), 0.8);
+    ], ['categoria' => $cat, 'lista' => $lista, 'sub' => null]), 0.8);
+
+    foreach (subcategorias_ativas($cat) as $sub) {
+        $listaSub = array_values(array_filter($lista, fn($p) => $p['subcategoria'] === $sub['slug']));
+        $caminho = "/{$cat['slug']}/{$sub['slug']}/";
+        $registrar($caminho, pagina('categoria', [
+            'titulo' => "{$sub['nome']} | {$cat['nome']} | BHD Móveis",
+            'descricao' => "{$sub['nome']} para {$cat['nome']} com preço de outlet e pronta-entrega em até 48h na Grande São Paulo. Peça pelo WhatsApp.",
+            'caminho' => $caminho,
+            'imagem' => 'img/produtos/' . $listaSub[0]['slug'] . '/' . pathinfo($listaSub[0]['imagens'][0], PATHINFO_FILENAME) . '-1440.webp',
+            'scripts' => ['gsap'],
+            'classe' => 'pg-categoria',
+            'ld' => [ld_breadcrumb([['Início', '/'], [$cat['nome'], "/{$cat['slug']}/"], [$sub['nome'], $caminho]])],
+        ], ['categoria' => $cat, 'lista' => $listaSub, 'sub' => $sub]), 0.8);
+    }
 }
 
 // Produtos
 foreach ($produtos as $p) {
     $cat = categoria($p['categoria']);
-    $ld = [ld_breadcrumb([['Início', '/'], [$cat['nome'], "/{$cat['slug']}/"], [$p['nome'], $p['url']]])];
+    $sub = subcategoria($cat, $p['subcategoria']);
+    $ld = [ld_breadcrumb([['Início', '/'], [$cat['nome'], "/{$cat['slug']}/"], [$sub['nome'], "/{$cat['slug']}/{$sub['slug']}/"], [$p['nome'], $p['url']]])];
     if (!$site['demo']) {
         $ld[] = [
             '@context' => 'https://schema.org',
@@ -207,17 +232,19 @@ foreach ($produtos as $p) {
                 'availability' => 'https://schema.org/InStock'],
         ];
     }
+    // primeiro os da mesma subcategoria, depois o resto da categoria
     $relacionados = array_values(array_filter(produtos_da_categoria($p['categoria']), fn($r) => $r['slug'] !== $p['slug']));
+    usort($relacionados, fn($a, $b) => ($b['subcategoria'] === $p['subcategoria']) <=> ($a['subcategoria'] === $p['subcategoria']));
     $registrar($p['url'], pagina('produto', [
         'titulo' => ($p['seo']['titulo'] ?? $p['nome'] . ' por R$ ' . preco((float) $p['preco'])) . ' | BHD Móveis',
-        'descricao' => $p['seo']['descricao'] ?? ($p['nome'] . '. ' . ($p['resumo'] ?? '') . ' Em até ' . $site['parcelas_max'] . 'x no cartão. Compre na loja, pelo WhatsApp ou online.'),
+        'descricao' => $p['seo']['descricao'] ?? ($p['nome'] . '. ' . ($p['resumo'] ?? '') . ' Em até ' . $site['parcelas_max'] . 'x no cartão, pronta-entrega em até 48h na Grande São Paulo. Peça pelo WhatsApp.'),
         'caminho' => $p['url'],
         'imagem' => 'img/produtos/' . $p['slug'] . '/' . pathinfo($p['imagens'][0], PATHINFO_FILENAME) . '-1440.webp',
         'scripts' => ['gsap', 'Flip'],
         'classe' => 'pg-produto',
         'ld' => $ld,
         'produto' => $p,
-    ], ['p' => $p, 'cat' => $cat, 'relacionados' => array_slice($relacionados, 0, 4)]), 0.7);
+    ], ['p' => $p, 'cat' => $cat, 'sub' => $sub, 'relacionados' => array_slice($relacionados, 0, 4)]), 0.7);
 }
 
 // Ofertas
@@ -225,7 +252,7 @@ $ofertas = array_values(array_filter($produtos, fn($p) => desconto($p) > 0));
 usort($ofertas, fn($a, $b) => desconto($b) <=> desconto($a));
 $registrar('/ofertas/', pagina('ofertas', [
     'titulo' => 'Ofertas da semana | BHD Móveis',
-    'descricao' => 'Sofás, mesas, cadeiras e móveis com desconto e pronta-entrega em São Paulo e Cotia.',
+    'descricao' => 'Sofás, painéis, racks, mesas e cadeiras com desconto e pronta-entrega em até 48h na Grande São Paulo.',
     'caminho' => '/ofertas/',
     'scripts' => ['gsap'],
     'classe' => 'pg-ofertas',
@@ -233,8 +260,8 @@ $registrar('/ofertas/', pagina('ofertas', [
 
 // Unidades
 $registrar('/unidades/', pagina('unidades', [
-    'titulo' => 'Nossas lojas em São Paulo e Cotia | BHD Móveis',
-    'descricao' => 'Endereços, WhatsApp e como chegar às lojas da BHD Móveis no Jardim Lúcia (São Paulo) e em Cotia.',
+    'titulo' => 'Nossas lojas na Raposo Tavares | BHD Móveis',
+    'descricao' => 'Endereços, horários, WhatsApp e como chegar às lojas da BHD Móveis na Rod. Raposo Tavares, KM 16 e KM 29.',
     'caminho' => '/unidades/',
     'classe' => 'pg-unidades',
     'ld' => array_map('ld_loja', $unidades),
@@ -243,7 +270,7 @@ $registrar('/unidades/', pagina('unidades', [
 // Institucionais
 $registrar('/sobre/', pagina('sobre', [
     'titulo' => 'Sobre a BHD Móveis',
-    'descricao' => 'Conheça a BHD Móveis: lojas em São Paulo e Cotia com móveis à pronta-entrega e preço de outlet.',
+    'descricao' => 'Conheça a BHD Móveis: lojas na Raposo Tavares com móveis à pronta-entrega e preço de outlet na Grande São Paulo.',
     'caminho' => '/sobre/',
     'classe' => 'pg-sobre',
 ]), 0.4);
@@ -266,7 +293,7 @@ $registrar('404.html', pagina('404', [
 // Índice da busca
 $busca = array_map(fn($p) => [
     'n' => $p['nome'],
-    'c' => categoria($p['categoria'])['nome'],
+    'c' => subcategoria(categoria($p['categoria']), $p['subcategoria'])['nome'] . ', ' . categoria($p['categoria'])['nome'],
     'r' => $p['resumo'] ?? '',
     'p' => preco((float) $p['preco']),
     'u' => url($p['url']),

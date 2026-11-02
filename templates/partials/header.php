@@ -2,9 +2,12 @@
 $site = bhd('site');
 $atual = bhd('pagina')['caminho'] ?? '/';
 $ativo = fn(string $c) => str_starts_with($atual, $c) ? ' aria-current="page"' : '';
-$links = array_map(fn($c) => [$c['nome'], '/' . $c['slug'] . '/'], bhd('categorias'));
-$links[] = ['Ofertas', '/ofertas/', 'oferta'];
-$links[] = ['Lojas', '/unidades/'];
+$categorias = bhd('categorias');
+$extras = [['Ofertas', '/ofertas/', 'oferta']];
+if (!empty($site['planejados']['ativo'])) {
+    $extras[] = ['Planejados', '/#planejados'];
+}
+$extras[] = ['Lojas', '/unidades/'];
 ?>
 <div class="beneficios">
   <ul class="beneficios-lista">
@@ -22,7 +25,19 @@ $links[] = ['Lojas', '/unidades/'];
 
   <nav class="topo-nav" aria-label="Principal">
     <ul>
-      <?php foreach ($links as $l): ?>
+      <?php foreach ($categorias as $c): $base = '/' . $c['slug'] . '/'; $subs = subcategorias_ativas($c); ?>
+      <li class="nav-grupo">
+        <a href="<?= e(url($base)) ?>"<?= $ativo($base) ?>><?= rolar($c['nome']) ?></a>
+        <?php if ($subs): ?>
+        <ul class="nav-sub">
+          <?php foreach ($subs as $s): ?>
+          <li><a href="<?= e(url($base . $s['slug'] . '/')) ?>"><?= e($s['nome']) ?></a></li>
+          <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+      </li>
+      <?php endforeach; ?>
+      <?php foreach ($extras as $l): ?>
       <li><a href="<?= e(url($l[1])) ?>"<?= isset($l[2]) ? ' class="nav-oferta"' : '' ?><?= $ativo($l[1]) ?>><?= rolar($l[0]) ?></a></li>
       <?php endforeach; ?>
     </ul>
@@ -44,7 +59,17 @@ $links[] = ['Lojas', '/unidades/'];
   </div>
   <nav aria-label="Menu principal">
     <ul>
-      <?php foreach ($links as $l): ?>
+      <?php foreach ($categorias as $c): $base = '/' . $c['slug'] . '/'; ?>
+      <li>
+        <a href="<?= e(url($base)) ?>"<?= $ativo($base) ?>><?= e($c['nome']) ?><?= icone('seta') ?></a>
+        <div class="menu-subs">
+          <?php foreach (subcategorias_ativas($c) as $s): ?>
+          <a href="<?= e(url($base . $s['slug'] . '/')) ?>"><?= e($s['nome']) ?></a>
+          <?php endforeach; ?>
+        </div>
+      </li>
+      <?php endforeach; ?>
+      <?php foreach ($extras as $l): ?>
       <li><a href="<?= e(url($l[1])) ?>"<?= $ativo($l[1]) ?>><?= e($l[0]) ?><?= icone('seta') ?></a></li>
       <?php endforeach; ?>
       <li><a href="<?= e(url('/sobre/')) ?>">Sobre a BHD<?= icone('seta') ?></a></li>

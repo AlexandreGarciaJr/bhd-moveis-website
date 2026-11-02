@@ -262,3 +262,129 @@
   cursor: default;
   will-change: transform;
 }
+
+/* ---------- Submenu das categorias (desktop) ---------- */
+.nav-grupo { position: relative; }
+.topo-nav .nav-sub {
+  position: absolute;
+  left: -16px; top: 100%;
+  z-index: 30;
+  display: block;
+  min-width: 170px;
+  padding: 8px;
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: 14px;
+  box-shadow: var(--sombra-flutuante);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity .25s var(--ease-expo), transform .4s var(--ease-expo), visibility .25s;
+}
+.nav-grupo:hover .nav-sub,
+.nav-grupo:focus-within .nav-sub { opacity: 1; visibility: visible; transform: translateY(0); }
+.topo-nav .nav-sub a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: none;
+  font-weight: 500;
+  transition: background-color .25s, color .25s;
+}
+.topo-nav .nav-sub a:hover { background: var(--linho); color: var(--bordo); }
+
+/* Submenu no menu do celular */
+.menu-movel nav { overflow-y: auto; }
+.menu-subs { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 0 14px; border-bottom: 1px solid var(--linha); }
+.menu-subs:empty { display: none; }
+.menu-movel nav .menu-subs a {
+  padding: 8px 14px;
+  border: 1px solid var(--linha);
+  border-radius: var(--r-pilula);
+  font: 500 14px/1 var(--f-texto);
+  letter-spacing: 0;
+  background: var(--branco);
+}
+
+/* ---------- Tipos de móvel: home e páginas de categoria ---------- */
+.categoria-subs, .subnav { display: flex; flex-wrap: wrap; gap: 8px; }
+.categoria-subs { margin-top: 12px; }
+.subnav { margin: 28px var(--gutter) 0; }
+.categoria-subs a, .subnav a {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid var(--linha);
+  border-radius: var(--r-pilula);
+  background: var(--branco);
+  font-weight: 500;
+  font-size: var(--t-pequeno);
+  transition: background-color .35s var(--ease-expo), color .35s var(--ease-expo), border-color .35s var(--ease-expo);
+}
+.categoria-subs a:hover, .subnav a:hover { border-color: var(--grafite); }
+.subnav a[aria-current="page"] { background: var(--bordo); border-color: var(--bordo); color: var(--branco); }
+.subnav + .lista-ferramentas { margin-top: 24px; }
+
+/* ---------- Botão de pedido no card ---------- */
+.card-pedido { margin-top: 14px; border-color: var(--bordo); color: var(--bordo); }
+
+/* ---------- Opções do produto ---------- */
+.produto-variacoes { border: 0; padding: 0; margin: 24px 0 0; }
+.produto-variacoes legend { padding: 0; font-weight: 500; }
+.variacoes-lista { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.variacao { cursor: pointer; }
+.variacao input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.variacao span {
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 18px;
+  border: 1.5px solid var(--linha);
+  border-radius: var(--r-pilula);
+  background: var(--branco);
+  font-weight: 500;
+  font-size: var(--t-pequeno);
+  transition: border-color .3s, color .3s, background-color .3s;
+}
+.variacao:hover span { border-color: var(--grafite); }
+.variacao input:checked + span { border-color: var(--bordo); background: var(--bordo-claro); color: var(--bordo); }
+.variacao input:focus-visible + span { outline: 2px solid var(--bordo); outline-offset: 3px; }
+
+/* ---------- Lojas: referência da Raposo Tavares ---------- */
+.loja-referencia { margin-top: 4px; font-size: var(--t-pequeno); font-weight: 600; color: var(--bordo); }
+.rodape-col .rodape-sub { margin-top: 6px; padding-left: 12px; font-size: var(--t-mini); }
+
+/* ---------- Móveis planejados ---------- */
+.planejados {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+  margin-top: var(--secao);
+  padding-left: var(--gutter);
+  scroll-margin-top: 24px;
+}
+.planejados-texto { order: -1; }
+.planejados-texto p { color: var(--texto-2); font-size: 18px; margin: 16px 0 28px; max-width: 44ch; }
+.planejados-foto {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border-radius: var(--r-g) 0 0 var(--r-g);
+  background: var(--linho);
+}
+.planejados-foto img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 899px) {
+  .planejados { grid-template-columns: 1fr; padding-left: 0; gap: 24px; }
+  .planejados-texto { order: 0; padding: 0 var(--gutter); }
+  .planejados-foto { margin-left: var(--gutter); }
+}
+@media (max-width: 759px) {
+  .grade-produtos .card-pedido-resto { display: none; }
+  .grade-produtos .card-pedido { height: 40px; margin-top: 10px; padding: 0 10px; font-size: 13px; }
+  .barra-compra .btn { font-size: 14px; padding: 0 16px; }
+  .planejados-texto p { font-size: 16px; }
+  .planejados-texto .btn { width: 100%; justify-content: center; white-space: normal; text-align: center; }
+}

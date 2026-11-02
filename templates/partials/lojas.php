@@ -13,9 +13,10 @@ $variante = $variante ?? 'lista';
     <?php endif; ?>
     <div class="loja-info">
       <h3 class="loja-nome"><?= e($u['nome']) ?></h3>
+      <p class="loja-referencia"><?= e($u['referencia']) ?></p>
       <p class="loja-endereco"><?= icone('pin') ?><span><?= e($u['endereco']) ?>, <?= e($u['bairro']) ?><br><?= e($u['cidade']) ?> - <?= e($u['uf']) ?>, <?= e($u['cep']) ?></span></p>
+      <p class="loja-horario"><?= icone('relogio') ?><span><?php if ($u['horarios']): foreach ($u['horarios'] as $h): ?><?= e($h) ?><br><?php endforeach; else: ?>Consulte o horário pelo WhatsApp<?php endif; ?></span></p>
       <?php if ($variante === 'cards'): ?>
-      <p class="loja-horario"><?= icone('relogio') ?><span><?php if ($u['horarios']): foreach ($u['horarios'] as $h): ?><?= e($h) ?><br><?php endforeach; else: ?>Horário de atendimento a confirmar<?php endif; ?></span></p>
       <p class="loja-telefone"><?= icone('whatsapp') ?><span><?= e($u['telefone']) ?></span></p>
       <?php endif; ?>
       <div class="loja-acoes">

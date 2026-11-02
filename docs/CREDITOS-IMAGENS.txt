@@ -35,3 +35,5 @@ ambientes/hero.jpg  https://images.unsplash.com/photo-1716078410207-20e223587181
 ambientes/showroom-1.jpg  https://images.unsplash.com/photo-1687180498602-5a1046defaa4
 ambientes/showroom-2.jpg  https://images.unsplash.com/photo-1687180497278-ca4d736ecc99
 ambientes/showroom-3.jpg  https://images.unsplash.com/photo-1789457720491-582d46974677
+ambientes/planejados.jpg  https://images.unsplash.com/photo-1631048498692-af6262577031
+produtos/painel-ripado-verona/01.jpg  https://images.unsplash.com/photo-1633604712918-6ab1173d0ecd

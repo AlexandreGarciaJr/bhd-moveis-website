@@ -1,6 +1,6 @@
 /* ==========================================================================
    BHD Móveis — interface
-   Menu, busca, carrossel, ordenação/filtro, galeria e aviso de avaliação.
+   Menu, busca, carrossel, ordenação, opções do produto, galeria e aviso de avaliação.
    Tudo funciona sem as animações (motion.js é opcional).
    ========================================================================== */
 (function () {
@@ -27,7 +27,9 @@
     if (gatilho) { abrir(gatilho.getAttribute('data-abrir')); return; }
     var fechar = e.target.closest('[data-fechar]');
     if (fechar) { fechar.closest('dialog').close(); return; }
-    if (e.target.tagName === 'DIALOG') e.target.close(); // clique no fundo
+    if (e.target.tagName === 'DIALOG') { e.target.close(); return; } // clique no fundo
+    var linkNoDialogo = e.target.closest('dialog a');
+    if (linkNoDialogo) linkNoDialogo.closest('dialog').close(); // ex.: âncora de Planejados no menu
   });
 
   /* ---------- Busca ---------- */
@@ -103,15 +105,12 @@
     atualizar();
   });
 
-  /* ---------- Ordenação e filtro das listas ---------- */
+  /* ---------- Ordenação das listas ---------- */
   var lista = $('[data-lista]');
   if (lista) {
     var cards = $$('[data-card]', lista);
     cards.forEach(function (c, i) { c.dataset.ordem = i; });
     var ordenar = $('[data-ordenar]');
-    var filtro = $('[data-filtro-pronta]');
-    var total = $('[data-lista-total]');
-    var vazia = $('[data-lista-vazia]');
     var num = function (c, k) { return parseFloat(c.dataset[k]) || 0; };
     var criterios = {
       destaque: function (a, b) { return num(b, 'destaque') - num(a, 'destaque') || num(a, 'ordem') - num(b, 'ordem'); },
@@ -123,18 +122,23 @@
     function aplicar() {
       var modo = ordenar ? ordenar.value : 'destaque';
       cards.sort(criterios[modo] || criterios.destaque).forEach(function (c) { lista.appendChild(c); });
-      var visiveis = 0;
-      cards.forEach(function (c) {
-        var mostrar = !(filtro && filtro.checked) || c.dataset.pronta === '1';
-        c.hidden = !mostrar;
-        if (mostrar) visiveis++;
-      });
-      if (total) total.textContent = visiveis;
-      if (vazia) vazia.hidden = visiveis > 0;
     }
     if (ordenar) ordenar.addEventListener('change', aplicar);
-    if (filtro) filtro.addEventListener('change', aplicar);
-    $$('[data-limpar-filtro]').forEach(function (b) { b.addEventListener('click', function () { filtro.checked = false; aplicar(); }); });
+  }
+
+  /* ---------- Opção do produto: atualiza a mensagem do pedido ---------- */
+  var opcoes = $$('[data-variacao]');
+  if (opcoes.length) {
+    var atualizarPedido = function () {
+      var marcada = $('[data-variacao]:checked');
+      if (!marcada) return;
+      $$('[data-pedido]').forEach(function (botao) {
+        var mensagem = botao.getAttribute('data-modelo').replace('{{opcao}}', marcada.value);
+        botao.href = 'https://wa.me/' + botao.getAttribute('data-numero') + '?text=' + encodeURIComponent(mensagem);
+      });
+    };
+    opcoes.forEach(function (o) { o.addEventListener('change', atualizarPedido); });
+    atualizarPedido();
   }
 
   /* ---------- Galeria do produto ---------- */

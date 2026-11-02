@@ -5,7 +5,7 @@
    - As ferramentas só carregam depois que a pessoa aceita o aviso de cookies.
    - Todo clique em um elemento com data-track="evento" é registrado.
      Ex.: <a data-track="click_whatsapp" data-local="header">
-   - Clique em Mercado Livre/Amazon é registrado como interesse, não como venda.
+   - Clique em "Pedir pelo WhatsApp" é registrado como interesse (Lead), não como venda.
    ========================================================================== */
 (function () {
   'use strict';
@@ -17,7 +17,7 @@
   var carregado = false;
 
   // Eventos do site → eventos padrão do Meta Pixel
-  var EVENTOS_PIXEL = { view_item: 'ViewContent', click_whatsapp: 'Contact', search: 'Search' };
+  var EVENTOS_PIXEL = { view_item: 'ViewContent', click_whatsapp: 'Contact', click_pedido_whatsapp: 'Lead', search: 'Search' };
 
   function ler() { try { return localStorage.getItem(CHAVE); } catch (e) { return null; } }
   function gravar(v) { try { localStorage.setItem(CHAVE, v); } catch (e) { /* navegação privada */ } }

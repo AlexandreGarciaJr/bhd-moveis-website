@@ -30,7 +30,7 @@ jobs:
           extensions: gd
 
       - name: Gerar o site
-        run: php build.php --base=/${{ github.event.repository.name }}/
+        run: php build.php --base=/${{ github.event.repository.name }}/ --url=https://${{ github.repository_owner }}.github.io
 
       - uses: actions/upload-pages-artifact@v3
         with:
