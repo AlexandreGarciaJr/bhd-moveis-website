@@ -17,6 +17,6 @@ $tag = $link ? 'div' : 'div';
     <span class="sr">Preço: </span><small>R$</small><?= preco((float) $p['preco']) ?>
     <?php if (desconto($p)): ?><s><span class="sr">de </span>R$ <?= preco((float) $p['preco_anterior']) ?></s><?php endif; ?>
   </p>
-  <p class="etiqueta-parcela">ou <?= (int) bhd('site')['parcelas_max'] ?>x de R$ <?= parcela((float) $p['preco']) ?></p>
+  <p class="etiqueta-parcela"><span class="etiqueta-avista">à vista</span> <?= e(texto_parcela($p)) ?></p>
   <?php if ($link): ?><a class="etiqueta-link" href="<?= e(url($p['url'])) ?>">Ver este produto</a><?php endif; ?>
 </div>

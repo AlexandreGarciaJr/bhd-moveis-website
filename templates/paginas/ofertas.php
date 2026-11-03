@@ -2,7 +2,7 @@
 <header class="ofertas-cabeca">
   <div>
     <h1 class="titulo-pagina">Ofertas da semana</h1>
-    <p class="lista-descricao">Peças com preço reduzido e pronta-entrega em até 48h na Grande São Paulo. Peça direto pelo WhatsApp.</p>
+    <p class="lista-descricao">Peças com preço reduzido nas nossas lojas da Raposo Tavares. Peça direto pelo WhatsApp.</p>
   </div>
   <a class="btn btn-primario" href="<?= e(whatsapp('Olá! Vi as ofertas da semana no site e gostaria de mais informações.')) ?>" target="_blank" rel="noopener" data-track="click_whatsapp" data-local="ofertas"><?= icone('whatsapp') ?>Tirar dúvidas no WhatsApp</a>
 </header>

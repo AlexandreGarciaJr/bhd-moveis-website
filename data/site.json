@@ -4,9 +4,9 @@
   "url": "https://bhdmoveis.com.br",
   "caminho_base": "/",
   "ambiente": "preview",
-  "demo": true,
+  "demo": false,
   "idioma": "pt-BR",
-  "descricao": "Sofás, painéis, racks, mesas e cadeiras com preço de outlet e pronta-entrega em até 48h na Grande São Paulo. Peça pelo WhatsApp ou visite nossas lojas na Raposo Tavares.",
+  "descricao": "Sofás, poltronas, puffs e mesas com preço de outlet. Pronta-entrega em até 48h na Grande São Paulo nos itens marcados. Peça pelo WhatsApp ou visite nossas lojas na Raposo Tavares.",
   "contato": {
     "whatsapp": "5511937325839",
     "whatsapp_exibicao": "(11) 93732-5839",
@@ -17,13 +17,13 @@
   "beneficios": [
     {
       "icone": "caixa",
-      "destaque": "Pronta-entrega",
-      "texto": "em todos os móveis"
+      "destaque": "Pronta-entrega em até 48h",
+      "texto": "nos itens marcados"
     },
     {
       "icone": "caminhao",
-      "destaque": "Entrega em até 48h",
-      "texto": "na Grande São Paulo"
+      "destaque": "Entrega em toda",
+      "texto": "a Grande São Paulo"
     },
     {
       "icone": "cartao",
@@ -39,59 +39,59 @@
       "preço de",
       "outlet."
     ],
-    "texto": "Sofás, painéis, mesas e cadeiras prontos para levar. Veja na loja ou peça direto pelo WhatsApp.",
+    "texto": "Sofás, poltronas, puffs e mesas para ver de perto na loja ou pedir direto pelo WhatsApp.",
     "segundos_por_cena": 3,
     "cenas": [
       {
-        "produto": "sofa-lina-3-lugares-com-chaise",
-        "imagem": "ambientes/hero",
-        "foco": "40% 62%",
+        "produto": "sofa-calvin",
+        "imagem": "produtos/sofa-calvin/01-cenario",
+        "foco": "50% 60%",
         "ancora": [
-          33,
-          70
+          42,
+          62
         ],
         "etiqueta": [
-          50,
-          41
+          56,
+          20
         ]
       },
       {
-        "produto": "sofa-aurora-3-lugares",
-        "imagem": "produtos/sofa-aurora-3-lugares/01",
-        "foco": "50% 70%",
+        "produto": "sofa-chelles-com-chaise",
+        "imagem": "produtos/sofa-chelles-com-chaise/01-cenario",
+        "foco": "50% 60%",
         "ancora": [
-          38,
+          40,
           64
         ],
         "etiqueta": [
-          52,
-          30
+          54,
+          22
         ]
       },
       {
-        "produto": "conjunto-de-jantar-oslo-6-lugares",
-        "imagem": "produtos/conjunto-de-jantar-oslo-6-lugares/01",
-        "foco": "50% 70%",
+        "produto": "poltrona-clara",
+        "imagem": "produtos/poltrona-clara/01-cenario",
+        "foco": "50% 60%",
         "ancora": [
-          46,
-          66
+          45,
+          62
         ],
         "etiqueta": [
           58,
-          34
+          22
         ]
       },
       {
-        "produto": "painel-ripado-verona",
-        "imagem": "produtos/painel-ripado-verona/01",
+        "produto": "mesa-malaga-160x90",
+        "imagem": "produtos/mesa-malaga-160x90/01-cenario",
         "foco": "50% 60%",
         "ancora": [
-          9,
-          40
+          42,
+          60
         ],
         "etiqueta": [
-          22,
-          8
+          55,
+          18
         ]
       }
     ]
@@ -127,11 +127,11 @@
     },
     {
       "pergunta": "Em quanto tempo o móvel chega?",
-      "resposta": "48 horas para toda a Grande São Paulo. Todos os móveis são pronta-entrega."
+      "resposta": "Produtos com o selo \"Pronta-entrega\" chegam em até 48 horas em toda a Grande São Paulo. Os demais são feitos sob encomenda, com entrega em até 30 dias úteis, e você pode ver o mostruário nas nossas lojas."
     },
     {
       "pergunta": "Em quantas vezes posso parcelar?",
-      "resposta": "Em até 18 vezes no cartão."
+      "resposta": "Em até 18 vezes no cartão, conforme o produto. O número e o valor das parcelas aparecem na página de cada móvel."
     },
     {
       "pergunta": "Como funciona a garantia?",

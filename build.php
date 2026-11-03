@@ -132,7 +132,10 @@ function gravar(string $caminho, string $conteudo): void
 
 limpar_pasta(DIST);
 @mkdir(DIST, 0777, true);
-foreach (['fonts', 'img', 'js/vendor'] as $pasta) {
+foreach (['fonts', 'img', 'js/vendor', 'video'] as $pasta) {
+    if (!is_dir(RAIZ . "/assets/{$pasta}")) {
+        continue;
+    }
     copiar_pasta(RAIZ . "/assets/{$pasta}", DIST . "/assets/{$pasta}");
 }
 
@@ -229,7 +232,7 @@ foreach ($produtos as $p) {
             'image' => array_map(fn($i) => url_abs('assets/img/produtos/' . $p['slug'] . '/' . pathinfo($i, PATHINFO_FILENAME) . '-1440.webp'), $p['imagens']),
             'brand' => ['@type' => 'Brand', 'name' => $site['nome']],
             'offers' => ['@type' => 'Offer', 'priceCurrency' => 'BRL', 'price' => $p['preco'], 'url' => url_abs($p['url']),
-                'availability' => 'https://schema.org/InStock'],
+                'availability' => pronta_entrega($p) ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder'],
         ];
     }
     // primeiro os da mesma subcategoria, depois o resto da categoria
@@ -237,7 +240,7 @@ foreach ($produtos as $p) {
     usort($relacionados, fn($a, $b) => ($b['subcategoria'] === $p['subcategoria']) <=> ($a['subcategoria'] === $p['subcategoria']));
     $registrar($p['url'], pagina('produto', [
         'titulo' => ($p['seo']['titulo'] ?? $p['nome'] . ' por R$ ' . preco((float) $p['preco'])) . ' | BHD Móveis',
-        'descricao' => $p['seo']['descricao'] ?? ($p['nome'] . '. ' . ($p['resumo'] ?? '') . ' Em até ' . $site['parcelas_max'] . 'x no cartão, pronta-entrega em até 48h na Grande São Paulo. Peça pelo WhatsApp.'),
+        'descricao' => $p['seo']['descricao'] ?? ($p['nome'] . '. ' . ($p['resumo'] ?? '') . ' R$ ' . preco((float) $p['preco']) . ' à vista, ' . texto_parcela($p) . '. ' . (pronta_entrega($p) ? 'Pronta-entrega em até 48h na Grande São Paulo.' : 'Sob encomenda.') . ' Peça pelo WhatsApp.'),
         'caminho' => $p['url'],
         'imagem' => 'img/produtos/' . $p['slug'] . '/' . pathinfo($p['imagens'][0], PATHINFO_FILENAME) . '-1440.webp',
         'scripts' => ['gsap', 'Flip'],

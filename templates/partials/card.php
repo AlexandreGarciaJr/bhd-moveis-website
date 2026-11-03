@@ -15,11 +15,11 @@ $tamanhos = $sizes ?? '(max-width: 760px) 75vw, (max-width: 1200px) 33vw, 25vw';
       <?= imagem_produto($p, 1, ['sizes' => $tamanhos, 'alt' => '', 'classe' => 'card-foto-2']) ?>
       <?php endif; ?>
       <?php if ($d): ?><span class="selo selo-desconto">−<?= $d ?>%</span><?php endif; ?>
-      <span class="selo selo-pronta"><i></i>Pronta-entrega</span>
+      <?php if (pronta_entrega($p)): ?><span class="selo selo-pronta"><i></i>Pronta-entrega</span><?php endif; ?>
       <?php partial('etiqueta', ['p' => $p, 'tamanho' => 'p']); ?>
     </div>
     <h3 class="card-nome"><span><?= e($p['nome']) ?></span></h3>
-    <p class="card-preco">R$&nbsp;<?= preco((float) $p['preco']) ?><?php if ($d): ?><s>R$ <?= preco((float) $p['preco_anterior']) ?></s><?php endif; ?><span><?= (int) bhd('site')['parcelas_max'] ?>x de R$ <?= parcela((float) $p['preco']) ?></span></p>
+    <p class="card-preco">R$&nbsp;<?= preco((float) $p['preco']) ?><?php if ($d): ?><s>R$ <?= preco((float) $p['preco_anterior']) ?></s><?php endif; ?><span>à vista, <?= e(texto_parcela($p)) ?></span></p>
     <?php if (!empty($p['resumo'])): ?><p class="card-resumo"><?= e($p['resumo']) ?></p><?php endif; ?>
   </a>
   <a class="btn btn-contorno btn-pequeno btn-largo card-pedido" href="<?= e(pedido_whatsapp($p)) ?>" target="_blank" rel="noopener"

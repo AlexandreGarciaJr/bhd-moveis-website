@@ -143,6 +143,9 @@ function imagem(string $base, string $alt, array $opc = []): string
     if (!empty($opc['classe'])) {
         $attrs['class'] = $opc['classe'];
     }
+    if ($h > $w) {
+        $attrs['data-retrato'] = '';
+    }
     foreach ($opc['attrs'] ?? [] as $k => $v) {
         $attrs[$k] = $v;
     }
@@ -164,24 +167,75 @@ function imagem_produto(array $p, int $indice = 0, array $opc = []): string
 /* ---------- Produtos ---------- */
 
 /** Texto do pedido que já abre pronto na conversa do WhatsApp. */
-function mensagem_pedido(array $p, ?string $variacao = null): string
+/**
+ * Texto do pedido que já abre pronto na conversa do WhatsApp.
+ * $escolhas: ['Tecido' => 'Linho', 'Tamanho' => '1,80 m'] (as opções escolhidas na página)
+ */
+function mensagem_pedido(array $p, array $escolhas = []): string
 {
-    $n = (int) bhd('site')['parcelas_max'];
     $linhas = ['Olá! Quero fazer um pedido pelo site da BHD Móveis:', '', '*' . $p['nome'] . '*'];
-    if ($variacao) {
-        $linhas[] = 'Opção: ' . $variacao;
+    foreach ($escolhas as $nome => $valor) {
+        $linhas[] = $nome . ': ' . $valor;
     }
-    $linhas[] = 'Valor: R$ ' . preco((float) $p['preco']) . ' (ou ' . $n . 'x de R$ ' . parcela((float) $p['preco']) . ')';
+    // Se cada tamanho já traz o próprio preço, ele vai na linha "Tamanho" e o valor geral sairia contraditório.
+    $tamanho = current(array_filter($p['opcoes'] ?? [], fn($g) => $g['nome'] === 'Tamanho')) ?: null;
+    $tamanhoComPreco = $tamanho && str_contains(implode(' ', $tamanho['valores']), 'R$');
+    if (!$tamanhoComPreco) {
+        $referencia = $tamanho ? ' (tamanho ' . $tamanho['valores'][$tamanho['padrao'] ?? 0] . ')' : '';
+        $linhas[] = 'Valor à vista' . $referencia . ': R$ ' . preco((float) $p['preco']) . ' (' . texto_parcela($p) . ')';
+    }
     $linhas[] = 'Link: ' . url_abs($p['url']);
+    if (!empty($p['perguntar'])) {
+        $linhas[] = '';
+        $linhas[] = $p['perguntar'];
+    }
     $linhas[] = '';
-    $linhas[] = 'Pode confirmar o pedido e a entrega?';
+    $linhas[] = 'Pode confirmar o pedido e o prazo de entrega?';
     return implode("\n", $linhas);
 }
 
-/** Link do botão "Pedir pelo WhatsApp". */
-function pedido_whatsapp(array $p, ?string $variacao = null): string
+/** Primeira opção de cada grupo (ou a marcada como padrão). */
+function escolhas_padrao(array $p): array
 {
-    return whatsapp(mensagem_pedido($p, $variacao));
+    $escolhas = [];
+    foreach ($p['opcoes'] ?? [] as $grupo) {
+        $escolhas[$grupo['nome']] = $grupo['valores'][$grupo['padrao'] ?? 0];
+    }
+    return $escolhas;
+}
+
+/** Link do botão "Pedir pelo WhatsApp". */
+function pedido_whatsapp(array $p, ?array $escolhas = null): string
+{
+    return whatsapp(mensagem_pedido($p, $escolhas ?? escolhas_padrao($p)));
+}
+
+/** "ou 18x de R$ 189,00" (valor informado pela loja) ou "em até 18x no cartão". */
+function texto_parcela(array $p): string
+{
+    $qtd = (int) ($p['parcelas']['qtd'] ?? bhd('site')['parcelas_max']);
+    if (!empty($p['parcelas']['valor'])) {
+        return 'ou ' . $qtd . 'x de R$ ' . number_format((float) $p['parcelas']['valor'], 2, ',', '.');
+    }
+    return 'em até ' . $qtd . 'x no cartão';
+}
+
+/** Prazo do produto: pronta-entrega ou sob encomenda. */
+function pronta_entrega(array $p): bool
+{
+    return ($p['entrega'] ?? 'pronta') === 'pronta';
+}
+
+/** Aviso sobre a origem da imagem (ambientações e fotos de estúdio geradas por IA). */
+function nota_imagem(string $arquivo): string
+{
+    if (str_contains($arquivo, 'cenario')) {
+        return 'Ambientação ilustrativa';
+    }
+    if (str_contains($arquivo, 'fundo-branco')) {
+        return 'Imagem ilustrativa';
+    }
+    return '';
 }
 
 /** Subcategoria pelo slug, dentro de uma categoria. */

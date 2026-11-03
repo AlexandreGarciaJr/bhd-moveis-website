@@ -50,7 +50,7 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
       <?php endforeach; ?>
 
       <span class="hero-cortina" aria-hidden="true"></span>
-      <?php if ($site['demo']): ?><span class="nota-ilustrativa">Imagem ilustrativa</span><?php endif; ?>
+      <span class="nota-ilustrativa">Ambientação ilustrativa</span>
       <span class="hero-escurecer" aria-hidden="true"></span>
 
       <?php if (count($cenas) > 1): ?>
@@ -87,7 +87,7 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
   <div class="secao-cabeca">
     <div>
       <h2 class="titulo-secao" id="ofertas-titulo">Ofertas da semana</h2>
-      <p class="secao-sub">Peças com preço reduzido, prontas para entrega.</p>
+      <p class="secao-sub">Peças com preço reduzido. Peça pelo WhatsApp.</p>
     </div>
     <div class="secao-ferramentas">
       <a class="link-sublinhado" href="<?= e(url('/ofertas/')) ?>">Ver todas as ofertas</a>
@@ -127,7 +127,7 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
   </ul>
 </section>
 
-<?php $palavras = ['Sofás', 'Painéis', 'Racks', 'Mesas', 'Cadeiras', 'Planejados']; ?>
+<?php $palavras = ['Sofás', 'Poltronas', 'Puffs', 'Mesas', 'Planejados']; ?>
 <div class="faixa" aria-hidden="true">
   <?php foreach (['faixa-linha', 'faixa-linha faixa-linha-contorno'] as $k => $classe): ?>
   <div class="<?= $classe ?>" data-faixa="<?= $k ? -1 : 1 ?>">
@@ -141,8 +141,8 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
 <section class="secao destaques" aria-labelledby="destaques-titulo">
   <div class="secao-cabeca">
     <div>
-      <h2 class="titulo-secao" id="destaques-titulo">Mais procurados</h2>
-      <p class="secao-sub">Os modelos que mais saem nas nossas lojas.</p>
+      <h2 class="titulo-secao" id="destaques-titulo">Destaques do showroom</h2>
+      <p class="secao-sub">Alguns dos modelos que você encontra montados nas nossas lojas.</p>
     </div>
   </div>
   <div class="grade-produtos">
@@ -180,7 +180,7 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
 <section class="planejados" id="planejados" aria-labelledby="planejados-titulo">
   <div class="planejados-foto">
     <?= imagem('ambientes/' . $pl['imagem'], 'Cozinha planejada (imagem ilustrativa)', ['sizes' => '(max-width: 900px) 100vw, 60vw']) ?>
-    <?php if ($site['demo']): ?><span class="nota-ilustrativa">Imagem ilustrativa</span><?php endif; ?>
+    <span class="nota-ilustrativa">Imagem ilustrativa</span>
   </div>
   <div class="planejados-texto">
     <h2 class="titulo-secao" id="planejados-titulo"><?= e($pl['titulo']) ?></h2>

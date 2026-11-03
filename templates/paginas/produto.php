@@ -2,13 +2,16 @@
 /** @var array $p @var array $cat @var array $sub @var array $relacionados */
 $site = bhd('site');
 $rotulosMedida = ['largura' => 'Largura', 'profundidade' => 'Profundidade', 'altura' => 'Altura', 'diametro' => 'Diâmetro', 'peso' => 'Peso'];
-$variacoes = $p['variacoes'] ?? [];
-$primeira = $variacoes[0] ?? null;
+$opcoes = $p['opcoes'] ?? [];
 $numero = preg_replace('/\D/', '', $site['contato']['whatsapp']);
-// o JavaScript troca {{opcao}} pela opção escolhida e atualiza o link do pedido
-$atributosPedido = 'href="' . e(pedido_whatsapp($p, $primeira)) . '" target="_blank" rel="noopener" data-track="click_pedido_whatsapp" data-item="' . e($p['id']) . '"';
-if ($variacoes) {
-    $atributosPedido .= ' data-pedido data-numero="' . e($numero) . '" data-modelo="' . e(mensagem_pedido($p, '{{opcao}}')) . '"';
+// o JavaScript troca {{0}}, {{1}}... pelas opções escolhidas e atualiza o link do pedido
+$modelo = [];
+foreach ($opcoes as $i => $grupo) {
+    $modelo[$grupo['nome']] = '{{' . $i . '}}';
+}
+$atributosPedido = 'href="' . e(pedido_whatsapp($p)) . '" target="_blank" rel="noopener" data-track="click_pedido_whatsapp" data-item="' . e($p['id']) . '"';
+if ($opcoes) {
+    $atributosPedido .= ' data-pedido data-numero="' . e($numero) . '" data-modelo="' . e(mensagem_pedido($p, $modelo)) . '"';
 }
 ?>
 <nav class="migalhas" aria-label="Você está em">
@@ -25,18 +28,32 @@ if ($variacoes) {
     <div class="galeria-principal">
       <?= imagem_produto($p, 0, ['prioridade' => true, 'sizes' => '(max-width: 900px) 100vw, 55vw', 'classe' => 'galeria-img', 'attrs' => ['data-galeria-principal' => '']]) ?>
       <?php if (desconto($p)): ?><span class="selo selo-desconto">−<?= desconto($p) ?>%</span><?php endif; ?>
-      <?php if ($site['demo']): ?><span class="nota-ilustrativa">Imagem ilustrativa</span><?php endif; ?>
+      <span class="nota-ilustrativa" data-galeria-nota><?= e(nota_imagem($p['imagens'][0])) ?></span>
+      <?php if (!empty($p['video'])): ?>
+      <video class="galeria-video" data-galeria-video muted loop playsinline controls preload="none" hidden
+             poster="<?= e(asset('video/' . pathinfo($p['video'], PATHINFO_FILENAME) . '.jpg')) ?>">
+        <source src="<?= e(asset('video/' . $p['video'])) ?>" type="video/mp4">
+      </video>
+      <?php endif; ?>
     </div>
-    <?php if (count($p['imagens']) > 1): ?>
-    <ul class="galeria-miniaturas" aria-label="Outras fotos">
+    <?php if (count($p['imagens']) > 1 || !empty($p['video'])): ?>
+    <ul class="galeria-miniaturas" aria-label="Outras fotos e vídeo">
       <?php foreach ($p['imagens'] as $i => $img):
         $base = 'produtos/' . $p['slug'] . '/' . pathinfo($img, PATHINFO_FILENAME); ?>
       <li>
-        <button type="button" data-galeria-mini data-src="<?= e(asset('img/' . $base . '-1440.webp')) ?>" data-srcset="<?= e(asset('img/' . $base . '-960.webp')) ?> 960w, <?= e(asset('img/' . $base . '-1440.webp')) ?> 1440w"<?= $i === 0 ? ' aria-current="true"' : '' ?> aria-label="Ver foto <?= $i + 1 ?>">
+        <button type="button" data-galeria-mini data-nota="<?= e(nota_imagem($img)) ?>" data-src="<?= e(asset('img/' . $base . '-1440.webp')) ?>" data-srcset="<?= e(asset('img/' . $base . '-960.webp')) ?> 960w, <?= e(asset('img/' . $base . '-1440.webp')) ?> 1440w"<?= $i === 0 ? ' aria-current="true"' : '' ?> aria-label="Ver foto <?= $i + 1 ?>">
           <?= imagem_produto($p, $i, ['sizes' => '96px', 'alt' => '']) ?>
         </button>
       </li>
       <?php endforeach; ?>
+      <?php if (!empty($p['video'])): ?>
+      <li>
+        <button type="button" class="galeria-mini-video" data-galeria-mini data-video aria-label="Ver vídeo do produto">
+          <img src="<?= e(asset('video/' . pathinfo($p['video'], PATHINFO_FILENAME) . '.jpg')) ?>" alt="" loading="lazy" width="96" height="72">
+          <span aria-hidden="true"><?= icone('seta') ?></span>
+        </button>
+      </li>
+      <?php endif; ?>
     </ul>
     <?php endif; ?>
   </div>
@@ -48,19 +65,25 @@ if ($variacoes) {
 
     <div class="produto-preco">
       <?php partial('etiqueta', ['p' => $p, 'tamanho' => 'g']); ?>
+      <?php if (pronta_entrega($p)): ?>
       <p class="produto-status"><?= icone('check') ?>Pronta-entrega em até 48h na Grande São Paulo</p>
+      <?php else: ?>
+      <p class="produto-status produto-status-encomenda"><?= icone('relogio') ?>Sob encomenda: entrega em até 30 dias úteis. Veja o mostruário na loja.</p>
+      <?php endif; ?>
     </div>
+    <?php if (!empty($p['nota_preco'])): ?><p class="produto-nota"><?= e($p['nota_preco']) ?></p><?php endif; ?>
+    <?php if (!empty($p['observacao'])): ?><p class="produto-nota produto-nota-destaque"><?= e($p['observacao']) ?></p><?php endif; ?>
 
-    <?php if ($variacoes): ?>
+    <?php foreach ($opcoes as $g => $grupo): ?>
     <fieldset class="produto-variacoes">
-      <legend>Escolha a opção:</legend>
+      <legend><?= e($grupo['nome']) ?>:</legend>
       <div class="variacoes-lista">
-        <?php foreach ($variacoes as $i => $v): ?>
-        <label class="variacao"><input type="radio" name="variacao" value="<?= e($v) ?>" data-variacao<?= $i === 0 ? ' checked' : '' ?>><span><?= e($v) ?></span></label>
+        <?php foreach ($grupo['valores'] as $i => $v): ?>
+        <label class="variacao"><input type="radio" name="opcao-<?= $g ?>" value="<?= e($v) ?>" data-variacao="<?= $g ?>"<?= $i === ($grupo['padrao'] ?? 0) ? ' checked' : '' ?>><span><?= e($v) ?></span></label>
         <?php endforeach; ?>
       </div>
     </fieldset>
-    <?php endif; ?>
+    <?php endforeach; ?>
 
     <div class="produto-compra">
       <a class="btn btn-primario btn-grande btn-largo" <?= $atributosPedido ?> data-local="produto"><?= icone('whatsapp') ?>Pedir pelo WhatsApp</a>
@@ -121,7 +144,7 @@ if ($variacoes) {
 <div class="barra-compra" data-barra-compra>
   <div class="barra-compra-preco">
     <strong>R$ <?= preco((float) $p['preco']) ?></strong>
-    <span><?= (int) $site['parcelas_max'] ?>x de R$ <?= parcela((float) $p['preco']) ?></span>
+    <span><?= e(texto_parcela($p)) ?></span>
   </div>
   <a class="btn btn-primario" <?= $atributosPedido ?> data-local="barra"><?= icone('whatsapp') ?>Pedir pelo WhatsApp</a>
 </div>

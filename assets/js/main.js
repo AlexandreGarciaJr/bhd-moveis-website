@@ -126,14 +126,15 @@
     if (ordenar) ordenar.addEventListener('change', aplicar);
   }
 
-  /* ---------- Opção do produto: atualiza a mensagem do pedido ---------- */
+  /* ---------- Opções do produto: atualizam a mensagem do pedido ---------- */
   var opcoes = $$('[data-variacao]');
   if (opcoes.length) {
     var atualizarPedido = function () {
-      var marcada = $('[data-variacao]:checked');
-      if (!marcada) return;
       $$('[data-pedido]').forEach(function (botao) {
-        var mensagem = botao.getAttribute('data-modelo').replace('{{opcao}}', marcada.value);
+        var mensagem = botao.getAttribute('data-modelo');
+        $$('[data-variacao]:checked').forEach(function (marcada) {
+          mensagem = mensagem.split('{{' + marcada.getAttribute('data-variacao') + '}}').join(marcada.value);
+        });
         botao.href = 'https://wa.me/' + botao.getAttribute('data-numero') + '?text=' + encodeURIComponent(mensagem);
       });
     };
@@ -144,17 +145,41 @@
   /* ---------- Galeria do produto ---------- */
   var principal = $('[data-galeria-principal]');
   if (principal) {
+    var video = $('[data-galeria-video]');
+    var nota = $('[data-galeria-nota]');
+    var marcar = function (botao) {
+      $$('[data-galeria-mini]').forEach(function (b) { b.removeAttribute('aria-current'); });
+      botao.setAttribute('aria-current', 'true');
+    };
     $$('[data-galeria-mini]').forEach(function (botao) {
       botao.addEventListener('click', function () {
         if (botao.getAttribute('aria-current') === 'true') return;
+        if (botao.hasAttribute('data-video')) {
+          if (!video) return;
+          video.hidden = false;
+          principal.hidden = true;
+          if (nota) nota.textContent = '';
+          video.play().catch(function () {});
+          marcar(botao);
+          return;
+        }
         var trocar = function () {
           principal.srcset = botao.getAttribute('data-srcset');
           principal.src = botao.getAttribute('data-src');
-          $$('[data-galeria-mini]').forEach(function (b) { b.removeAttribute('aria-current'); });
-          botao.setAttribute('aria-current', 'true');
+          principal.toggleAttribute('data-retrato', !!botao.querySelector('img[data-retrato]'));
+          if (nota) nota.textContent = botao.getAttribute('data-nota') || '';
+          marcar(botao);
         };
-        if (BHD.animarGaleria) BHD.animarGaleria(botao, principal, trocar);
-        else trocar();
+        if (video && !video.hidden) {
+          video.pause();
+          video.hidden = true;
+          principal.hidden = false;
+          trocar();
+        } else if (BHD.animarGaleria) {
+          BHD.animarGaleria(botao, principal, trocar);
+        } else {
+          trocar();
+        }
       });
     });
   }

@@ -1,710 +1,883 @@
 [
   {
-    "id": "SOF-001",
-    "slug": "sofa-lina-3-lugares-com-chaise",
-    "nome": "Sofá Lina 3 lugares com chaise",
+    "id": "SOF-CALVIN",
+    "slug": "sofa-calvin",
+    "nome": "Sofá Calvin",
     "categoria": "sala-de-estar",
-    "resumo": "Linho cru, assento profundo e chaise do lado direito.",
-    "descricao": "Sofá de linhas retas com chaise, assento profundo e almofadas de encosto soltas. O tecido em linho cru combina com qualquer paleta e esconde bem o uso do dia a dia.",
-    "preco": 1899,
-    "preco_anterior": 2490,
+    "subcategoria": "sofas",
+    "resumo": "Retrátil e reclinável, revestido em linho.",
+    "descricao": "Sofá retrátil e reclinável com estrutura em eucalipto e revestimento em linho. O preço exibido é do tamanho 1,80 m.",
+    "preco": 2790,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 189
+    },
+    "entrega": "pronta",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
     ],
+    "video": "sofa-calvin.mp4",
     "medidas": {
-      "largura": "2,60 m",
-      "profundidade": "1,60 m (chaise)",
-      "altura": "0,85 m"
+      "largura": "1,80 m",
+      "profundidade": "0,90 m a 1,30 m",
+      "altura": "1,20 m"
     },
     "materiais": [
-      "Tecido linho cru",
-      "Estrutura em eucalipto",
-      "Espuma D28"
+      "Linho",
+      "Estrutura em eucalipto"
     ],
-    "variacoes": [
-      "Chaise à direita",
-      "Chaise à esquerda"
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "1,80 m",
+          "2,10 m",
+          "2,40 m",
+          "2,50 m"
+        ]
+      }
     ],
+    "nota_preco": "Valor à vista do tamanho 1,80 m. Outros tamanhos: consulte pelo WhatsApp.",
     "destaque": true,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "sofas"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "SOF-002",
-    "slug": "sofa-aurora-3-lugares",
-    "nome": "Sofá Aurora 3 lugares",
+    "id": "SOF-REQUINTE",
+    "slug": "sofa-requinte",
+    "nome": "Sofá Requinte",
     "categoria": "sala-de-estar",
-    "resumo": "Bouclé off-white com encosto em gomos.",
-    "descricao": "Encosto em gomos verticais e braços arredondados. O bouclé off-white dá textura sem pesar no ambiente.",
-    "preco": 2290,
-    "preco_anterior": 2790,
+    "subcategoria": "sofas",
+    "resumo": "Linho, assento com costura em gomos.",
+    "descricao": "Sofá de linhas retas em linho, com estrutura em eucalipto. O preço exibido é do tamanho 2,00 m.",
+    "preco": 1990,
+    "preco_anterior": 2590,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 139
+    },
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
     ],
+    "video": "sofa-requinte.mp4",
     "medidas": {
-      "largura": "2,10 m",
-      "profundidade": "0,92 m",
+      "largura": "2,00 m",
+      "profundidade": "0,70 m",
+      "altura": "1,00 m"
+    },
+    "materiais": [
+      "Linho",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "2,00 m",
+          "1,60 m"
+        ]
+      }
+    ],
+    "nota_preco": "Valor à vista do tamanho 2,00 m. Para 1,60 m, consulte pelo WhatsApp.",
+    "destaque": true,
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
+  },
+  {
+    "id": "SOF-BLEND",
+    "slug": "sofa-bau-blend-news",
+    "nome": "Sofá Baú Caixa Zero Blend News",
+    "categoria": "sala-de-estar",
+    "subcategoria": "sofas",
+    "resumo": "Com baú e assentos retráteis, em seis tamanhos.",
+    "descricao": "Sofá com baú e assentos retráteis, estrutura em eucalipto e revestimento em linho. Disponível em seis tamanhos, de 1,64 m a 2,72 m.",
+    "preco": 4649,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 299
+    },
+    "entrega": "encomenda",
+    "imagens": [
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
+    ],
+    "video": "sofa-bau-blend-news.mp4",
+    "medidas": {
+      "largura": "1,92 m",
+      "profundidade": "0,90 m a 1,20 m",
+      "altura": "1,00 m"
+    },
+    "materiais": [
+      "Linho",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "1,64 m (R$ 4.139)",
+          "1,74 m (R$ 4.480)",
+          "1,92 m (R$ 4.649)",
+          "2,24 m (R$ 4.920)",
+          "2,50 m (R$ 5.339)",
+          "2,72 m (R$ 5.540)"
+        ],
+        "padrao": 2
+      }
+    ],
+    "nota_preco": "Valor à vista do tamanho 1,92 m. Os valores dos outros tamanhos aparecem nas opções.",
+    "destaque": true,
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
+  },
+  {
+    "id": "SOF-VENUS",
+    "slug": "sofa-cama-venus-new",
+    "nome": "Sofá-cama Vênus New",
+    "categoria": "sala-de-estar",
+    "subcategoria": "sofas",
+    "resumo": "Sofá-cama caixa zero, em linho.",
+    "descricao": "Sofá-cama caixa zero com estrutura em eucalipto, espuma D26 e revestimento em linho. O preço exibido é do tamanho 1,82 m.",
+    "preco": 3590,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 239
+    },
+    "entrega": "encomenda",
+    "imagens": [
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
+    ],
+    "video": "sofa-cama-venus-new.mp4",
+    "medidas": {
+      "largura": "1,82 m",
+      "profundidade": "1,20 m a 1,36 m",
+      "altura": "1,00 m"
+    },
+    "materiais": [
+      "Linho",
+      "Estrutura em eucalipto",
+      "Espuma D26"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "1,82 m",
+          "2,00 m",
+          "2,20 m"
+        ]
+      }
+    ],
+    "nota_preco": "Valor à vista do tamanho 1,82 m. Outros tamanhos: consulte pelo WhatsApp.",
+    "destaque": true,
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
+  },
+  {
+    "id": "SOF-ROMA",
+    "slug": "sofa-roma",
+    "nome": "Sofá Roma",
+    "categoria": "sala-de-estar",
+    "subcategoria": "sofas",
+    "resumo": "Sofá orgânico de linhas curvas.",
+    "descricao": "Sofá orgânico de linhas curvas, com estrutura em eucalipto, espuma D18 soft e revestimento em linho. Também há módulos avulsos: consulte pelo WhatsApp.",
+    "preco": 2569,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 169
+    },
+    "entrega": "encomenda",
+    "imagens": [
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
+    ],
+    "video": "sofa-roma.mp4",
+    "medidas": {
+      "largura": "1,58 m",
+      "profundidade": "0,84 m",
       "altura": "0,80 m"
     },
     "materiais": [
-      "Tecido bouclé",
-      "Estrutura em madeira de reflorestamento",
-      "Espuma D33"
+      "Linho",
+      "Estrutura em eucalipto",
+      "Espuma D18 soft"
     ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "sofas"
-  },
-  {
-    "id": "SOF-003",
-    "slug": "sofa-dante-retratil-e-reclinavel",
-    "nome": "Sofá Dante retrátil e reclinável",
-    "categoria": "sala-de-estar",
-    "resumo": "Cinza, assento que avança e encosto que reclina.",
-    "descricao": "Assento retrátil e encosto reclinável em cada módulo. Ideal para sala de TV.",
-    "preco": 2190,
-    "preco_anterior": 2690,
-    "imagens": [
-      "01.jpg",
-      "02.jpg"
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "1,58 m (R$ 2.569)",
+          "1,98 m (R$ 3.279)"
+        ]
+      }
     ],
-    "medidas": {
-      "largura": "2,30 m",
-      "profundidade": "1,00 a 1,50 m",
-      "altura": "0,95 m"
-    },
-    "materiais": [
-      "Tecido suede cinza",
-      "Mecanismo retrátil em aço"
-    ],
+    "nota_preco": "Valor à vista do tamanho 1,58 m.",
     "destaque": true,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "sofas"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "SOF-004",
-    "slug": "sofa-de-canto-milao-5-lugares",
-    "nome": "Sofá de canto Milão 5 lugares",
+    "id": "SOF-AWAY",
+    "slug": "sofa-away",
+    "nome": "Sofá Away",
     "categoria": "sala-de-estar",
-    "resumo": "Cinza, em L, para salas maiores.",
-    "descricao": "Sofá de canto em L com almofadas de encosto fixas. Acomoda a família inteira.",
-    "preco": 3490,
-    "preco_anterior": 4190,
+    "subcategoria": "sofas",
+    "resumo": "Retrátil, com almofadas soltas no encosto.",
+    "descricao": "Sofá com estrutura em eucalipto e revestimento em linho, disponível em vários tamanhos. O preço exibido é do tamanho 2,26 m.",
+    "preco": 5568,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 369
+    },
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg",
-      "02.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
     ],
+    "video": "sofa-away.mp4",
     "medidas": {
-      "largura": "2,80 x 2,10 m",
-      "profundidade": "0,90 m",
-      "altura": "0,82 m"
+      "largura": "2,26 m",
+      "profundidade": "0,90 m a 1,50 m",
+      "altura": "0,90 m"
     },
     "materiais": [
-      "Tecido linho cinza",
-      "Pés em madeira"
+      "Linho",
+      "Estrutura em eucalipto"
     ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "sofas"
-  },
-  {
-    "id": "SOF-005",
-    "slug": "sofa-sena-2-lugares",
-    "nome": "Sofá Sena 2 lugares",
-    "categoria": "sala-de-estar",
-    "resumo": "Cinza claro, compacto para apartamento.",
-    "descricao": "Dois lugares com braços largos e almofadas soltas. Cabe em salas pequenas sem abrir mão do conforto.",
-    "preco": 1290,
-    "imagens": [
-      "01.jpg"
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "2,26 m",
+          "1,88 m",
+          "2,08 m",
+          "2,46 m",
+          "2,68 m",
+          "3,28 m"
+        ]
+      }
     ],
-    "medidas": {
-      "largura": "1,60 m",
-      "profundidade": "0,88 m",
-      "altura": "0,84 m"
-    },
-    "materiais": [
-      "Tecido linho cinza claro",
-      "Espuma D28"
-    ],
+    "nota_preco": "Valor à vista do tamanho 2,26 m. Outros tamanhos: consulte pelo WhatsApp.",
     "destaque": true,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "sofas"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "SOF-006",
-    "slug": "sofa-toscana-3-lugares",
-    "nome": "Sofá Toscana 3 lugares",
+    "id": "SOF-ARMANI-190",
+    "slug": "sofa-armani-190",
+    "nome": "Sofá Armani 1,90 m",
     "categoria": "sala-de-estar",
-    "resumo": "Couro sintético caramelo.",
-    "descricao": "Couro sintético caramelo de fácil limpeza, com almofadas de assento soltas.",
+    "subcategoria": "sofas",
+    "resumo": "Retrátil, caixa zero. Pronta-entrega em três cores.",
+    "descricao": "Sofá retrátil caixa zero com estrutura em eucalipto. Pronta-entrega nas cores cinza claro, bege e cinza escuro; outras cores e tecidos sob encomenda.",
     "preco": 2590,
-    "preco_anterior": 3090,
-    "imagens": [
-      "01.jpg",
-      "02.jpg"
-    ],
-    "medidas": {
-      "largura": "2,05 m",
-      "profundidade": "0,90 m",
-      "altura": "0,82 m"
+    "parcelas": {
+      "qtd": 18,
+      "valor": 169
     },
-    "materiais": [
-      "Couro sintético",
-      "Pés em madeira escura"
-    ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "sofas"
-  },
-  {
-    "id": "SOF-007",
-    "slug": "sofa-iris-3-lugares-veludo",
-    "nome": "Sofá Íris 3 lugares",
-    "categoria": "sala-de-estar",
-    "resumo": "Veludo azul, pés palito.",
-    "descricao": "Veludo azul profundo e pés palito em madeira. Uma peça de destaque para a sala.",
-    "preco": 1690,
+    "entrega": "pronta",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg"
     ],
+    "video": "sofa-armani-190.mp4",
     "medidas": {
       "largura": "1,90 m",
-      "profundidade": "0,80 m",
-      "altura": "0,78 m"
+      "profundidade": "0,80 m a 1,50 m",
+      "altura": "1,10 m"
     },
     "materiais": [
-      "Veludo",
-      "Pés palito em madeira"
+      "Estrutura em eucalipto"
     ],
-    "variacoes": [
-      "Azul",
-      "Verde",
-      "Rosê"
+    "opcoes": [
+      {
+        "nome": "Cor",
+        "valores": [
+          "Bege",
+          "Cinza claro",
+          "Cinza escuro",
+          "Outra cor (sob encomenda)"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "1,90 m",
+          "2,10 m",
+          "2,30 m"
+        ]
+      }
     ],
+    "nota_preco": "Valor à vista do tamanho 1,90 m. Outros tamanhos: consulte pelo WhatsApp.",
     "destaque": false,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "sofas"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "MES-001",
-    "slug": "conjunto-de-jantar-oslo-6-lugares",
-    "nome": "Conjunto de jantar Oslo 6 lugares",
-    "categoria": "sala-de-jantar",
-    "resumo": "Mesa e 6 cadeiras em madeira natural.",
-    "descricao": "Mesa retangular com seis cadeiras de encosto curvo, tudo em madeira natural clara.",
-    "preco": 2390,
-    "preco_anterior": 3190,
+    "id": "SOF-CHELLES",
+    "slug": "sofa-chelles-com-chaise",
+    "nome": "Sofá Chelles com chaise",
+    "categoria": "sala-de-estar",
+    "subcategoria": "sofas",
+    "resumo": "Orgânico, com chaise e almofadas rolo.",
+    "descricao": "Sofá orgânico com chaise, estrutura em eucalipto, espuma D23 soft e revestimento em linho. Há vários tamanhos, com e sem chaise.",
+    "preco": 6699,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 439
+    },
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
     ],
+    "video": "sofa-chelles-com-chaise.mp4",
     "medidas": {
-      "largura": "1,80 m",
-      "profundidade": "0,90 m",
-      "altura": "0,76 m"
+      "largura": "2,40 m",
+      "profundidade": "0,95 m (chaise 1,50 m)",
+      "altura": "0,81 m"
     },
     "materiais": [
-      "Madeira maciça de pinus",
-      "Verniz fosco"
+      "Linho",
+      "Estrutura em eucalipto",
+      "Espuma D23 soft"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      }
+    ],
+    "nota_preco": "Valor à vista da versão de 2,40 m com chaise. Outros tamanhos: consulte pelo WhatsApp.",
+    "destaque": true,
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
+  },
+  {
+    "id": "SOF-ARMANI-210",
+    "slug": "sofa-armani-210-com-chaise",
+    "nome": "Sofá Armani 2,10 m com chaise",
+    "categoria": "sala-de-estar",
+    "subcategoria": "sofas",
+    "resumo": "Retrátil, caixa zero, com chaise.",
+    "descricao": "Sofá retrátil caixa zero com chaise, estrutura em eucalipto e revestimento em linho.",
+    "preco": 2890,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 189
+    },
+    "entrega": "encomenda",
+    "imagens": [
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
+    ],
+    "video": "sofa-armani-210-com-chaise.mp4",
+    "medidas": {
+      "largura": "2,10 m",
+      "profundidade": "0,80 m a 1,50 m",
+      "altura": "1,10 m"
+    },
+    "materiais": [
+      "Linho",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Cor",
+        "valores": [
+          "Cinza",
+          "Cinza claro",
+          "Bege",
+          "Cinza escuro",
+          "Outra cor (sob encomenda)"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "2,10 m",
+          "1,90 m",
+          "2,30 m"
+        ]
+      }
+    ],
+    "nota_preco": "Valor à vista do tamanho 2,10 m. Outros tamanhos: consulte pelo WhatsApp.",
+    "destaque": false,
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
+  },
+  {
+    "id": "SOF-LONDRES",
+    "slug": "sofa-londres",
+    "nome": "Sofá Londres",
+    "categoria": "sala-de-estar",
+    "subcategoria": "sofas",
+    "resumo": "Bouclê, com detalhe de madeira nos braços.",
+    "descricao": "Sofá caixa zero revestido em bouclê, com estrutura em eucalipto e detalhe de madeira nos braços.",
+    "preco": 2590,
+    "preco_anterior": 3690,
+    "parcelas": {
+      "qtd": 18
+    },
+    "entrega": "encomenda",
+    "imagens": [
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
+    ],
+    "video": "sofa-londres.mp4",
+    "medidas": {
+      "largura": "2,30 m",
+      "profundidade": "0,85 m a 1,50 m",
+      "altura": "0,90 m"
+    },
+    "materiais": [
+      "Bouclê",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      }
     ],
     "destaque": true,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "mesas"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "MES-002",
-    "slug": "mesa-de-jantar-verona-6-lugares",
-    "nome": "Mesa de jantar Verona 6 lugares",
-    "categoria": "sala-de-jantar",
-    "resumo": "Tampo em madeira, pés retos.",
-    "descricao": "Tampo em madeira com acabamento natural e pés retos. Vendida sem cadeiras.",
+    "id": "SOF-NANTES",
+    "slug": "sofa-nantes",
+    "nome": "Sofá Nantes",
+    "categoria": "sala-de-estar",
+    "subcategoria": "sofas",
+    "resumo": "Retrátil, com chaise e várias almofadas.",
+    "descricao": "Sofá com chaise e estrutura em eucalipto, disponível em vários tamanhos. O preço exibido é do tamanho 2,90 m.",
+    "preco": 3990,
+    "preco_anterior": 5290,
+    "parcelas": {
+      "qtd": 18,
+      "valor": 349
+    },
+    "entrega": "encomenda",
+    "imagens": [
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
+    ],
+    "video": "sofa-nantes.mp4",
+    "medidas": {
+      "largura": "2,90 m",
+      "profundidade": "0,80 m a 1,30 m",
+      "altura": "1,00 m"
+    },
+    "materiais": [
+      "Linho",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      },
+      {
+        "nome": "Tamanho",
+        "valores": [
+          "2,90 m",
+          "2,20 m",
+          "2,30 m",
+          "2,50 m",
+          "3,40 m",
+          "3,50 m"
+        ]
+      }
+    ],
+    "nota_preco": "Valor à vista do tamanho 2,90 m. Outros tamanhos: consulte pelo WhatsApp.",
+    "destaque": true,
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
+  },
+  {
+    "id": "POL-INNOVARE",
+    "slug": "poltrona-innovare-new",
+    "nome": "Poltrona Innovare New",
+    "categoria": "sala-de-estar",
+    "subcategoria": "poltronas",
+    "resumo": "Linho, base arredondada.",
+    "descricao": "Poltrona com estrutura em eucalipto e revestimento em linho.",
     "preco": 1590,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "1,80 m",
-      "profundidade": "0,90 m",
-      "altura": "0,76 m"
+    "parcelas": {
+      "qtd": 12,
+      "valor": 159
     },
-    "materiais": [
-      "MDF com lâmina natural",
-      "Pés em madeira maciça"
-    ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "mesas"
-  },
-  {
-    "id": "MES-003",
-    "slug": "conjunto-de-jantar-lisboa-4-lugares",
-    "nome": "Conjunto de jantar Lisboa 4 lugares",
-    "categoria": "sala-de-jantar",
-    "resumo": "Mesa e 4 cadeiras, madeira cor mel.",
-    "descricao": "Conjunto compacto para cozinha ou sala de jantar pequena.",
-    "preco": 1790,
-    "preco_anterior": 2190,
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
     ],
+    "video": "poltrona-innovare-new.mp4",
     "medidas": {
-      "largura": "1,20 m",
+      "largura": "0,90 m",
       "profundidade": "0,80 m",
-      "altura": "0,76 m"
+      "altura": "0,90 m"
     },
     "materiais": [
-      "Madeira maciça",
-      "Assentos estofados"
+      "Linho",
+      "Estrutura em eucalipto"
     ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "mesas"
-  },
-  {
-    "id": "MES-004",
-    "slug": "mesa-redonda-bia-4-lugares",
-    "nome": "Mesa redonda Bia 4 lugares",
-    "categoria": "sala-de-jantar",
-    "resumo": "Tampo de 1 m, madeira clara.",
-    "descricao": "Mesa redonda de 1 metro, boa para cantos e cozinhas integradas.",
-    "preco": 899,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "diametro": "1,00 m",
-      "altura": "0,76 m"
-    },
-    "materiais": [
-      "MDF",
-      "Pés em madeira"
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      }
     ],
     "destaque": true,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "mesas"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "MES-005",
-    "slug": "mesa-de-centro-duo",
-    "nome": "Mesa de centro Duo",
-    "categoria": "sala-de-jantar",
-    "resumo": "Tampo em madeira, pés hairpin.",
-    "descricao": "Tampo em madeira e pés de aço hairpin pretos.",
-    "preco": 549,
-    "preco_anterior": 690,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "1,00 m",
-      "profundidade": "0,55 m",
-      "altura": "0,40 m"
+    "id": "POL-MEGG",
+    "slug": "poltrona-megg",
+    "nome": "Poltrona Megg",
+    "categoria": "sala-de-estar",
+    "subcategoria": "poltronas",
+    "resumo": "Linho, pés de madeira.",
+    "descricao": "Poltrona com estrutura em eucalipto e revestimento em linho.",
+    "preco": 1239,
+    "parcelas": {
+      "qtd": 12,
+      "valor": 123
     },
-    "materiais": [
-      "Madeira",
-      "Aço carbono pintado"
-    ],
-    "destaque": false,
-    "ativo": false,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "mesas"
-  },
-  {
-    "id": "MES-006",
-    "slug": "mesa-lateral-gota",
-    "nome": "Mesa lateral Gota",
-    "categoria": "sala-de-jantar",
-    "resumo": "Base metálica preta, tampo redondo.",
-    "descricao": "Mesa de apoio para o lado do sofá ou da poltrona.",
-    "preco": 299,
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
     ],
+    "video": "poltrona-megg.mp4",
     "medidas": {
-      "diametro": "0,40 m",
-      "altura": "0,55 m"
-    },
-    "materiais": [
-      "Aço pintado",
-      "Tampo em MDF"
-    ],
-    "destaque": false,
-    "ativo": false,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "mesas"
-  },
-  {
-    "id": "CAD-001",
-    "slug": "cadeira-vera-estofada",
-    "nome": "Cadeira Vera estofada",
-    "categoria": "sala-de-jantar",
-    "resumo": "Tecido cinza, pés em madeira.",
-    "descricao": "Encosto alto e assento estofado em tecido cinza. Pés em madeira clara.",
-    "preco": 289,
-    "preco_anterior": 340,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,50 m",
-      "profundidade": "0,58 m",
-      "altura": "0,95 m"
-    },
-    "materiais": [
-      "Tecido linho",
-      "Madeira maciça"
-    ],
-    "destaque": true,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "cadeiras"
-  },
-  {
-    "id": "CAD-002",
-    "slug": "cadeira-nordica-freijo",
-    "nome": "Cadeira Nórdica",
-    "categoria": "sala-de-jantar",
-    "resumo": "Madeira clara, assento anatômico.",
-    "descricao": "Assento e encosto em compensado moldado, estrutura em madeira clara.",
-    "preco": 219,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,46 m",
+      "largura": "0,75 m",
       "profundidade": "0,50 m",
-      "altura": "0,80 m"
-    },
-    "materiais": [
-      "Compensado moldado",
-      "Madeira maciça"
-    ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "cadeiras"
-  },
-  {
-    "id": "CAD-003",
-    "slug": "cadeira-eva-branca",
-    "nome": "Cadeira Eva",
-    "categoria": "sala-de-jantar",
-    "resumo": "Concha branca, base em madeira.",
-    "descricao": "Assento em polipropileno branco com base de madeira e travas metálicas.",
-    "preco": 189,
-    "preco_anterior": 229,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,62 m",
-      "profundidade": "0,58 m",
-      "altura": "0,80 m"
-    },
-    "materiais": [
-      "Polipropileno",
-      "Madeira de faia",
-      "Aço"
-    ],
-    "variacoes": [
-      "Branca",
-      "Preta",
-      "Cinza"
-    ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "cadeiras"
-  },
-  {
-    "id": "CAD-004",
-    "slug": "cadeira-leme-preta",
-    "nome": "Cadeira Leme",
-    "categoria": "sala-de-jantar",
-    "resumo": "Preta com almofada, pés em madeira.",
-    "descricao": "Assento com almofada em couro sintético preto e pés em madeira clara.",
-    "preco": 199,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,48 m",
-      "profundidade": "0,55 m",
-      "altura": "0,83 m"
-    },
-    "materiais": [
-      "Polipropileno",
-      "Couro sintético",
-      "Madeira"
-    ],
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "cadeiras"
-  },
-  {
-    "id": "CAD-005",
-    "slug": "poltrona-aurora-capitone",
-    "nome": "Poltrona Aurora capitonê",
-    "categoria": "sala-de-jantar",
-    "resumo": "Couro sintético off-white.",
-    "descricao": "Encosto capitonê e pés torneados. Fica bem no quarto ou na sala.",
-    "preco": 749,
-    "preco_anterior": 915,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,70 m",
-      "profundidade": "0,65 m",
-      "altura": "0,80 m"
-    },
-    "materiais": [
-      "Couro sintético",
-      "Pés em madeira laqueada"
-    ],
-    "destaque": true,
-    "ativo": false,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "cadeiras"
-  },
-  {
-    "id": "CAD-006",
-    "slug": "poltrona-caramelo",
-    "nome": "Poltrona Caramelo",
-    "categoria": "sala-de-jantar",
-    "resumo": "Veludo, braços em madeira escura.",
-    "descricao": "Poltrona de linhas retrô com braços em madeira escura e estofado em veludo caramelo.",
-    "preco": 689,
-    "preco_anterior": 860,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,68 m",
-      "profundidade": "0,72 m",
-      "altura": "0,78 m"
-    },
-    "materiais": [
-      "Veludo",
-      "Madeira maciça"
-    ],
-    "destaque": false,
-    "ativo": false,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "cadeiras"
-  },
-  {
-    "id": "CAD-007",
-    "slug": "poltrona-bergere-mostarda",
-    "nome": "Poltrona Bergère",
-    "categoria": "sala-de-jantar",
-    "resumo": "Mostarda, encosto alto com orelhas.",
-    "descricao": "Clássica poltrona de orelhas com encosto alto, ideal para leitura.",
-    "preco": 899,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,80 m",
-      "profundidade": "0,80 m",
-      "altura": "1,05 m"
-    },
-    "materiais": [
-      "Tecido suede mostarda",
-      "Pés em madeira"
-    ],
-    "destaque": false,
-    "ativo": false,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "cadeiras"
-  },
-  {
-    "id": "DIV-001",
-    "slug": "buffet-ravena",
-    "nome": "Buffet Ravena",
-    "categoria": "sala-de-estar",
-    "resumo": "Madeira, 2 portas e 3 gavetas.",
-    "descricao": "Buffet de linhas retrô em madeira, com duas portas de correr e três gavetas centrais.",
-    "preco": 1390,
-    "preco_anterior": 1690,
-    "imagens": [
-      "01.jpg",
-      "02.jpg"
-    ],
-    "medidas": {
-      "largura": "1,60 m",
-      "profundidade": "0,40 m",
-      "altura": "0,75 m"
-    },
-    "materiais": [
-      "MDF com lâmina de madeira",
-      "Pés palito"
-    ],
-    "destaque": true,
-    "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "racks"
-  },
-  {
-    "id": "DIV-002",
-    "slug": "buffet-lumi-4-portas",
-    "nome": "Buffet Lumi 4 portas",
-    "categoria": "sala-de-estar",
-    "resumo": "Off-white, puxadores embutidos.",
-    "descricao": "Buffet baixo off-white com quatro portas e prateleiras internas.",
-    "preco": 1290,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "1,80 m",
-      "profundidade": "0,42 m",
       "altura": "0,70 m"
     },
     "materiais": [
-      "MDF laqueado"
+      "Linho",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      }
     ],
     "destaque": false,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "racks"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "DIV-003",
-    "slug": "rack-nero",
-    "nome": "Rack Nero",
+    "id": "POL-CLARA",
+    "slug": "poltrona-clara",
+    "nome": "Poltrona Clara",
     "categoria": "sala-de-estar",
-    "resumo": "Para TV de até 65 polegadas.",
-    "descricao": "Rack baixo com nicho aberto e porta basculante, para TVs de até 65 polegadas.",
-    "preco": 799,
-    "preco_anterior": 990,
+    "subcategoria": "poltronas",
+    "resumo": "Veludo, formato concha.",
+    "descricao": "Poltrona em formato concha, com estrutura em eucalipto e revestimento em veludo.",
+    "preco": 2690,
+    "parcelas": {
+      "qtd": 12,
+      "valor": 269
+    },
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg"
     ],
+    "video": "poltrona-clara.mp4",
     "medidas": {
-      "largura": "1,80 m",
+      "largura": "0,90 m",
+      "profundidade": "0,60 m",
+      "altura": "0,75 m"
+    },
+    "materiais": [
+      "Veludo",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      }
+    ],
+    "destaque": true,
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
+  },
+  {
+    "id": "PUF-NEW",
+    "slug": "puff-new",
+    "nome": "Puff New",
+    "categoria": "sala-de-estar",
+    "subcategoria": "puffs",
+    "resumo": "Veludo, redondo. Azul ou verde.",
+    "descricao": "Puff redondo em veludo, com estrutura em eucalipto.",
+    "preco": 289,
+    "parcelas": {
+      "qtd": 3,
+      "valor": 97
+    },
+    "entrega": "encomenda",
+    "imagens": [
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg",
+      "06-foto.jpg"
+    ],
+    "video": "puff-new.mp4",
+    "medidas": {
+      "largura": "0,40 m",
       "profundidade": "0,40 m",
-      "altura": "0,50 m"
+      "altura": "0,40 m"
     },
     "materiais": [
-      "MDF",
-      "Pés em madeira"
+      "Veludo",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Cor",
+        "valores": [
+          "Azul",
+          "Verde",
+          "Outra cor"
+        ]
+      }
     ],
     "destaque": false,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "racks"
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "DIV-004",
-    "slug": "comoda-sol-5-gavetas",
-    "nome": "Cômoda Sol 5 gavetas",
+    "id": "PUF-CALEB",
+    "slug": "puff-caleb",
+    "nome": "Puff Caleb",
     "categoria": "sala-de-estar",
-    "resumo": "Madeira, corrediças metálicas.",
-    "descricao": "Cômoda alta com cinco gavetas em corrediças metálicas.",
-    "preco": 949,
+    "subcategoria": "puffs",
+    "resumo": "Linho, pés de madeira.",
+    "descricao": "Puff com estrutura em eucalipto, revestimento em linho e pés de madeira.",
+    "preco": 259,
+    "parcelas": {
+      "qtd": 3,
+      "valor": 87
+    },
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg"
     ],
+    "video": "puff-caleb.mp4",
     "medidas": {
-      "largura": "0,80 m",
-      "profundidade": "0,45 m",
-      "altura": "1,15 m"
+      "largura": "0,35 m",
+      "profundidade": "0,35 m",
+      "altura": "0,35 m"
     },
     "materiais": [
-      "MDF com lâmina de madeira"
+      "Linho",
+      "Estrutura em eucalipto"
+    ],
+    "opcoes": [
+      {
+        "nome": "Tecido",
+        "valores": [
+          "Linho",
+          "Suede",
+          "Bouclê",
+          "Veludo"
+        ]
+      }
     ],
     "destaque": false,
-    "ativo": false,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "racks"
+    "ativo": true,
+    "atualizado_em": "2026-11-03"
   },
   {
-    "id": "DIV-005",
-    "slug": "criado-mudo-mar",
-    "nome": "Criado-mudo Mar",
-    "categoria": "sala-de-estar",
-    "resumo": "Azul petróleo, 3 gavetas.",
-    "descricao": "Criado-mudo com três gavetas e acabamento azul petróleo.",
-    "preco": 349,
-    "preco_anterior": 420,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "0,45 m",
-      "profundidade": "0,38 m",
-      "altura": "0,60 m"
+    "id": "MES-MALAGA",
+    "slug": "mesa-malaga-160x90",
+    "nome": "Mesa Malaga 1,60 x 0,90 m",
+    "categoria": "sala-de-jantar",
+    "subcategoria": "mesas",
+    "resumo": "Tampo em vidro, base em madeira maciça.",
+    "descricao": "Mesa de jantar de 1,60 x 0,90 m com tampo em vidro e base em madeira maciça.",
+    "preco": 3290,
+    "parcelas": {
+      "qtd": 12,
+      "valor": 329
     },
-    "materiais": [
-      "MDF laqueado",
-      "Puxadores metálicos"
-    ],
-    "destaque": false,
-    "ativo": false,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "racks"
-  },
-  {
-    "id": "DIV-006",
-    "slug": "aparador-iris",
-    "nome": "Aparador Íris",
-    "categoria": "sala-de-estar",
-    "resumo": "Madeira e metal, com prateleira.",
-    "descricao": "Aparador estreito para hall de entrada, com uma gaveta e prateleira inferior.",
-    "preco": 489,
+    "entrega": "encomenda",
     "imagens": [
-      "01.jpg"
+      "01-cenario.jpg",
+      "02-fundo-branco.jpg",
+      "03-foto.jpg",
+      "04-foto.jpg",
+      "05-foto.jpg"
     ],
+    "video": "mesa-malaga-160x90.mp4",
     "medidas": {
-      "largura": "1,00 m",
-      "profundidade": "0,30 m",
+      "largura": "1,60 m",
+      "profundidade": "0,90 m",
       "altura": "0,80 m"
     },
     "materiais": [
-      "Madeira",
-      "Aço pintado"
+      "Tampo em vidro",
+      "Base em madeira maciça"
     ],
+    "observacao": "As cadeiras das fotos são vendidas separadamente. Consulte o valor pelo WhatsApp.",
+    "perguntar": "Também quero saber o valor das cadeiras das fotos.",
     "destaque": true,
     "ativo": true,
-    "atualizado_em": "2026-10-12",
-    "subcategoria": "racks"
-  },
-  {
-    "id": "PAI-001",
-    "slug": "painel-ripado-verona",
-    "nome": "Painel ripado Verona",
-    "categoria": "sala-de-estar",
-    "subcategoria": "paineis",
-    "resumo": "Para TV de até 65 polegadas, acabamento amadeirado.",
-    "descricao": "Painel ripado amadeirado para a parede da TV, com passagem de fios escondida.",
-    "preco": 899,
-    "preco_anterior": 1090,
-    "imagens": [
-      "01.jpg"
-    ],
-    "medidas": {
-      "largura": "2,20 m",
-      "altura": "1,80 m",
-      "profundidade": "0,04 m"
-    },
-    "materiais": [
-      "MDF amadeirado"
-    ],
-    "destaque": true,
-    "ativo": true,
-    "atualizado_em": "2026-11-02"
+    "atualizado_em": "2026-11-03"
   }
 ]
