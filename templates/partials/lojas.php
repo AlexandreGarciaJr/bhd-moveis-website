@@ -9,7 +9,7 @@ $variante = $variante ?? 'lista';
   <?php foreach (bhd('unidades') as $u): ?>
   <li class="loja">
     <?php if ($variante === 'cards'): ?>
-    <div class="loja-foto"><?= imagem('ambientes/' . $u['foto'], 'Showroom da ' . $u['nome'] . ' (imagem ilustrativa)', ['sizes' => '(max-width: 760px) 100vw, 50vw']) ?><span class="nota-ilustrativa">Imagem ilustrativa</span></div>
+    <div class="loja-foto"><?= imagem('ambientes/' . $u['foto'], 'Showroom da loja ' . $u['nome'], ['sizes' => '(max-width: 760px) 100vw, 50vw']) ?></div>
     <?php endif; ?>
     <div class="loja-info">
       <h3 class="loja-nome"><?= e($u['nome']) ?></h3>

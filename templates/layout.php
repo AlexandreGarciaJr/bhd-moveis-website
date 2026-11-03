@@ -3,7 +3,7 @@
 $site = bhd('site');
 $pg = bhd('pagina');
 $indexavel = $site['ambiente'] === 'producao' && empty($pg['noindex']);
-$imagemOg = url_abs('assets/' . ($pg['imagem'] ?? 'img/ambientes/hero-1600.webp'));
+$imagemOg = url_abs('assets/' . ($pg['imagem'] ?? 'img/ambientes/showroom-1600.webp'));
 $scripts = $pg['scripts'] ?? ['gsap'];
 
 // Configuração lida pelo JavaScript (analytics e interface)

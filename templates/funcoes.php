@@ -112,7 +112,7 @@ function dimensoes(string $relativo): array
 
 /**
  * <img> responsivo.
- * $base: caminho em assets/img sem sufixo, ex.: "produtos/sofa-x/01" ou "ambientes/hero".
+ * $base: caminho em assets/img sem sufixo, ex.: "produtos/sofa-x/01-cenario" ou "ambientes/showroom".
  */
 function imagem(string $base, string $alt, array $opc = []): string
 {

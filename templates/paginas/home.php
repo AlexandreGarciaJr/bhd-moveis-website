@@ -152,7 +152,7 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
 
 <section class="secao showroom" aria-labelledby="showroom-titulo">
   <div class="showroom-foto">
-    <?= imagem('ambientes/showroom-3', 'Showroom de móveis (imagem ilustrativa)', ['sizes' => '(max-width: 900px) 100vw, 55vw']) ?><?php if ($site['demo']): ?><span class="nota-ilustrativa">Imagem ilustrativa</span><?php endif; ?>
+    <?= imagem('ambientes/showroom', 'Showroom da BHD Móveis com sofá de canto e mesa de centro', ['sizes' => '(max-width: 900px) 100vw, 55vw']) ?>
   </div>
   <div class="showroom-texto">
     <h2 class="titulo-secao" id="showroom-titulo">Venha ver de perto</h2>
@@ -179,8 +179,7 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
 <?php if (!empty($site['planejados']['ativo'])): $pl = $site['planejados']; ?>
 <section class="planejados" id="planejados" aria-labelledby="planejados-titulo">
   <div class="planejados-foto">
-    <?= imagem('ambientes/' . $pl['imagem'], 'Cozinha planejada (imagem ilustrativa)', ['sizes' => '(max-width: 900px) 100vw, 60vw']) ?>
-    <span class="nota-ilustrativa">Imagem ilustrativa</span>
+    <?= imagem('ambientes/' . $pl['imagem'], 'Painel ripado e rack planejados expostos na loja BHD Cotia', ['sizes' => '(max-width: 900px) 100vw, 60vw']) ?>
   </div>
   <div class="planejados-texto">
     <h2 class="titulo-secao" id="planejados-titulo"><?= e($pl['titulo']) ?></h2>
