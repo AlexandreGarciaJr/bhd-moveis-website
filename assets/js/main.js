@@ -32,6 +32,24 @@
     if (linkNoDialogo) linkNoDialogo.closest('dialog').close(); // ex.: âncora de Planejados no menu
   });
 
+  /* ---------- Âncoras na mesma página (ex.: Planejados na home) ----------
+     Em vez do pulo seco, a tela some e reaparece já na seção (mesma transição da troca de página). */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href*="#"]');
+    if (!link || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (link.pathname !== location.pathname || link.origin !== location.origin || !link.hash) return;
+    var alvo = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    if (!alvo) return;
+    e.preventDefault();
+    var ir = function () {
+      history.pushState(null, '', link.hash);
+      alvo.scrollIntoView({ behavior: 'instant', block: 'start' });
+    };
+    var semMovimento = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (document.startViewTransition && !semMovimento) document.startViewTransition(ir);
+    else ir();
+  });
+
   /* ---------- Busca ---------- */
   var indice = null;
   var campo = $('#busca-campo');
