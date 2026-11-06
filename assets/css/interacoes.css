@@ -254,7 +254,7 @@
 .hero-titulo .palavra { display: inline-block; white-space: nowrap; }
 .hero-titulo .letra { display: inline-block; will-change: transform; }
 
-/* ---------- Ofertas presas à rolagem (desktop, ver motion.js) ---------- */
+/* ---------- Ofertas presas à rolagem (ver motion.js) ---------- */
 .ofertas { overflow-x: clip; }
 .trilho.trilho-fixo {
   overflow: visible;

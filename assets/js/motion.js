@@ -24,6 +24,8 @@
   }
   raiz.classList.add('motion-pronto');
   ['ScrollTrigger', 'Flip'].forEach(function (p) { if (window[p]) gsap.registerPlugin(window[p]); });
+  // no celular a barra de endereço some e aparece ao rolar: isso não deve recalcular as seções presas
+  if (window.ScrollTrigger) ScrollTrigger.config({ ignoreMobileResize: true });
 
   var BHD = window.BHD || (window.BHD = {});
   var mm = gsap.matchMedia();
@@ -235,9 +237,10 @@
 
   /* ======================================================================
      4b. Ofertas: a página para e a rolagem empurra o carrossel para o lado
+         (em qualquer largura; telas baixas usam as setas, ver main.js)
      ====================================================================== */
   if (window.ScrollTrigger) {
-    mm.add('(min-width: 900px) and (min-height: 600px)', function () {
+    mm.add('(min-height: 600px)', function () {
       var secao = $('.ofertas');
       var trilho = secao && $('[data-trilho]', secao);
       if (!trilho) return;

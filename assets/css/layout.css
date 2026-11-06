@@ -143,7 +143,7 @@
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1099px) {
-  .topo { grid-template-columns: auto 1fr auto; }
+  .topo { grid-template-columns: auto 1fr; }
   .topo-nav { display: none; }
   .topo-acoes .topo-menu { display: grid; }
   .rodape-grade { grid-template-columns: 1fr 1fr; }
