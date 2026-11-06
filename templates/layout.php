@@ -79,7 +79,7 @@ $config = [
 <?php partial('flutuantes'); ?>
 <?php partial('busca'); ?>
 
-<?php foreach ($scripts as $s): ?>
+<?php foreach (in_array('gsap', $scripts, true) ? [...$scripts, 'lenis'] : $scripts as $s): ?>
 <script src="<?= e(asset('js/vendor/' . $s . '.min.js')) ?>" defer></script>
 <?php endforeach; ?>
 <script src="<?= e(asset('js/app.js')) ?>" defer></script>

@@ -52,7 +52,7 @@ $extras[] = ['Lojas', '/unidades/'];
   </div>
 </header>
 
-<dialog class="menu-movel" id="menu" aria-label="Menu">
+<dialog class="menu-movel" id="menu" data-lenis-prevent aria-label="Menu">
   <div class="menu-movel-topo">
     <img src="<?= e(url('assets/img/marca/logo-bhd-compacto.svg')) ?>" alt="BHD Móveis" width="96" height="36">
     <button class="btn-icone" type="button" data-fechar aria-label="Fechar menu"><?= icone('fechar') ?></button>

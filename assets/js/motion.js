@@ -10,6 +10,7 @@
    4. Faixa de texto que anda com o scroll.
    5. Cursor contextual, botões magnéticos e balanço da etiqueta nos cards (desktop).
    6. Galeria do produto: a miniatura "voa" até a foto principal.
+   7. Rolagem suave (Lenis) no mouse e no trackpad, sincronizada com o ScrollTrigger.
 
    Sem JavaScript, sem GSAP ou com "reduzir movimento", o site funciona sem animações.
    ========================================================================== */
@@ -26,6 +27,27 @@
   ['ScrollTrigger', 'Flip'].forEach(function (p) { if (window[p]) gsap.registerPlugin(window[p]); });
   // no celular a barra de endereço some e aparece ao rolar: isso não deve recalcular as seções presas
   if (window.ScrollTrigger) ScrollTrigger.config({ ignoreMobileResize: true });
+
+  /* --- 7. Rolagem suave ---
+     A rolagem ganha embalo e desacelera aos poucos. No toque fica a rolagem nativa do celular,
+     que já tem inércia própria. O mesmo relógio do GSAP move o Lenis e as animações. */
+  if (window.Lenis) {
+    var lenis = new Lenis({
+      duration: 1,
+      easing: function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); },
+      wheelMultiplier: .65,
+      touchMultiplier: 1.4
+    });
+    if (window.ScrollTrigger) lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (tempo) { lenis.raf(tempo * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    // menu ou busca aberta: a página atrás não rola
+    var dialogos = new MutationObserver(function () {
+      if (document.querySelector('dialog[open]')) lenis.stop(); else lenis.start();
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('dialog'), function (d) { dialogos.observe(d, { attributes: true, attributeFilter: ['open'] }); });
+    window.BHD.lenis = lenis;
+  }
 
   var BHD = window.BHD || (window.BHD = {});
   var mm = gsap.matchMedia();
@@ -281,7 +303,9 @@
         var passo = trilho.clientWidth * .8 / Math.max(distancia(), 1);
         var dir = botao.hasAttribute('data-trilho-proximo') ? 1 : -1;
         var alvo = Math.min(1, Math.max(0, st.progress + dir * passo));
-        window.scrollTo({ top: st.start + (st.end - st.start) * alvo, behavior: 'smooth' });
+        var y = st.start + (st.end - st.start) * alvo;
+        if (BHD.lenis) BHD.lenis.scrollTo(y, { duration: 1.1, easing: function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; } });
+        else window.scrollTo({ top: y, behavior: 'smooth' });
       };
       secao.addEventListener('click', setas, true);
 
@@ -290,7 +314,9 @@
         var card = e.target.closest('[data-card]');
         if (!card) return;
         var alvo = Math.min(1, card.offsetLeft / Math.max(distancia(), 1));
-        window.scrollTo({ top: st.start + (st.end - st.start) * alvo });
+        var y = st.start + (st.end - st.start) * alvo;
+        if (BHD.lenis) BHD.lenis.scrollTo(y, { immediate: true });
+        else window.scrollTo({ top: y });
       };
       trilho.addEventListener('focusin', foco);
 

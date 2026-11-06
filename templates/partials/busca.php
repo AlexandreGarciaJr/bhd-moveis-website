@@ -1,4 +1,4 @@
-<dialog class="busca" id="busca" aria-label="Buscar produtos">
+<dialog class="busca" id="busca" data-lenis-prevent aria-label="Buscar produtos">
   <form class="busca-form" role="search" onsubmit="return false">
     <label class="sr" for="busca-campo">Buscar produtos</label>
     <?= icone('busca') ?>

@@ -43,7 +43,8 @@
     e.preventDefault();
     var ir = function () {
       history.pushState(null, '', link.hash);
-      alvo.scrollIntoView({ behavior: 'instant', block: 'start' });
+      if (BHD.lenis) BHD.lenis.scrollTo(alvo, { immediate: true, force: true });
+      else alvo.scrollIntoView({ behavior: 'instant', block: 'start' });
     };
     var semMovimento = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (document.startViewTransition && !semMovimento) document.startViewTransition(ir);
