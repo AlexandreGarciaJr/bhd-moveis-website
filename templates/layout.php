@@ -25,6 +25,7 @@ $config = [
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title><?= e($pg['titulo']) ?></title>
 <meta name="description" content="<?= e($pg['descricao']) ?>">
+<?php if (!empty($site['google_verificacao'])): ?><meta name="google-site-verification" content="<?= e($site['google_verificacao']) ?>"><?php endif; ?>
 <?php if ($indexavel): ?>
 <link rel="canonical" href="<?= e(url_abs($pg['caminho'])) ?>">
 <?php else: ?>
