@@ -17,11 +17,12 @@
     "avaliar": "https://search.google.com/local/writereview?placeid=ChIJvx6JkgYHz5QR48jFQD7TXbM",
     "foto": "loja-jardim-lucia",
     "geo": {
-      "lat": null,
-      "lng": null
+      "lat": -23.5847475,
+      "lng": -46.7687637
     },
     "confirmado": true,
-    "referencia": "Rod. Raposo Tavares, KM 16"
+    "referencia": "Rod. Raposo Tavares, KM 16",
+    "google": "https://www.google.com/maps/place/?q=place_id:ChIJvx6JkgYHz5QR48jFQD7TXbM"
   },
   {
     "slug": "cotia",
@@ -41,10 +42,11 @@
     "avaliar": "https://search.google.com/local/writereview?placeid=ChIJkRyn7yxVzpQRBVBX1MKzmxw",
     "foto": "loja-cotia",
     "geo": {
-      "lat": null,
-      "lng": null
+      "lat": -23.6001652,
+      "lng": -46.8817718
     },
     "confirmado": true,
-    "referencia": "Rod. Raposo Tavares, KM 29"
+    "referencia": "Rod. Raposo Tavares, KM 29",
+    "google": "https://www.google.com/maps/place/?q=place_id:ChIJkRyn7yxVzpQRBVBX1MKzmxw"
   }
 ]

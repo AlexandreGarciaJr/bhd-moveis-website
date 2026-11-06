@@ -106,6 +106,7 @@ function limpar_pasta(string $pasta): void
         RecursiveIteratorIterator::CHILD_FIRST
     );
     foreach ($itens as $item) {
+        @chmod($item->getPathname(), 0777); // o OneDrive marca pastas como somente leitura
         $item->isDir() ? @rmdir($item->getPathname()) : @unlink($item->getPathname());
     }
 }
@@ -209,7 +210,7 @@ foreach ($categorias as $cat) {
         $caminho = "/{$cat['slug']}/{$sub['slug']}/";
         $registrar($caminho, pagina('categoria', [
             'titulo' => "{$sub['nome']} | {$cat['nome']} | BHD Móveis",
-            'descricao' => "{$sub['nome']} para {$cat['nome']} com preço de outlet e pronta-entrega em até 48h na Grande São Paulo. Peça pelo WhatsApp.",
+            'descricao' => "{$sub['nome']} para {$cat['nome']} com preço de outlet e parcelamento no cartão. Peça pelo WhatsApp ou veja nas lojas da Raposo Tavares.",
             'caminho' => $caminho,
             'imagem' => 'img/produtos/' . $listaSub[0]['slug'] . '/' . pathinfo($listaSub[0]['imagens'][0], PATHINFO_FILENAME) . '-1440.webp',
             'scripts' => ['gsap'],
@@ -234,15 +235,24 @@ foreach ($produtos as $p) {
             'image' => array_map(fn($i) => url_abs('assets/img/produtos/' . $p['slug'] . '/' . pathinfo($i, PATHINFO_FILENAME) . '-1440.webp'), $p['imagens']),
             'brand' => ['@type' => 'Brand', 'name' => $site['nome']],
             'offers' => ['@type' => 'Offer', 'priceCurrency' => 'BRL', 'price' => $p['preco'], 'url' => url_abs($p['url']),
-                'availability' => pronta_entrega($p) ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder'],
+                'availability' => pronta_entrega($p) ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+                'priceValidUntil' => date('Y-m-d', strtotime(($p['atualizado_em'] ?? date('Y-m-d')) . ' +90 days')),
+                'itemCondition' => 'https://schema.org/NewCondition',
+                'seller' => ['@type' => 'Organization', 'name' => $site['nome_completo']]],
         ];
+        $conhecidos = array_values(array_filter(precos_tamanho($p), fn($v) => $v !== null));
+        if (count($conhecidos) > 1) {
+            $ld[count($ld) - 1]['offers'] = ['@type' => 'AggregateOffer', 'lowPrice' => min($conhecidos), 'highPrice' => max($conhecidos), 'offerCount' => count($conhecidos)]
+                + $ld[count($ld) - 1]['offers'];
+            unset($ld[count($ld) - 1]['offers']['price']);
+        }
     }
     // primeiro os da mesma subcategoria, depois o resto da categoria
     $relacionados = array_values(array_filter(produtos_da_categoria($p['categoria']), fn($r) => $r['slug'] !== $p['slug']));
     usort($relacionados, fn($a, $b) => ($b['subcategoria'] === $p['subcategoria']) <=> ($a['subcategoria'] === $p['subcategoria']));
     $registrar($p['url'], pagina('produto', [
         'titulo' => ($p['seo']['titulo'] ?? $p['nome'] . (preco_vitrine($p)['a_partir'] ? ' a partir de R$ ' : ' por R$ ') . preco(preco_vitrine($p)['valor'])) . ' | BHD Móveis',
-        'descricao' => $p['seo']['descricao'] ?? ($p['nome'] . '. ' . ($p['resumo'] ?? '') . ' R$ ' . preco((float) $p['preco']) . ' à vista, ' . texto_parcela($p) . '. ' . (pronta_entrega($p) ? 'Pronta-entrega em até 48h na Grande São Paulo.' : 'Sob encomenda.') . ' Peça pelo WhatsApp.'),
+        'descricao' => $p['seo']['descricao'] ?? descricao_produto($p),
         'caminho' => $p['url'],
         'imagem' => 'img/produtos/' . $p['slug'] . '/' . pathinfo($p['imagens'][0], PATHINFO_FILENAME) . '-1440.webp',
         'scripts' => ['gsap', 'Flip'],
@@ -256,7 +266,7 @@ foreach ($produtos as $p) {
 $ofertas = ofertas();
 $registrar('/ofertas/', pagina('ofertas', [
     'titulo' => 'Ofertas da semana | BHD Móveis',
-    'descricao' => 'Sofás, painéis, racks, mesas e cadeiras com desconto e pronta-entrega em até 48h na Grande São Paulo.',
+    'descricao' => 'Ofertas da semana da BHD Móveis: sofás com desconto e preço de outlet, em até 18x. Peça pelo WhatsApp ou veja nas lojas da Raposo Tavares.',
     'caminho' => '/ofertas/',
     'scripts' => ['gsap'],
     'classe' => 'pg-ofertas',
@@ -273,20 +283,20 @@ $registrar('/unidades/', pagina('unidades', [
 
 // Institucionais
 $registrar('/sobre/', pagina('sobre', [
-    'titulo' => 'Sobre a BHD Móveis',
-    'descricao' => 'Conheça a BHD Móveis: lojas na Raposo Tavares com móveis à pronta-entrega e preço de outlet na Grande São Paulo.',
+    'titulo' => 'Sobre a BHD Móveis: lojas de móveis na Raposo Tavares',
+    'descricao' => 'Conheça a BHD Móveis: duas lojas na Rod. Raposo Tavares (KM 16 e KM 29) com sofás, poltronas e mesas com preço de outlet na Grande São Paulo.',
     'caminho' => '/sobre/',
     'classe' => 'pg-sobre',
 ]), 0.4);
 $registrar('/privacidade/', pagina('privacidade', [
     'titulo' => 'Política de privacidade | BHD Móveis',
-    'descricao' => 'Como a BHD Móveis trata dados pessoais e cookies neste site.',
+    'descricao' => 'Política de privacidade da BHD Móveis: como tratamos dados pessoais, cookies e as ferramentas de medição deste site.',
     'caminho' => '/privacidade/',
     'classe' => 'pg-texto',
 ]), 0.2);
 $registrar('404.html', pagina('404', [
     'titulo' => 'Página não encontrada | BHD Móveis',
-    'descricao' => 'A página que você procurou não existe ou mudou de endereço.',
+    'descricao' => 'A página que você procurou não existe ou mudou de endereço. Veja os sofás, poltronas e mesas da BHD Móveis.',
     'caminho' => '/404.html',
     'classe' => 'pg-404',
     'noindex' => true,
@@ -333,6 +343,19 @@ gravar('site.webmanifest', json_encode([
 
 // .htaccess (HostGator / Apache)
 copy(RAIZ . '/templates/htaccess.txt', DIST . '/.htaccess');
+
+// Pastas que ficaram vazias (produtos e categorias que saíram do site): o OneDrive às vezes
+// impede o rmdir na limpeza do começo; aqui, com tudo já gerado, tenta de novo.
+$vazias = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator(DIST, FilesystemIterator::SKIP_DOTS),
+    RecursiveIteratorIterator::CHILD_FIRST
+);
+foreach ($vazias as $item) {
+    if ($item->isDir() && !(new FilesystemIterator($item->getPathname()))->valid()) {
+        @chmod($item->getPathname(), 0777);
+        @rmdir($item->getPathname());
+    }
+}
 
 /* ---------- 5. Resumo ---------- */
 

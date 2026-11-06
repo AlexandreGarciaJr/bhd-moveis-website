@@ -192,6 +192,16 @@ $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($
     '@context' => 'https://schema.org',
     '@type' => 'WebSite',
     'name' => $site['nome'],
+    'alternateName' => $site['nome_completo'],
     'url' => url_abs('/'),
+    'inLanguage' => 'pt-BR',
+]) ?>
+<?= json_ld([
+    '@context' => 'https://schema.org',
+    '@type' => 'Organization',
+    'name' => $site['nome_completo'],
+    'url' => url_abs('/'),
+    'logo' => url_abs('assets/img/marca/logo-bhd-circulo-2048.png'),
+    'sameAs' => array_values(array_filter([$site['contato']['instagram'] ?? null])),
 ]) ?>
 <?php foreach (bhd('unidades') as $u) echo json_ld(ld_loja($u)); ?>

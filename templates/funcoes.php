@@ -345,6 +345,15 @@ function categoria(string $slug): ?array
 
 /* ---------- SEO ---------- */
 
+/** Descrição do produto para o Google: nome, resumo, preço e prazo; o convite do WhatsApp só se couber. */
+function descricao_produto(array $p): string
+{
+    $v = preco_vitrine($p);
+    $texto = $p['nome'] . '. ' . ($p['resumo'] ?? '') . ($v['a_partir'] ? ' A partir de R$ ' : ' R$ ') . preco($v['valor'])
+        . ' à vista, ' . texto_parcela($p, $v['valor']) . '. ' . (pronta_entrega($p) ? 'Pronta-entrega em até 48h.' : 'Sob encomenda.');
+    return mb_strlen($texto) <= 135 ? $texto . ' Peça pelo WhatsApp.' : $texto;
+}
+
 function json_ld(array $dados): string
 {
     return '<script type="application/ld+json">' .
@@ -371,7 +380,17 @@ function ld_loja(array $u): array
             'addressCountry' => 'BR',
         ],
         'parentOrganization' => ['@type' => 'Organization', 'name' => $site['nome_completo']],
+        'priceRange' => '$$',
+        // horário das duas lojas: seg-sáb 9h30-18h, domingos e feriados 11h-17h
+        'openingHoursSpecification' => [
+            ['@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], 'opens' => '09:30', 'closes' => '18:00'],
+            ['@type' => 'OpeningHoursSpecification', 'dayOfWeek' => 'Sunday', 'opens' => '11:00', 'closes' => '17:00'],
+        ],
+        'sameAs' => array_values(array_filter([$u['google'] ?? null, $site['contato']['instagram'] ?? null])),
     ];
+    if (!empty($u['google'])) {
+        $ld['hasMap'] = $u['google'];
+    }
     if (!empty($u['geo']['lat'])) {
         $ld['geo'] = ['@type' => 'GeoCoordinates', 'latitude' => $u['geo']['lat'], 'longitude' => $u['geo']['lng']];
     }
