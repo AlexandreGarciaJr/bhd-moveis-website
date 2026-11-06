@@ -101,8 +101,7 @@
   .topo-whats:hover { border-color: var(--bordo); }
   .topo-whats::before { background: var(--bordo); }
   .avalie-acoes .btn:hover { background: var(--papel); }
-  .consentimento .btn-contorno::before { background: var(--branco); }
-  .consentimento .btn-contorno:hover { color: var(--grafite); border-color: var(--branco); }
+
 }
 .btn .i { position: relative; transition: transform .5s var(--ease-expo); }
 .btn:hover > .i:last-child:not(:first-child) { transform: translate(3px, -3px); }

@@ -29,6 +29,7 @@
         <li><a href="<?= e(url('/sobre/')) ?>">Sobre</a></li>
         <li><a href="<?= e(url('/unidades/')) ?>">Nossas lojas</a></li>
         <li><a href="<?= e(url('/privacidade/')) ?>">Privacidade</a></li>
+        <li><a href="<?= e(url('/privacidade/')) ?>" data-cookies>Cookies</a></li>
       </ul>
     </nav>
 

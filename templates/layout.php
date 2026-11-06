@@ -11,6 +11,7 @@ $config = [
     'base' => url('/'),
     'whatsapp' => whatsapp(),
     'analytics' => [
+        'gtm' => !empty($site['analytics']['gtm']['ativo']) ? $site['analytics']['gtm']['id'] : '',
         'ga4' => $site['analytics']['ga4']['ativo'] ? $site['analytics']['ga4']['id'] : '',
         'pixel' => $site['analytics']['meta_pixel']['ativo'] ? $site['analytics']['meta_pixel']['id'] : '',
         'clarity' => $site['analytics']['clarity']['ativo'] ? $site['analytics']['clarity']['id'] : '',

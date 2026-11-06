@@ -121,6 +121,10 @@
   },
   "google_verificacao": "qJamutaYJaS3jIF1qcBG6S7QCS6kOqkeOWsqab_8sH8",
   "analytics": {
+    "gtm": {
+      "ativo": true,
+      "id": "GTM-TMM86SGG"
+    },
     "ga4": {
       "ativo": false,
       "id": ""
@@ -130,8 +134,8 @@
       "id": ""
     },
     "clarity": {
-      "ativo": false,
-      "id": ""
+      "ativo": true,
+      "id": "z9ltr59wtk"
     }
   },
   "faq": [

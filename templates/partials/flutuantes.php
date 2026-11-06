@@ -1,7 +1,7 @@
 <?php
 $site = bhd('site');
 $a = $site['analytics'];
-$temRastreio = $a['ga4']['ativo'] || $a['meta_pixel']['ativo'] || $a['clarity']['ativo'];
+$temRastreio = !empty($a['gtm']['ativo']) || $a['ga4']['ativo'] || $a['meta_pixel']['ativo'] || $a['clarity']['ativo'];
 $popup = $site['avaliacoes']['popup']['ativo'] && empty(bhd('pagina')['produto']);
 ?>
 <a class="whats-flutuante" href="<?= e(whatsapp()) ?>" target="_blank" rel="noopener" data-track="click_whatsapp" data-local="flutuante">
@@ -23,10 +23,8 @@ $popup = $site['avaliacoes']['popup']['ativo'] && empty(bhd('pagina')['produto']
 
 <?php if ($temRastreio): ?>
 <div class="consentimento" id="consentimento" role="region" aria-label="Aviso de cookies" hidden>
-  <p>Usamos cookies para medir as visitas e melhorar o site. Você pode aceitar ou recusar. <a href="<?= e(url('/privacidade/')) ?>">Saiba mais</a>.</p>
-  <div class="consentimento-acoes">
-    <button class="btn btn-contorno btn-pequeno" type="button" data-consentimento="recusar">Recusar</button>
-    <button class="btn btn-primario btn-pequeno" type="button" data-consentimento="aceitar">Aceitar</button>
-  </div>
+  <p>Usamos cookies<span class="consentimento-extra"> para medir as visitas e melhorar o site</span>. <a href="<?= e(url('/privacidade/')) ?>">Saiba mais</a></p>
+  <button class="consentimento-recusar" type="button" data-consentimento="recusar">Recusar</button>
+  <button class="consentimento-aceitar" type="button" data-consentimento="aceitar">Aceitar</button>
 </div>
 <?php endif; ?>
