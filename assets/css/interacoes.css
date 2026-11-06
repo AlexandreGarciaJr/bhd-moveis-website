@@ -427,3 +427,12 @@
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
 }
+
+/* ---------- "A partir de" e tamanho sob consulta ---------- */
+.etiqueta-apartir { font-size: 11px; line-height: 1; color: var(--pedra); margin-bottom: 4px; letter-spacing: .02em; }
+.etiqueta-g .etiqueta-apartir, .etiqueta-m .etiqueta-apartir { font-size: 13px; }
+.card-preco small { display: block; font: 400 11px/1.2 var(--f-texto); color: var(--pedra); margin-bottom: 2px; }
+.etiqueta-consulta .etiqueta-preco small { display: none; }
+.etiqueta-consulta .etiqueta-preco { font-size: 22px; }
+.etiqueta-g.etiqueta-consulta .etiqueta-preco { font-size: clamp(26px, 2.6vw, 32px); }
+.etiqueta-consulta .etiqueta-parcela { white-space: normal; max-width: 26ch; }

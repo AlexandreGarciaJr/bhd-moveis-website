@@ -11,8 +11,10 @@ foreach ($opcoes as $i => $grupo) {
 }
 $atributosPedido = 'href="' . e(pedido_whatsapp($p)) . '" target="_blank" rel="noopener" data-track="click_pedido_whatsapp" data-item="' . e($p['id']) . '"';
 if ($opcoes) {
-    $atributosPedido .= ' data-pedido data-numero="' . e($numero) . '" data-modelo="' . e(mensagem_pedido($p, $modelo)) . '"';
+    $atributosPedido .= ' data-pedido data-numero="' . e($numero) . '" data-modelo="' . e(mensagem_pedido($p, $modelo, '{{valor}}')) . '"';
 }
+$precosTamanho = precos_tamanho($p);
+$qtdParcelas = (int) ($p['parcelas']['qtd'] ?? $site['parcelas_max']);
 ?>
 <nav class="migalhas" aria-label="Você está em">
   <ol>
@@ -63,7 +65,7 @@ if ($opcoes) {
     <h1 class="produto-nome"><?= e($p['nome']) ?></h1>
     <?php if (!empty($p['resumo'])): ?><p class="produto-resumo"><?= e($p['resumo']) ?></p><?php endif; ?>
 
-    <div class="produto-preco">
+    <div class="produto-preco" data-preco-base="<?= (float) $p['preco'] ?>" data-parcela-base="<?= e(texto_parcela($p)) ?>" data-parcelas="<?= $qtdParcelas ?>">
       <?php partial('etiqueta', ['p' => $p, 'tamanho' => 'g']); ?>
       <?php if (pronta_entrega($p)): ?>
       <p class="produto-status"><?= icone('check') ?>Pronta-entrega em até 48h na Grande São Paulo</p>
@@ -79,7 +81,7 @@ if ($opcoes) {
       <legend><?= e($grupo['nome']) ?>:</legend>
       <div class="variacoes-lista">
         <?php foreach ($grupo['valores'] as $i => $v): ?>
-        <label class="variacao"><input type="radio" name="opcao-<?= $g ?>" value="<?= e($v) ?>" data-variacao="<?= $g ?>"<?= $i === ($grupo['padrao'] ?? 0) ? ' checked' : '' ?>><span><?= e($v) ?></span></label>
+        <label class="variacao"><input type="radio" name="opcao-<?= $g ?>" value="<?= e($v) ?>" data-variacao="<?= $g ?>"<?= $grupo['nome'] === 'Tamanho' ? ' data-preco="' . ($precosTamanho[$i] ?? '') . '" data-parcela="' . ($precosTamanho[$i] === null ? '' : e(texto_parcela($p, $precosTamanho[$i]))) . '"' : '' ?><?= $i === ($grupo['padrao'] ?? 0) ? ' checked' : '' ?>><span><?= e($v) ?></span></label>
         <?php endforeach; ?>
       </div>
     </fieldset>
@@ -143,8 +145,8 @@ if ($opcoes) {
 
 <div class="barra-compra" data-barra-compra>
   <div class="barra-compra-preco">
-    <strong>R$ <?= preco((float) $p['preco']) ?></strong>
-    <span><?= e(texto_parcela($p)) ?></span>
+    <strong data-barra-valor>R$ <?= preco((float) $p['preco']) ?></strong>
+    <span data-barra-parcela><?= e(texto_parcela($p)) ?></span>
   </div>
   <a class="btn btn-primario" <?= $atributosPedido ?> data-local="barra"><?= icone('whatsapp') ?>Pedir pelo WhatsApp</a>
 </div>

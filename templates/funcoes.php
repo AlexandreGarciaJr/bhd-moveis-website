@@ -166,24 +166,23 @@ function imagem_produto(array $p, int $indice = 0, array $opc = []): string
 
 /* ---------- Produtos ---------- */
 
-/** Texto do pedido que já abre pronto na conversa do WhatsApp. */
 /**
  * Texto do pedido que já abre pronto na conversa do WhatsApp.
  * $escolhas: ['Tecido' => 'Linho', 'Tamanho' => '1,80 m'] (as opções escolhidas na página)
+ * $linhaValor: usada pelo modelo do JavaScript ("{{valor}}"); sem ela, sai o valor do tamanho escolhido.
  */
-function mensagem_pedido(array $p, array $escolhas = []): string
+function mensagem_pedido(array $p, array $escolhas = [], ?string $linhaValor = null): string
 {
     $linhas = ['Olá! Quero fazer um pedido pelo site da BHD Móveis:', '', '*' . $p['nome'] . '*'];
     foreach ($escolhas as $nome => $valor) {
         $linhas[] = $nome . ': ' . $valor;
     }
-    // Se cada tamanho já traz o próprio preço, ele vai na linha "Tamanho" e o valor geral sairia contraditório.
-    $tamanho = current(array_filter($p['opcoes'] ?? [], fn($g) => $g['nome'] === 'Tamanho')) ?: null;
-    $tamanhoComPreco = $tamanho && str_contains(implode(' ', $tamanho['valores']), 'R$');
-    if (!$tamanhoComPreco) {
-        $referencia = $tamanho ? ' (tamanho ' . $tamanho['valores'][$tamanho['padrao'] ?? 0] . ')' : '';
-        $linhas[] = 'Valor à vista' . $referencia . ': R$ ' . preco((float) $p['preco']) . ' (' . texto_parcela($p) . ')';
+    if ($linhaValor === null) {
+        $tamanho = grupo_tamanho($p);
+        $indice = $tamanho ? array_search($escolhas['Tamanho'] ?? null, $tamanho['valores'], true) : false;
+        $linhaValor = linha_valor($p, $indice === false ? (float) $p['preco'] : precos_tamanho($p)[$indice]);
     }
+    $linhas[] = $linhaValor;
     $linhas[] = 'Link: ' . url_abs($p['url']);
     if (!empty($p['perguntar'])) {
         $linhas[] = '';
@@ -210,14 +209,85 @@ function pedido_whatsapp(array $p, ?array $escolhas = null): string
     return whatsapp(mensagem_pedido($p, $escolhas ?? escolhas_padrao($p)));
 }
 
-/** "ou 18x de R$ 189,00" (valor informado pela loja) ou "em até 18x no cartão". */
-function texto_parcela(array $p): string
+/**
+ * "ou 18x de R$ 189,00" (valor informado pela loja) ou "em até 18x no cartão".
+ * Outro tamanho usa a parcela do grupo Tamanho, se houver; senão mostra só a quantidade.
+ */
+function texto_parcela(array $p, ?float $valor = null): string
 {
     $qtd = (int) ($p['parcelas']['qtd'] ?? bhd('site')['parcelas_max']);
-    if (!empty($p['parcelas']['valor'])) {
-        return 'ou ' . $qtd . 'x de R$ ' . number_format((float) $p['parcelas']['valor'], 2, ',', '.');
+    $parcela = null;
+    if ($valor === null || $valor === (float) $p['preco']) {
+        $parcela = $p['parcelas']['valor'] ?? null;
+    } elseif ($g = grupo_tamanho($p)) {
+        // parcela informada para o tamanho que tem esse preço ("parcelas" no grupo Tamanho)
+        $i = array_search($valor, precos_tamanho($p), true);
+        $parcela = $i === false ? null : ($g['parcelas'][$i] ?? null);
+    }
+    if ($parcela) {
+        return 'ou ' . $qtd . 'x de R$ ' . number_format((float) $parcela, 2, ',', '.');
     }
     return 'em até ' . $qtd . 'x no cartão';
+}
+
+/** Linha de valor da mensagem do pedido (null = tamanho sem preço informado). */
+function linha_valor(array $p, ?float $valor): string
+{
+    return $valor === null
+        ? 'Valor: a consultar'
+        : 'Valor à vista: R$ ' . preco($valor) . ' (' . texto_parcela($p, $valor) . ')';
+}
+
+function grupo_tamanho(array $p): ?array
+{
+    foreach ($p['opcoes'] ?? [] as $g) {
+        if ($g['nome'] === 'Tamanho') {
+            return $g;
+        }
+    }
+    return null;
+}
+
+/** Preço de cada tamanho, na ordem das opções. O tamanho padrão usa o preço principal; null = sob consulta. */
+function precos_tamanho(array $p): array
+{
+    $g = grupo_tamanho($p);
+    if (!$g) {
+        return [];
+    }
+    $precos = [];
+    foreach ($g['valores'] as $i => $v) {
+        $precos[$i] = isset($g['precos'][$i]) ? (float) $g['precos'][$i] : ($i === ($g['padrao'] ?? 0) ? (float) $p['preco'] : null);
+    }
+    return $precos;
+}
+
+/**
+ * Preço dos cards e do hero: ['valor' => 2790.0, 'a_partir' => true].
+ * "A partir de" quando há preço por tamanho, ou quando o preço é do menor tamanho e há maiores (sob consulta).
+ */
+function preco_vitrine(array $p): array
+{
+    $conhecidos = array_filter(precos_tamanho($p), fn($v) => $v !== null);
+    if (count($conhecidos) > 1) {
+        return ['valor' => min($conhecidos), 'a_partir' => true];
+    }
+    $g = grupo_tamanho($p);
+    if ($g && count($g['valores']) > 1) {
+        $metros = array_map(fn($v) => (float) str_replace(',', '.', $v), $g['valores']);
+        if ($metros[$g['padrao'] ?? 0] === min($metros)) {
+            return ['valor' => (float) $p['preco'], 'a_partir' => true];
+        }
+    }
+    return ['valor' => (float) $p['preco'], 'a_partir' => false];
+}
+
+/** Ofertas da semana: produtos com preço "de" e os marcados com "oferta" (o de maior prioridade primeiro). */
+function ofertas(): array
+{
+    $lista = array_values(array_filter(bhd('produtos'), fn($p) => desconto($p) > 0 || !empty($p['oferta'])));
+    usort($lista, fn($a, $b) => ($b['prioridade'] ?? 0) <=> ($a['prioridade'] ?? 0) ?: desconto($b) <=> desconto($a));
+    return $lista;
 }
 
 /** Prazo do produto: pronta-entrega ou sob encomenda. */

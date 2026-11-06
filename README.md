@@ -116,7 +116,9 @@ imagens-originais/  fotos em alta (fora do git)
 
 **Tirar um produto do ar:** `"ativo": false`. O produto some do site, da busca e do sitemap.
 
-**Destaque e ofertas:** `"destaque": true` coloca o produto em "Mais procurados". Se ele tiver `preco_anterior` maior que `preco`, entra automaticamente em Ofertas.
+**Destaque e ofertas:** `"destaque": true` coloca o produto em "Destaques do showroom". Se ele tiver `preco_anterior` maior que `preco`, entra automaticamente em Ofertas; `"oferta": true` coloca em Ofertas mesmo sem preço "de". `"prioridade": 10` leva o produto para o começo de todas as listas (hoje: Sofá Armani 2,10 m com chaise).
+
+**Preço por tamanho:** no grupo `Tamanho` de `opcoes`, a lista `precos` (na mesma ordem de `valores`) faz a etiqueta mudar quando a pessoa escolhe o tamanho; `null` ou sem `precos` = "sob consulta". O tamanho `padrao` usa o `preco` do produto. A lista `parcelas` (opcional, mesma ordem) dá o valor da parcela de cada tamanho. Os cards mostram "a partir de" quando há vários preços ou quando o preço é do menor tamanho.
 
 **Categorias:** ficam em `data/categorias.json`, cada uma com suas `subcategorias` (ex.: Sala de Estar → Sofás, Painéis, Racks) e uma `capa` apontando para a foto de um produto. Menu, rodapé e páginas são gerados sozinhos; subcategoria sem produto ativo não aparece.
 

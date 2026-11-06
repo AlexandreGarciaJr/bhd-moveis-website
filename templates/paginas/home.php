@@ -4,8 +4,7 @@ $hero = $site['hero'];
 $produtos = bhd('produtos');
 $porSlug = array_column($produtos, null, 'slug');
 $cenas = array_values(array_filter($hero['cenas'], fn($c) => isset($porSlug[$c['produto']])));
-$ofertas = array_values(array_filter($produtos, fn($p) => desconto($p) > 0));
-usort($ofertas, fn($a, $b) => desconto($b) <=> desconto($a));
+$ofertas = ofertas();
 $destaques = array_slice(array_values(array_filter($produtos, fn($p) => !empty($p['destaque']))), 0, 8);
 ?>
 <div class="palco">

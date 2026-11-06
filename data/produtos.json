@@ -59,7 +59,7 @@
   {
     "id": "SOF-REQUINTE",
     "slug": "sofa-requinte",
-    "nome": "Sofá Requinte",
+    "nome": "Sofá Requinte Living",
     "categoria": "sala-de-estar",
     "subcategoria": "sofas",
     "resumo": "Linho, assento com costura em gomos.",
@@ -119,7 +119,7 @@
     "categoria": "sala-de-estar",
     "subcategoria": "sofas",
     "resumo": "Com baú e assentos retráteis, em seis tamanhos.",
-    "descricao": "Sofá com baú e assentos retráteis, estrutura em eucalipto e revestimento em linho. Disponível em seis tamanhos, de 1,64 m a 2,72 m.",
+    "descricao": "Sofá com baú e assentos retráteis, estrutura em eucalipto e revestimento em linho. Disponível em seis tamanhos, de 1,64 m a 2,72 m. Caixa zero: o sofá tem pouco volume atrás do encosto e ocupa menos espaço na sala.",
     "preco": 4649,
     "parcelas": {
       "qtd": 18,
@@ -157,29 +157,37 @@
       {
         "nome": "Tamanho",
         "valores": [
-          "1,64 m (R$ 4.139)",
-          "1,74 m (R$ 4.480)",
-          "1,92 m (R$ 4.649)",
-          "2,24 m (R$ 4.920)",
-          "2,50 m (R$ 5.339)",
-          "2,72 m (R$ 5.540)"
+          "1,64 m",
+          "1,74 m",
+          "1,92 m",
+          "2,24 m",
+          "2,50 m",
+          "2,72 m"
         ],
-        "padrao": 2
+        "padrao": 2,
+        "precos": [
+          4139,
+          4480,
+          4649,
+          4920,
+          5339,
+          5540
+        ]
       }
     ],
-    "nota_preco": "Valor à vista do tamanho 1,92 m. Os valores dos outros tamanhos aparecem nas opções.",
+    "nota_preco": "O preço muda conforme o tamanho escolhido.",
     "destaque": true,
     "ativo": true,
     "atualizado_em": "2026-11-03"
   },
   {
     "id": "SOF-VENUS",
-    "slug": "sofa-cama-venus-new",
-    "nome": "Sofá-cama Vênus New",
+    "slug": "sofa-retratil-venus-new",
+    "nome": "Sofá Retrátil Vênus New",
     "categoria": "sala-de-estar",
     "subcategoria": "sofas",
-    "resumo": "Sofá-cama caixa zero, em linho.",
-    "descricao": "Sofá-cama caixa zero com estrutura em eucalipto, espuma D26 e revestimento em linho. O preço exibido é do tamanho 1,82 m.",
+    "resumo": "Retrátil, caixa zero, em linho.",
+    "descricao": "Sofá retrátil caixa zero com estrutura em eucalipto, espuma D26 e revestimento em linho. O preço exibido é do tamanho 1,82 m. Caixa zero: o sofá tem pouco volume atrás do encosto e ocupa menos espaço na sala.",
     "preco": 3590,
     "parcelas": {
       "qtd": 18,
@@ -194,7 +202,7 @@
       "05-foto.jpg",
       "06-foto.jpg"
     ],
-    "video": "sofa-cama-venus-new.mp4",
+    "video": "sofa-retratil-venus-new.mp4",
     "medidas": {
       "largura": "1,82 m",
       "profundidade": "1,20 m a 1,36 m",
@@ -275,12 +283,16 @@
       {
         "nome": "Tamanho",
         "valores": [
-          "1,58 m (R$ 2.569)",
-          "1,98 m (R$ 3.279)"
+          "1,58 m",
+          "1,98 m"
+        ],
+        "precos": [
+          2569,
+          3279
         ]
       }
     ],
-    "nota_preco": "Valor à vista do tamanho 1,58 m.",
+    "nota_preco": "O preço muda conforme o tamanho escolhido.",
     "destaque": true,
     "ativo": true,
     "atualizado_em": "2026-11-03"
@@ -345,60 +357,6 @@
     "atualizado_em": "2026-11-03"
   },
   {
-    "id": "SOF-ARMANI-190",
-    "slug": "sofa-armani-190",
-    "nome": "Sofá Armani 1,90 m",
-    "categoria": "sala-de-estar",
-    "subcategoria": "sofas",
-    "resumo": "Retrátil, caixa zero. Pronta-entrega em três cores.",
-    "descricao": "Sofá retrátil caixa zero com estrutura em eucalipto. Pronta-entrega nas cores cinza claro, bege e cinza escuro; outras cores e tecidos sob encomenda.",
-    "preco": 2590,
-    "parcelas": {
-      "qtd": 18,
-      "valor": 169
-    },
-    "entrega": "pronta",
-    "imagens": [
-      "01-cenario.jpg",
-      "02-fundo-branco.jpg",
-      "03-foto.jpg",
-      "04-foto.jpg",
-      "05-foto.jpg"
-    ],
-    "video": "sofa-armani-190.mp4",
-    "medidas": {
-      "largura": "1,90 m",
-      "profundidade": "0,80 m a 1,50 m",
-      "altura": "1,10 m"
-    },
-    "materiais": [
-      "Estrutura em eucalipto"
-    ],
-    "opcoes": [
-      {
-        "nome": "Cor",
-        "valores": [
-          "Bege",
-          "Cinza claro",
-          "Cinza escuro",
-          "Outra cor (sob encomenda)"
-        ]
-      },
-      {
-        "nome": "Tamanho",
-        "valores": [
-          "1,90 m",
-          "2,10 m",
-          "2,30 m"
-        ]
-      }
-    ],
-    "nota_preco": "Valor à vista do tamanho 1,90 m. Outros tamanhos: consulte pelo WhatsApp.",
-    "destaque": false,
-    "ativo": true,
-    "atualizado_em": "2026-11-03"
-  },
-  {
     "id": "SOF-CHELLES",
     "slug": "sofa-chelles-com-chaise",
     "nome": "Sofá Chelles com chaise",
@@ -448,30 +406,35 @@
     "atualizado_em": "2026-11-03"
   },
   {
-    "id": "SOF-ARMANI-210",
-    "slug": "sofa-armani-210-com-chaise",
-    "nome": "Sofá Armani 2,10 m com chaise",
+    "id": "SOF-ARMANI",
+    "slug": "sofa-armani",
+    "nome": "Sofá Armani",
     "categoria": "sala-de-estar",
     "subcategoria": "sofas",
-    "resumo": "Retrátil, caixa zero, com chaise.",
-    "descricao": "Sofá retrátil caixa zero com chaise, estrutura em eucalipto e revestimento em linho.",
+    "resumo": "Retrátil, caixa zero, em três tamanhos. Pronta-entrega.",
+    "descricao": "Sofá retrátil caixa zero com estrutura em eucalipto e revestimento em linho. Pronta-entrega nas cores cinza, cinza claro, bege e cinza escuro; outras cores e tecidos sob encomenda. Nas fotos: a versão de 2,10 m com chaise (cinza) e a de 1,90 m (bege). Caixa zero: o sofá tem pouco volume atrás do encosto e ocupa menos espaço na sala.",
     "preco": 2890,
     "parcelas": {
       "qtd": 18,
       "valor": 189
     },
-    "entrega": "encomenda",
+    "entrega": "pronta",
     "imagens": [
       "01-cenario.jpg",
       "02-fundo-branco.jpg",
-      "03-foto.jpg",
-      "04-foto.jpg",
+      "03-cenario.jpg",
+      "04-fundo-branco.jpg",
       "05-foto.jpg",
-      "06-foto.jpg"
+      "06-foto.jpg",
+      "07-foto.jpg",
+      "08-foto.jpg",
+      "09-foto.jpg",
+      "10-foto.jpg",
+      "11-foto.jpg"
     ],
-    "video": "sofa-armani-210-com-chaise.mp4",
+    "video": "sofa-armani.mp4",
     "medidas": {
-      "largura": "2,10 m",
+      "largura": "1,90 m, 2,10 m ou 2,30 m",
       "profundidade": "0,80 m a 1,50 m",
       "altura": "1,10 m"
     },
@@ -493,16 +456,29 @@
       {
         "nome": "Tamanho",
         "valores": [
-          "2,10 m",
           "1,90 m",
+          "2,10 m",
           "2,30 m"
+        ],
+        "padrao": 1,
+        "precos": [
+          2590,
+          2890,
+          null
+        ],
+        "parcelas": [
+          169,
+          189,
+          null
         ]
       }
     ],
-    "nota_preco": "Valor à vista do tamanho 2,10 m. Outros tamanhos: consulte pelo WhatsApp.",
-    "destaque": false,
+    "nota_preco": "O preço muda conforme o tamanho escolhido. 2,30 m: consulte pelo WhatsApp.",
+    "destaque": true,
+    "oferta": true,
+    "prioridade": 10,
     "ativo": true,
-    "atualizado_em": "2026-11-03"
+    "atualizado_em": "2026-11-06"
   },
   {
     "id": "SOF-LONDRES",
@@ -511,7 +487,7 @@
     "categoria": "sala-de-estar",
     "subcategoria": "sofas",
     "resumo": "Bouclê, com detalhe de madeira nos braços.",
-    "descricao": "Sofá caixa zero revestido em bouclê, com estrutura em eucalipto e detalhe de madeira nos braços.",
+    "descricao": "Sofá caixa zero revestido em bouclê, com estrutura em eucalipto e detalhe de madeira nos braços. Caixa zero: o sofá tem pouco volume atrás do encosto e ocupa menos espaço na sala.",
     "preco": 2590,
     "preco_anterior": 3690,
     "parcelas": {
@@ -850,7 +826,7 @@
     "categoria": "sala-de-jantar",
     "subcategoria": "mesas",
     "resumo": "Tampo em vidro, base em madeira maciça.",
-    "descricao": "Mesa de jantar de 1,60 x 0,90 m com tampo em vidro e base em madeira maciça.",
+    "descricao": "Mesa de jantar de 1,60 x 0,90 m com tampo em vidro com efeito marmorizado e base em madeira maciça.",
     "preco": 3290,
     "parcelas": {
       "qtd": 12,
@@ -871,7 +847,7 @@
       "altura": "0,80 m"
     },
     "materiais": [
-      "Tampo em vidro",
+      "Tampo em vidro com efeito marmorizado",
       "Base em madeira maciça"
     ],
     "observacao": "As cadeiras das fotos são vendidas separadamente. Consulte o valor pelo WhatsApp.",

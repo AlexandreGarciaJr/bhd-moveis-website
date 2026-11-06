@@ -144,12 +144,52 @@
     if (ordenar) ordenar.addEventListener('change', aplicar);
   }
 
-  /* ---------- Opções do produto: atualizam a mensagem do pedido ---------- */
+  /* ---------- Opções do produto: atualizam o preço e a mensagem do pedido ---------- */
   var opcoes = $$('[data-variacao]');
+  var caixaPreco = $('.produto-preco[data-preco-base]');
+  var reais = function (v) {
+    return v.toLocaleString('pt-BR', { minimumFractionDigits: v % 1 ? 2 : 0, maximumFractionDigits: 2 });
+  };
+
+  // Preço do tamanho escolhido: null = sob consulta. Sem opção de tamanho, vale o preço principal.
+  function precoEscolhido() {
+    var base = parseFloat(caixaPreco.getAttribute('data-preco-base'));
+    var tamanho = $('[data-variacao][data-preco]:checked');
+    if (!tamanho) return base;
+    var v = tamanho.getAttribute('data-preco');
+    return v === '' ? null : parseFloat(v);
+  }
+
+  function textoParcela(valor) {
+    var tamanho = $('[data-variacao][data-preco]:checked');
+    if (tamanho && tamanho.getAttribute('data-parcela')) return tamanho.getAttribute('data-parcela');
+    var base = parseFloat(caixaPreco.getAttribute('data-preco-base'));
+    if (valor === base) return caixaPreco.getAttribute('data-parcela-base');
+    return 'em até ' + caixaPreco.getAttribute('data-parcelas') + 'x no cartão';
+  }
+
+  function atualizarPreco(valor) {
+    var etiqueta = $('[data-etiqueta]', caixaPreco);
+    var consulta = valor === null;
+    var parcela = consulta ? 'Consulte o valor deste tamanho pelo WhatsApp' : textoParcela(valor);
+    etiqueta.classList.toggle('etiqueta-consulta', consulta);
+    $('[data-etiqueta-valor]', etiqueta).textContent = consulta ? 'Sob consulta' : reais(valor);
+    var de = $('[data-etiqueta-de]', etiqueta);
+    if (de) de.hidden = valor !== parseFloat(caixaPreco.getAttribute('data-preco-base'));
+    $('[data-etiqueta-parcela]', etiqueta).innerHTML = consulta ? parcela : '<span class="etiqueta-avista">à vista</span> ' + parcela;
+    var barraValor = $('[data-barra-valor]');
+    if (barraValor) barraValor.textContent = consulta ? 'Sob consulta' : 'R$ ' + reais(valor);
+    var barraParcela = $('[data-barra-parcela]');
+    if (barraParcela) barraParcela.textContent = consulta ? 'pelo WhatsApp' : parcela;
+  }
+
   if (opcoes.length) {
     var atualizarPedido = function () {
+      var valor = caixaPreco ? precoEscolhido() : null;
+      if (caixaPreco) atualizarPreco(valor);
+      var linhaValor = valor === null ? 'Valor: a consultar' : 'Valor à vista: R$ ' + reais(valor) + ' (' + textoParcela(valor) + ')';
       $$('[data-pedido]').forEach(function (botao) {
-        var mensagem = botao.getAttribute('data-modelo');
+        var mensagem = botao.getAttribute('data-modelo').split('{{valor}}').join(linhaValor);
         $$('[data-variacao]:checked').forEach(function (marcada) {
           mensagem = mensagem.split('{{' + marcada.getAttribute('data-variacao') + '}}').join(marcada.value);
         });

@@ -81,6 +81,8 @@ foreach (ler_json('produtos.json') as $p) {
     }
     $produtos[] = $p;
 }
+// "prioridade" leva o produto para o começo de todas as listas (usort é estável: o resto mantém a ordem do JSON)
+usort($produtos, fn($a, $b) => ($b['prioridade'] ?? 0) <=> ($a['prioridade'] ?? 0));
 
 $unidades = ler_json('unidades.json');
 
@@ -239,7 +241,7 @@ foreach ($produtos as $p) {
     $relacionados = array_values(array_filter(produtos_da_categoria($p['categoria']), fn($r) => $r['slug'] !== $p['slug']));
     usort($relacionados, fn($a, $b) => ($b['subcategoria'] === $p['subcategoria']) <=> ($a['subcategoria'] === $p['subcategoria']));
     $registrar($p['url'], pagina('produto', [
-        'titulo' => ($p['seo']['titulo'] ?? $p['nome'] . ' por R$ ' . preco((float) $p['preco'])) . ' | BHD Móveis',
+        'titulo' => ($p['seo']['titulo'] ?? $p['nome'] . (preco_vitrine($p)['a_partir'] ? ' a partir de R$ ' : ' por R$ ') . preco(preco_vitrine($p)['valor'])) . ' | BHD Móveis',
         'descricao' => $p['seo']['descricao'] ?? ($p['nome'] . '. ' . ($p['resumo'] ?? '') . ' R$ ' . preco((float) $p['preco']) . ' à vista, ' . texto_parcela($p) . '. ' . (pronta_entrega($p) ? 'Pronta-entrega em até 48h na Grande São Paulo.' : 'Sob encomenda.') . ' Peça pelo WhatsApp.'),
         'caminho' => $p['url'],
         'imagem' => 'img/produtos/' . $p['slug'] . '/' . pathinfo($p['imagens'][0], PATHINFO_FILENAME) . '-1440.webp',
@@ -251,8 +253,7 @@ foreach ($produtos as $p) {
 }
 
 // Ofertas
-$ofertas = array_values(array_filter($produtos, fn($p) => desconto($p) > 0));
-usort($ofertas, fn($a, $b) => desconto($b) <=> desconto($a));
+$ofertas = ofertas();
 $registrar('/ofertas/', pagina('ofertas', [
     'titulo' => 'Ofertas da semana | BHD Móveis',
     'descricao' => 'Sofás, painéis, racks, mesas e cadeiras com desconto e pronta-entrega em até 48h na Grande São Paulo.',
@@ -298,7 +299,7 @@ $busca = array_map(fn($p) => [
     'n' => $p['nome'],
     'c' => subcategoria(categoria($p['categoria']), $p['subcategoria'])['nome'] . ', ' . categoria($p['categoria'])['nome'],
     'r' => $p['resumo'] ?? '',
-    'p' => preco((float) $p['preco']),
+    'p' => preco(preco_vitrine($p)['valor']),
     'u' => url($p['url']),
     'i' => asset('img/produtos/' . $p['slug'] . '/' . pathinfo($p['imagens'][0], PATHINFO_FILENAME) . '-480.webp'),
 ], $produtos);

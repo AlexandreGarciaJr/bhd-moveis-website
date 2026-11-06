@@ -43,6 +43,19 @@
     "segundos_por_cena": 3,
     "cenas": [
       {
+        "produto": "sofa-armani",
+        "imagem": "produtos/sofa-armani/01-cenario",
+        "foco": "40% 60%",
+        "ancora": [
+          36,
+          60
+        ],
+        "etiqueta": [
+          54,
+          20
+        ]
+      },
+      {
         "produto": "sofa-calvin",
         "imagem": "produtos/sofa-calvin/01-cenario",
         "foco": "50% 60%",
